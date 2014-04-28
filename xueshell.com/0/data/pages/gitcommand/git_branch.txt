@@ -1,0 +1,92 @@
+
+
+
+====创建本地新分支？====
+<code bash>
+$ git checkout -b alvin
+Switched to a new branch 'alvin'
+</code>
+
+
+====切换到不同分支====
+<code>
+git checkout <branch-name>
+</code>
+
+====删除本地分支====
+<code bash>
+$ git branch -d simon
+error: The branch 'simon' is not fully merged.
+If you are sure you want to delete it, run
+'git branch -D simon'.
+</code>
+
+
+====删除远端仓库的分支和标签？====
+
+**删除origin上的simon分支**
+<code>
+$ git push origin :simon
+</code>
+
+**删除远程分支**
+
+在Git v1.7.0 之后，可以使用这种语法删除远程分支：
+<code>
+git push origin --delete <branchName>
+</code>
+<code>
+git push origin --delete <branchName>
+</code>
+**删除远程tag**
+<code>
+git push origin --delete tag <tagname>
+</code>
+
+ 
+
+----  
+  
+====修改本地分支名称？====
+<code>
+$ git branch -m old_branch new_branch
+</code>
+
+-----
+====修改远端仓库分支名称？====
+没有直接的方法改名，可以如下方式修改远端分支名。
+<code bash>
+$ git push -u origin new_branch #创建远端新分支
+$ git push origin :old_branch   #删除旧分支
+</code>
+-----
+====设置远程分支的跟踪?====
+
+你在本地克隆了一个仓库，远端有一个分支叫"some_branch"，如何设置本地仓库跟踪它呢？
+Assuming there is a remote repository that you cloned your local repository from and also assuming that there is a branch named 'some_branch' on that remote repository, here is how to track it locally:
+
+<code bash>
+# list remote branches
+git branch -r
+
+# start tracking one remote branch
+git branch --track some_branch origin/some_branch
+
+# change to the branch locally
+git checkout some_branch
+
+# make changes and commit them locally
+....
+
+# push your changes to the remote repository:
+git push
+
+</code>
+
+====如何查看本地分支跟踪远程那个分支？====
+
+本地有很多分支，如何知道远程分支和本地那个分支有跟踪关系：
+<code>
+$git branch -vv
+</code>
+

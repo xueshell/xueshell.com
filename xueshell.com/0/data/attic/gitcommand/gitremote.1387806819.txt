@@ -1,0 +1,15 @@
+==== Git remote ==== 
+ 
+
+ 
+  * 如何修改远端git仓库 remote 的url地址？
+
+<code bash>
+$ git remote set-url remote URL
+</code>
+
+
+ ==== 添加一个远端仓库到一个已经存在的git仓库上？====
+<code bash>
+$ git remote add --track master origin  https://github.com/user/repo.git
+</code>

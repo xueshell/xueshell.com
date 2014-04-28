@@ -1,0 +1,21 @@
+
+===== Git集中分支管理模式 =====
+
+
+[[gitcommand:git-workflow-svn|Git集中分支管理模式]]
+
+----
+===== GitFlow分支管理模式 =====
+
+
+[[gitcommand:git-workflow-gitflow|GitFlow分支管理模式 ]]
+----
+
+===== Git特性分支管理模式 =====
+[[gitcommand:git-feature-bracn|Git特性支管理模式 ]]
+----
+
+
+{{wiki:dokuwiki-128.png }}
+{{ wiki:dokuwiki-128.png }}
+
