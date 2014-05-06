@@ -9,3 +9,5 @@
 1393237724	10.221.135.74	E	git_branch_model:git_rebase_workflow	uahoo		
 1393239037	10.221.135.74	E	git_branch_model:git_rebase_workflow	uahoo		
 1393239111	10.221.135.74	E	git_branch_model:git_rebase_workflow	uahoo		
+1398671527	127.0.0.1	E	git_branch_model:git_rebase_workflow		外部编辑	
+1398758190	10.221.135.88	D	git_branch_model:git_rebase_workflow	uahoo	移除	

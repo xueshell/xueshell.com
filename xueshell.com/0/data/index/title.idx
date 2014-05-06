@@ -10,7 +10,7 @@ git 如何保存用户名?
 
 
 
-个人开发者（单独开发）
+
 
 
 
@@ -30,7 +30,6 @@ git 如何保存用户名?
 
 用git部署php站点
 源码发布
-git 如何检出变更文件？
 
 
 
@@ -40,15 +39,14 @@ git 如何检出变更文件？
 
 
 
-如何合并两个仓库？
-Git命令实例
+
+
+
 git log 日常用法
-查询分支之间的差异
-git不同状态下diff
+
+
 git分支比较
 
-克隆git仓库
-系统级别配置
 
 
 
@@ -59,25 +57,27 @@ git分支比较
 
 
 
-持续集成
-中央集中式
+
+
+
+
 
 如何回退到某个指定版本提交？
-放弃没有缓存的的文件变更？
-提交所有变更文件
+
+
 向远端仓库提交代码
 Git remote
 计算每次commit的唯一序数号
-中央集中式开发流程
 
-Gitflow分支模式
-Forking Workflow
-Gerrit
-modgit 工具
-Git 的在线托管服务器
-搭建自己的Git代码托管仓库
-官网最新下载
-Git 官方文档
+
+
+
+
+
+
+
+
+
 使用git subtree集成项目到子目录
 统计每个人的提交次数
 a
@@ -86,7 +86,7 @@ a
 
 
 
-增加变更文件到缓存状态
+
 创建本地新分支？
 
 
@@ -102,28 +102,28 @@ a
 
 保存工作区
 获得sha值
-合并分干的某次提交到主支？
 
 
 
 
 
 
-git init 初始化仓库
+
+
 
 GitHub如何操作pull request？
 
-原生Git如何发起pull quest？
-
-git分支
-rebase VS merge
 
 
-git无须合并冲突，强制与远端同步，执行pull操作?
 
-git merge 和 rebase
 
-Git克隆所有远程分支
+
+
+
+
+
+
+
 分离分支的情况
 detached HEAD 和 diverged HEAD
 
@@ -133,19 +133,44 @@ git rm
 git clean
 git fetch
 
-git 修改最新提交的commit log
+
 git 查看每次提交变更内容
-git中如何合并某个指定文件？
+
 
 查看指定版本文件的内容
-查看指定版本文件的内容
-Pull Request 模式
-工单Tickets
-Using Tickets
-交互式rebase
 
-Git-flow 分支类型和模式
+
+
+
+
+
+
 
 Gitflow
 
 
+
+分割字符
+SED
+SED简介
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+shell exec 　 解析
+
+shell 处理用户输入

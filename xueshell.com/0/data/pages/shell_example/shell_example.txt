@@ -1,0 +1,11 @@
+====分割字符====
+
+====循环====
+[[shell_loop|循环loop]]
+
+====数组====
+[[shell_array:array|array]]
+
+====输入====
+[[script_example| input ]]
+

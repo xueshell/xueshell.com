@@ -1,0 +1,5 @@
+[[shell_tools:terminal]]
+
+[[shell_tools:xshell_color_scheme]]
+
+[[shell_tools:mail|mail]]

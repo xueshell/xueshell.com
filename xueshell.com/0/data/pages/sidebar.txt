@@ -1,29 +1,29 @@
 
 ====  命令 ====
 
-  * [[git_concept:git_concept|Git基础]]
-  * [[gitcommand:git_command|Git手册]]
-  * [[gitcommand:git_command1|Git实例]]
+  * [[shell_concept:shell_concept|shell基础]]
+  * [[shell_command:shell_command|shell 命令]]
+  * [[shell_example:shell_example|shell实例]]
 
 
 
+==== shell 内部命令 ====
+  *  [[built_in_command:built_in_command|内部命令集]]
 
-==== 并行开发 ====
 
-  * [[git_concept:git_parallel_concept|分支与合并]]
-  * [[git_branch_model:gitbranchmodel|Git分支模式]]
+==== sed和awk ====
+
+  * [[shell:awk|AWK]]
+  * [[shell:sed|SED]]
  
 
 
 
-==== 代码评审 ====
-  *  [[git_codereview:git_codereview|代码评审]]
+==== 环境与工具====
+  * [[shell_tools:tools|客户端]]
 
 
 
-==== 持续集成====
-  * [[git_CI:git_CI|Git持续集成]]
-  * [[git_CI:git_release|Git发布部署]]
 
 
 

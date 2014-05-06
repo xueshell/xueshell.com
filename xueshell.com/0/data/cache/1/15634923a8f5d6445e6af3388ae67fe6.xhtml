@@ -1,0 +1,577 @@
+
+<h2 class="sectionedit1" id="shell_处理用户输入">shell 处理用户输入</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> 使用命令行参数</div>
+</li>
+<li class="level1"><div class="li"> 设置选项</div>
+</li>
+<li class="level1"><div class="li"> 获取用户输入</div>
+</li>
+</ul>
+
+<p>
+有时编写的脚本需要能和运行脚本的人员进行交互，bash shell提供了一些方法来从用户处获取数据，这些方法有如下三种：
+1- 命令行参数（添加在命令后的参数）
+2- 命令行选项（修改命令行为的单字符串）
+3- 直接读取键盘输入
+</p>
+
+</div>
+<!-- EDIT1 SECTION "shell 处理用户输入" [1-403] -->
+<h3 class="sectionedit2" id="命令行参数">1、命令行参数</h3>
+<div class="level3">
+
+<p>
+ 向shell脚本传递数据最基本的方式就是命令行参数，主要就是说通过一些特殊变量是的bash shell自动把输入的参数赋值给变量才执行脚本。这些变量叫做位置参数，分别有$1为第一个参数、$2为第二个参数、$0为程序名称。。。
+</p>
+
+</div>
+
+<h4 id="读取参数">1.1、读取参数</h4>
+<div class="level4">
+
+<p>
+ 如下看个例子就能理解这个位置参数的概念了：
+</p>
+<pre class="code">[root@wzp ~]# chmod u+x 1.1test 
+ [root@wzp ~]# cat 1.1test 
+ #!/bin/bash
+ a=1
+ for (( b=1; b&lt;=$1; b++ ))
+ do 
+   a=$[ $a * $b ]
+ done
+ echo the factorial of $1 is $a</pre>
+
+<p>
+ [root@wzp ~]# ./1.1test 5
+ the factorial of 5 is 120
+ [root@wzp ~]# ./1.1test 4
+ the factorial of 4 is 24
+主要来看./xx后面附带的命令行参数，只有一个参数也即为第一个参数很明显赋值为$1，通过for循环计算出累乘结果，所以你输入的第一个参数值改变了，结果也就随着改变。
+ 如果要输入更多的命令行参数，那么每个命令行参数必须使用空格分隔出来，下面看一个例子：
+[root@wzp ~]# cat 1.1test 
+ #!/bin/bash
+ total=$[ $1 * $2 ]
+ echo the first param is $1
+ echo the second param is $2
+ echo the total value is $total
+ [root@wzp ~]# ./1.1test 2 3
+ the first param is 2
+ the second param is 3
+ the total value is 6
+ [root@wzp ~]# ./1.1test 4 7
+ the first param is 4
+ the second param is 7
+ the total value is 28
+如上脚本很容易理解，我们看到2/3和4/7都分别被赋值给$1和$2，这里就是通过命令行参数之间的空格分开实现的。当然，数值可以给赋值，对于文本字符串也是可以的，如果要将出现空格的连于一体的参数值可以通过单引号或者双引号括起来，这样bash shell就将其视为一个参数值，先来看个例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 1.1test 
+ #!/bin/bash
+ echo hello $1,glad to meet you.
+ [root@wzp ~]# ./1.1test 51cto gdin
+ hello 51cto,glad to meet you.
+ [root@wzp ~]# ./1.1test &#039;netease corporation&#039;
+ hello netease corporation,glad to meet you.</pre>
+
+<p>
+对于脚本中没有附带$2变量则把gdin参数忽略了。
+ 还有一点必须说明的：
+ 如果脚本输入的命令参数多于9个，就必须使用大括号把变量括起来，如{10}，来看个例子：
+[root@wzp ~]# cat 1.1test 
+ #!/bin/bash
+ total=$[ ${10} + ${11} ]
+ echo the tenth param is ${10}
+ echo the eleventh param is ${11}
+ echo the total is $total
+ [root@wzp ~]# ./1.1test 1 2 3 4 5 6 7 8 9 10 11
+ the tenth param is 10
+ the eleventh param is 11
+ the total is 21
+对于这样的结果很好理解，只要注意下{10+}这个东东就行了！
+</p>
+
+</div>
+
+<h4 id="读取程序名称">1.2、读取程序名称</h4>
+<div class="level4">
+
+<p>
+ 一开始我就在上面提到程序名称用$0即可表示，Ok，先看个例子：
+[root@wzp ~]# chmod u+x 1.2test 
+ [root@wzp ~]# cat 1.2test 
+ #!/bin/bash
+ echo the name of the program is:$0
+ [root@wzp ~]# ./1.2test 
+ the name of the program is:./1.2test
+ [root@wzp ~]# /root/1.2test 
+ the name of the program is:/root/1.2test
+很明显，得出的结果不是我们要的，我们只要输出1.2test这个结果。它所传递的变量$0的字符串是程序的完整路径，而不是名称，这里我们可以通过basename命令实现只返回程序名称，把脚本修改成如下：
+</p>
+<pre class="code">[root@wzp ~]# cat 1.2test 
+ #!/bin/bash
+ name=`basename $0`
+ echo the name of the program is:$name
+ [root@wzp ~]# ./1.2test 
+ the name of the program is:1.2test
+ [root@wzp ~]# $HOME/1.2test
+ the name of the program is:1.2test</pre>
+
+<p>
+呵呵，这下通过basename实现我们要的结果，有点注意的是使用反单引号来给name赋值，否则命令无法生效！
+ 通过基于使用脚本的名称可以实现执行不同功能，下面看个例子：
+</p>
+<pre class="code">[root@wzp ~]# cp 1.2test 51cto
+ [root@wzp ~]# ln -s 1.2test netease
+ [root@wzp ~]# ls -l 1.2test 51cto netease 
+ -rwxr--r-- 1 root root 179 02-13 11:21 1.2test
+ -rwxr--r-- 1 root root 179 02-13 11:22 51cto
+ lrwxrwxrwx 1 root root   7 02-13 11:22 netease -&gt; 1.2test
+ [root@wzp ~]# cat 1.2test 
+ #!/bin/bash
+ name=`basename $0`
+ if [ $name = &quot;51cto&quot; ]
+ then
+   echo $name is a great IT community
+ elif [ $name = &quot;netease&quot; ]
+ then
+   echo $name is a great internet-sp corparation
+ fi
+ [root@wzp ~]# ./51cto
+ 51cto is a great IT community
+ [root@wzp ~]# ./netease
+ netease is a great internet-sp corparation</pre>
+
+<p>
+上面的例子通过脚本名称实现了不同内容的输出，可知basename好用啦！
+ 脚本是先判断basename，然后根据basename执行函数。
+</p>
+
+</div>
+
+<h4 id="测试参数">1.3、测试参数</h4>
+<div class="level4">
+
+<p>
+ 在shell脚本中使用命令行参数要小心，如果执行脚本缺少必要的参数，则会出现报错信息，如下：
+[root@wzp ~]# cat 1.1test 
+ #!/bin/bash
+ total=$[ ${10} + ${11} ]
+ echo the tenth param is ${10}
+ echo the elevnth param is ${11}
+ echo the total is $total
+ [root@wzp ~]# ./1.1test 
+ ./1.1test: line 2: +  : syntax error: operand expected (error token is ” ”)
+ the tenth param is
+ the elevnth param is
+ the total is
+我们不输入任何命令行参数，则脚本无法执行。
+ 所以，我们可以通过-n这个参数进行检测：
+</p>
+<pre class="code">[root@wzp ~]# cat 1.2test 
+ #!/bin/bash
+ if [ -n &quot;$1&quot; ]
+ then
+   echo $1 exists !
+ else
+   echo your inputting is wrong
+ fi
+ [root@wzp ~]# ./1.2test twentyfour
+ twentyfour exists !
+ [root@wzp ~]# ./1.2test 
+ your inputting is wrong</pre>
+
+<p>
+由此可见，通过该方法是检测参数是否存在的好方法。
+</p>
+
+</div>
+<!-- EDIT2 SECTION "1、命令行参数" [404-5804] -->
+<h3 class="sectionedit3" id="特殊的参数变量">2、特殊的参数变量</h3>
+<div class="level3">
+
+<p>
+ 在bash shell中有一些特殊的变量用户跟踪命令行参数。
+</p>
+
+</div>
+
+<h4 id="参数计数">2.1、参数计数</h4>
+<div class="level4">
+
+<p>
+ 我们可以使用bash shell提供的特殊变量$#来检测执行脚本时所包含的命令行参数的个数，看如下例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 2.1test 
+ #!/bin/bash
+ echo there were $# parameters supplied.
+ [root@wzp ~]# chmod u+x 2.1test 
+ [root@wzp ~]# ./2.1test 
+ there were 0 parameters supplied.
+ [root@wzp ~]# ./2.1test aa bb cc
+ there were 3 parameters supplied.</pre>
+
+<p>
+所以，$#是一个值得我们记住脑中的好变量！
+</p>
+
+</div>
+
+<h4 id="获取所有参数">2.2、获取所有参数</h4>
+<div class="level4">
+
+<p>
+ 有时候需要获取命令行中的参数，并对它们进行迭代。这里主要通过两个变量来实现对命令行参数的迭代，分别是：
+ 变量$*和变量$@
+变量$*将所有参数视为一个单词
+ 变量$@将分别对待每个参数
+ 我们看个例子\(≧▽≦)/
+</p>
+<pre class="code"> [root@wzp ~]# chmod u+x 2.2test 
+ [root@wzp ~]# cat 2.2test 
+ #!/bin/bash
+ a=1
+ for param1 in &quot;$*&quot;
+ do 
+   echo &quot;\$* parameter #$a = $param1&quot;
+   a=$[ $a+1 ]
+ done
+ b=1
+ for param2 in &quot;$@&quot;
+ do 
+   echo &quot;\$# parameter #$b = $param2&quot;
+   b=$[ $b+1 ]
+ done
+ c=1
+ for param3 in &quot;$#&quot;
+ do 
+   echo &quot;the total counts = $param3&quot;
+   c=$[ $c+1 ]
+ done</pre>
+
+<p>
+ [root@wzp ~]# ./2.2test a b c d e f
+ $* parameter #1 = a b c d e f
+ $# parameter #1 = a
+ $# parameter #2 = b
+ $# parameter #3 = c
+ $# parameter #4 = d
+ $# parameter #5 = e
+ $# parameter #6 = f
+ the total counts = 6
+通过一个for循环迭代特殊变量，充分体现出[email=$*$@$]$*$@$[/email]#三个特殊变量用途！
+</p>
+
+</div>
+<!-- EDIT3 SECTION "2、特殊的参数变量" [5805-7393] -->
+<h3 class="sectionedit4" id="移位">3、移位</h3>
+<div class="level3">
+
+<p>
+bash shell提供了一个工具叫shift命令，实现改变命令行参数的相对位置
+默认将每个参数变量左移一位。即为，$3的值移动给变量$2（$n+1→$n），而变量$1则被丢弃,当然，$0这个程序名称没变。下面看个例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 3test 
+ #!/bin/bash
+ count=1
+ while [ -n &quot;$1&quot; ]
+ do
+ echo &quot;parameter #$count = $1&quot;
+ count=$[ $count + 1 ]
+ shift
+ done</pre>
+<pre class="code"> [root@wzp ~]# chmod u+x 3test 
+ [root@wzp ~]# ./3test 51cto emc linux rac
+ parameter #1 = 51cto
+ parameter #2 = emc
+ parameter #3 = linux
+ parameter #4 = rac</pre>
+
+<p>
+每测试一个参数，使用shift命令将参数移前一位，所以通过while循环即使得每个参数都变成$1被循环下去显示出来。当然，我们可以指定shift的位数，而不是默认的一位。看如下例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 3test 
+ #!/bin/bash
+ echo &quot;the original parameter : $*&quot;
+ shift 3
+ echo &quot;the new shift parameter is : $1&quot;
+ [root@wzp ~]# ./3test aa bb cc dd ee
+ the original parameter : aa bb cc dd ee
+ the new shift parameter is : dd</pre>
+
+<p>
+指定位数为3后，aa bb cc则被忽略了，直接把dd当成$1.
+</p>
+
+</div>
+<!-- EDIT4 SECTION "3、移位" [7394-8568] -->
+<h3 class="sectionedit5" id="处理选项">4、处理选项</h3>
+<div class="level3">
+
+<p>
+ 选项是有破折号引导的单个字母，它更改命令的行为。如下罗列一些标准化选项：
+<strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong>
+选项                  描述
+-a             实现所有对象
+-c             生成计数
+-d             指定目录
+-e             展开对象
+-f             指定读取数据的文件
+-h             显示命令的帮助信息
+-i             忽略大小写
+-l             生成长格式的输出 
+-n             使用非交互式（批量）模式
+-o             指定一个输出文件来重定向输出
+-q             以quite模式退出
+-r             递归处理目录和文件
+-s             以silent模式执行
+-v             生成verbose模式
+-x             排除和拒绝
+-y             设置所有提问回答为yes
+ </strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong>
+</p>
+
+</div>
+
+<h4 id="处理简单选项">4.1、处理简单选项</h4>
+<div class="level4">
+
+<p>
+ 先来看一个例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 4test 
+ #!/bin/bash
+ while [ -n &quot;$1&quot; ]
+ do
+ case &quot;$1&quot; in
+ -a) echo &quot;the -a option exists&quot;;;
+ -b) echo &quot;the -b option exists&quot;;;
+ -c) echo &quot;the -c option exists&quot;;;
+ *) echo &quot;the &#039;$1&#039; is not an option &quot;;;
+ esac
+ shift
+ done</pre>
+
+<p>
+ [root@wzp ~]# ./4test -a -b -c -d -e
+ the -a option exists
+ the -b option exists
+ the -c option exists
+ the &#039;-d&#039; is not an option 
+ the &#039;-e&#039; is not an option 
+通过case语句循环判断各个选项，并且通过shift灵活移动选项变量。
+</p>
+
+</div>
+
+<h4 id="从参数中分离选项">4.2、从参数中分离选项</h4>
+<div class="level4">
+
+<p>
+ 执行shell脚本经常会遇到使用选项又需要使用参数的情况。在linux中的标准方式是通过特殊字符码（–，双破折号）将二者分开，表示说当这个脚本程序发现双破折号后，就自动把剩余的命令行视为参数，而不再是选项了，如下看个例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 4test 
+ #!/bin/bash
+ while [ -n &quot;$1&quot; ]
+ do
+ case &quot;$1&quot; in
+ -a) echo &quot;the -a option exists&quot;;;
+ -b) echo &quot;the -b option exists&quot;;;
+ -c) echo &quot;the -c option exists&quot;;;
+ --) shift 
+      break;;
+ *) echo &quot;the &#039;$1&#039; is not an option &quot;;;
+ esac
+ shift
+ done
+ count=1
+ for param in $@
+ do
+   echo &quot;parameter #$count:$param&quot;
+   count=$[ $count + 1 ]
+ done
+ [root@wzp ~]# ./4test -a -c -f -- -b test
+ the -a option exists
+ the -c option exists
+ the &#039;-f&#039; is not an option 
+ parameter #1:-b
+ parameter #2:test</pre>
+
+<p>
+如上先通过while循环，把满足条件的选项显示出来，不满足条件的选项也显示出，并说明 is not an option ，当使用–把剩下的被脚本识别为参数的命令行则通过break跳出循环，并且在shift作用下置位成$1,然后在for循环下逐一显示出来，表示现实出来的即为参数，而非选项！
+ 如上的脚本得仔细分析，不然很容易出错。
+ 如果不通过双破折号隔离，如下的结果也是我们想象之中的：
+</p>
+<pre class="code">[root@wzp ~]# ./4test -a -c -f -b test
+ the -a option exists
+ the -c option exists
+ the &#039;-f&#039; is not an option 
+ the -b option exists
+ the &#039;test&#039; is not an option </pre>
+
+<p>
+完全是while循环的判断，没法跳出来执行for循环。
+</p>
+
+</div>
+<!-- EDIT5 SECTION "4、处理选项" [8569-11626] -->
+<h3 class="sectionedit6" id="获取用户输入">5、获取用户输入</h3>
+<div class="level3">
+
+<p>
+ 有时在脚本执行过程中需要询问一个问题并等待执行脚本的人员应答，bash shell提供的read命令可以实现这一需求。
+</p>
+
+</div>
+
+<h4 id="基本读取">5.1、基本读取</h4>
+<div class="level4">
+
+<p>
+read命令接受标准输入（键盘输入），如下示例：
+</p>
+<pre class="code">[root@wzp ~]# chmod u+x 5.1test 
+ [root@wzp ~]# cat 5.1test 
+ #!/bin/bash
+ echo -n &quot;please input your name:&quot;
+ read name
+ echo &quot;hello $name, welcome to IT website&quot;
+ [root@wzp ~]# ./5.1test 
+ please input your name:twentyfour
+ hello twentyfour, welcome to IT website
+&lt;/cod&gt;
+通过一个-n选项使得脚本执行输入不用换行显示。
+ 如上通过echo显示结果，实际上可以直接通过read命令在-p选项下直接把输入的内容附加给后面指定的变量，如下例子，效果跟上面完全一样：
+&lt;code&gt;
+[root@wzp ~]# cat 5.1test 
+ #!/bin/bash
+ read -p &quot;please input your name:&quot; name
+ echo &quot;hello $name, welcome to IT website&quot;
+ [root@wzp ~]# ./5.1test 
+ please input your name:CCIE
+ hello CCIE, welcome to IT website</pre>
+
+<p>
+所以，我们更多可以采用这种方法。
+ 如上的两个方法，我们都是把输入的值赋给了变量name，实际上我们可以不使用这个变量name。这么一来，read命令会把输入的命令赋给一个环境变量REPLY，先来看一个效果：
+</p>
+<pre class="code">[root@wzp ~]# read
+ the content will be sent to \$REPLY
+ [root@wzp ~]# echo $REPLY
+ the content will be sent to $REPLY</pre>
+
+<p>
+我使用\把变量转义不被识别，在read命令下输入的内容将被缓存赋给环境变量$REPLY，这下再来看个例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 5.1test 
+ #!/bin/bash
+ read -p &quot;please input your name:&quot; 
+ echo &quot;hello $REPLY, welcome to IT website&quot;
+ [root@wzp ~]# ./5.1test 
+ please input your name:IBM
+ hello IBM, welcome to IT website</pre>
+
+<p>
+很明显，这个例子跟如上的很接近，但是这个脚本没使用name变量，所以我输入的IBM被系统赋给了环境变量$REPLY。
+</p>
+
+</div>
+
+<h4 id="计时">5.2、计时</h4>
+<div class="level4">
+
+<p>
+ 如上我们可以通过read命令实现交互性的操作，但是假如没有执行脚本的人员操作，脚本则无法自动运行下去。这个时候就可以使用-t选项指定一个计时器，表示等待时间段（单位为秒），如果超过指定的时间，read命令将返回一个非零退出状态，通过判断语句则使脚本可以自动跳过运行下去，我们先看一个例子：
+</p>
+<pre class="code">[root@wzp ~]# chmod u+x 5.2test 
+ [root@wzp ~]# cat 5.2test 
+ #!/bin/bash
+ if read -t 5 -p &quot;please input your name:&quot;
+ then
+   echo &quot;hello $REPLY, welcome to come back here&quot;
+ else
+   echo &quot;sorry , you are too slow &quot;
+ fi
+ [root@wzp ~]# ./5.2test 
+ please input your name:twentyfour
+ hello twentyfour, welcome to come back here
+ [root@wzp ~]# ./5.2test 
+ please input your name:sorry , you are too slow 
+&lt;/coe&gt;
+如上通过-t 5是的输入超过5秒则跳到else的判断结果，有点需要注意就是-p必须放置在-t的后面，否则报错！如上我没有任何输入，超过5秒，则脚本返回了sorry , you are too slow的内容。
+ 到这里还有一个挺经典的-n选项不得不提，除了如上输入时间计时，read还可以通过添加-n选项计数输入的字符。等输入的字符达到预定数目时就自动退出，这里借助case看一个例子：
+&lt;code&gt;
+[root@wzp ~]# cat 5.2test 
+ #!/bin/bash
+ read -n1 -p &quot;do you want to continue [Y/N]?&quot;
+ case $REPLY in
+ Y | y) echo
+           echo &quot;fine ,continue on ..&quot;;;
+ N | n) echo 
+           echo &quot;OK, goodbye...&quot;;;
+ esac
+ [root@wzp ~]# ./5.2test 
+ do you want to continue [Y/N]?y
+ fine ,continue on ..
+ [root@wzp ~]# ./5.2test 
+ do you want to continue [Y/N]?N
+ OK, goodbye...</pre>
+
+<p>
+如上-n后面是数字1，表示read命令接收到一个字符就退出，所以输入Y/N后不用回车就马上执行下去了。这里出现了两个echo，主要是使得结果换行显示，更显人性化。还有就是通过|符号识别大小写，也是人性化。
+</p>
+
+</div>
+
+<h4 id="默读">5.3、默读</h4>
+<div class="level4">
+
+<p>
+ 有时候需要脚本用户进行输入，但输入的数据不显示出来，比如像password的输入。这里可以借用read命令下的-s选项，使得输入的数据颜色跟背景颜色一致，实现不显示数据的效果，看如下例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 5.3test 
+ #!/bin/bash
+ read -s -p &quot;please input your passwd:&quot;
+ echo your passwd is $REPLY
+ [root@wzp ~]# chmod u+x 5.3test 
+ [root@wzp ~]# ./5.3test 
+ please input your passwd:your passwd is aaa
+ [root@wzp ~]# ./5.3test 
+ please input your passwd:your passwd is 51cto</pre>
+
+<p>
+哈哈，这不失为一个非常棒的选项。还有，别以为数据颜色跟背景颜色一样后，你可以通过数据把数据选上而显示出来，linux命令行下输入的数据不占位，压根无法让你选上！
+</p>
+
+</div>
+
+<h4 id="读取文件">5.4、读取文件</h4>
+<div class="level4">
+
+<p>
+read命令可以读取linux系统上存储的文件数据，每调用一次read命令，都会去读取一行文本（注意，是一行，不是整个文件内容），当read命令读完的文本内容将以非零状态退出。借用while命令看一个例子：
+</p>
+<pre class="code">[root@wzp ~]# cat 5.4test 
+ #!/bin/bash
+ count=1
+ cat 51cto.test | while read line
+ do 
+ echo &quot;LINE $count : $line&quot;
+ count=$[ $count + 1 ]
+ done
+ [root@wzp ~]# cat 51cto.test 
+ aaaaaaaaaa
+ bbbbbbbbbb
+ cccccccccc
+ [root@wzp ~]# ./5.4test 
+ LINE 1 : aaaaaaaaaa
+ LINE 2 : bbbbbbbbbb
+ LINE 3 : cccccccccc</pre>
+
+<p>
+这里的51cto.test跟脚本文件放置同一个目录，当然最后就把要读取的文件以绝对路径写入脚本防止脚本读取不到。while命令使用read不断循环读取文件51cto.test中每一行，然后显示出来，直到read读取完后以非零状态退出而结束！
+</p>
+
+</div>
+<!-- EDIT6 SECTION "5、获取用户输入" [11627-] -->

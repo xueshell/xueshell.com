@@ -2,3 +2,5 @@
 1392281723	10.221.135.120	E	gitcommand:git_init	uahoo		
 1392281789	10.221.135.120	E	gitcommand:git_init	uahoo		
 1392282519	10.221.135.120	E	gitcommand:git_init	uahoo		
+1398671527	127.0.0.1	E	gitcommand:git_init		外部编辑	
+1398758076	10.221.135.88	D	gitcommand:git_init	uahoo	移除	

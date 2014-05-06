@@ -1,0 +1,34 @@
+<ol>
+<li class="level1"><div class="li"> for ( (i=1;i⇐10;i++) ) ; do echo $(expr $i \* 4);done</div>
+</li>
+<li class="level1"><div class="li"> 在shell中常用的是 for i in $(seq 10) </div>
+</li>
+<li class="level1"><div class="li"> for i in `ls`</div>
+</li>
+<li class="level1"><div class="li"> for i in ${arr[@]}  </div>
+</li>
+<li class="level1"><div class="li"> for i in $* ; do </div>
+</li>
+<li class="level1"><div class="li"> for File in /proc/sys/net/ipv4/conf/*/accept_redirects; do </div>
+</li>
+<li class="level1"><div class="li"> for i in f1 f2 f3 ;do </div>
+</li>
+<li class="level1"><div class="li"> for i in *.txt </div>
+</li>
+<li class="level1"><div class="li"> for i in $(ls *.txt) </div>
+</li>
+<li class="level1"><div class="li"> for in语句与` `和$( )合用，利用` `或$( )的将多行合为一行的缺陷，实际是合为一个字符串数组</div>
+</li>
+<li class="level1"><div class="li"> LIST=“rootfs usr data data2”   for d in $LIST;  do #  用for in语句自动对字符串按空格遍历的特性，对多个目录遍历 </div>
+</li>
+<li class="level1"><div class="li"> for i in {1..10}</div>
+</li>
+<li class="level1"><div class="li"> for i in stringchar {1..10}</div>
+</li>
+<li class="level1"><div class="li"> awk &#039;BEGIN{for(i=1; i⇐10; i++) print i}&#039;</div>
+</li>
+</ol>
+
+<p>
+注意：AWK中的for循环写法和C语言一样的
+</p>

@@ -1,1 +1,3 @@
 1393925560	10.221.135.103	C	gitcommand:git_commit_amend	uahoo	创建	
+1398671527	127.0.0.1	E	gitcommand:git_commit_amend		外部编辑	
+1398762644	10.221.135.88	D	gitcommand:git_commit_amend	uahoo	移除	

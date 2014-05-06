@@ -5,3 +5,5 @@
 1387526351	10.221.135.120	E	gitcommand:git_checkout_diff	uahoo		
 1387528353	10.221.135.120	E	gitcommand:git_checkout_diff	uahoo	[一句变更列表制作tar包] 	
 1387528980	10.221.135.120	E	gitcommand:git_checkout_diff	uahoo		
+1398671527	127.0.0.1	E	gitcommand:git_checkout_diff		外部编辑	
+1398765898	10.221.135.88	D	gitcommand:git_checkout_diff	uahoo	移除	

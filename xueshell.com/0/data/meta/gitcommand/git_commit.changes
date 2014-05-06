@@ -6,3 +6,5 @@
 1393579766	10.221.135.74	E	gitcommand:git_commit	uahoo		
 1393579934	10.221.135.74	E	gitcommand:git_commit	uahoo		
 1393579945	10.221.135.74	E	gitcommand:git_commit	uahoo	[修改刚才提交的commit log] 	
+1398671527	127.0.0.1	E	gitcommand:git_commit		外部编辑	
+1398765927	10.221.135.88	D	gitcommand:git_commit	uahoo	移除	

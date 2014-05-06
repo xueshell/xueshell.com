@@ -1,4 +1,0 @@
-====git 修改最新提交的commit log====
-<code>
-$git commit --amend
-</code>

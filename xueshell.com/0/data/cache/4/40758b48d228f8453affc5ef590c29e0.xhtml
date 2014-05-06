@@ -1,0 +1,163 @@
+
+<p>
+数组作为一种特殊的数据结构在任何一种编程语言中都有它的一席之地，当然bash shell也不例外。本文就shell数组来做一个小的总结。
+在这里只讨论一维数组的情况，关于多维数组(事实上，你得用一维数组的方法来模拟)，不涉及。这里包括数组的复制，计算，删除，替换。
+</p>
+
+<p>
+ 数组的声明:
+</p>
+
+<p>
+1)array[key]=value # array[0]=one,array[1]=two
+</p>
+
+<p>
+2)declare -a array # array被当作数组名
+</p>
+
+<p>
+3)array=( value1 value2 value3 … )
+</p>
+
+<p>
+4)array=( [1]=one [2]=two [3]=three … )
+</p>
+
+<p>
+5)array=“one two three” # echo ${array[0|@|*]},把array变量当作数组来处理，但数组元素只有字符串本身
+</p>
+
+<p>
+代码数组的访问:
+</p>
+
+<p>
+1)${array[key]} # ${array[1]}
+</p>
+
+<p>
+代码数组的删除
+</p>
+
+<p>
+1)unset array[1] # 删除数组中第一个元素
+</p>
+
+<p>
+2)unset array # 删除整个数组
+</p>
+
+<p>
+计算数组的长度:
+</p>
+
+<p>
+1)${#array}
+</p>
+
+<p>
+01.2)${#array[0]} #同上。 ${#array[*]} 、${#array[@]}。注意同#{array:0}的区别
+复制代码数组的提取
+ 从尾部开始提取:
+array=( [0]=one [1]=two [2]=three [3]=four )
+ ${array[@]:1} # two three four,除掉第一个元素后所有元素，那么${array[@]:0}表示所有元素
+${array[@]:0:2} # one two
+ ${array[@]:1:2} # two three
+</p>
+
+<p>
+子串删除
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@]:0}
+</p>
+
+<p>
+02.one two three four
+复制代码
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@]#t*e} # 左边开始最短的匹配:“t*e”,这将匹配到”thre”
+</p>
+
+<p>
+02.one two e four
+复制代码
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@]##t*e} # 左边开始最长的匹配,这将匹配到”three”
+复制代码
+</p>
+
+<p>
+01.[root@localhost dev]# array=( [0]=one [1]=two [2]=three [3]=four )
+复制代码
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@] %o} # 从字符串的结尾开始最短的匹配
+</p>
+
+<p>
+02.one tw three four
+复制代码
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@] %%o} # 从字符串的结尾开始最长的匹配
+</p>
+
+<p>
+02.one tw three four
+复制代码子串替换
+</p>
+
+<p>
+01.[root@localhost dev]# array=( [0]=one [1]=two [2]=three [3]=four )
+复制代码第一个匹配到的，会被删除
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@] /o/m}
+</p>
+
+<p>
+02.mne twm three fmur
+复制代码所有匹配到的，都会被删除
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@] <em>o/m}
+
+02.mne twm three fmur
+复制代码没有指定替换子串，则删除匹配到的子符
+
+01.[root@localhost dev]# echo ${array[@] </em>o/}
+</p>
+
+<p>
+02.ne tw three fur
+复制代码替换字符串前端子串
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@] /#o/k}
+</p>
+
+<p>
+02.kne two three four
+复制代码替换字符串后端子串
+</p>
+
+<p>
+01.[root@localhost dev]# echo ${array[@] /%o/k}
+</p>
+
+<p>
+02.one twk three four
+复制代码
+</p>

@@ -25,3 +25,5 @@
 1392275203	10.221.135.120	E	git_branch_model:git-fork-branch	uahoo	[The project maintainer integrates their features] 	
 1392275626	10.221.135.120	E	git_branch_model:git-fork-branch	uahoo	[Developers synchronize with the official repository] 	
 1392275898	10.221.135.120	E	git_branch_model:git-fork-branch	uahoo		
+1398671527	127.0.0.1	E	git_branch_model:git-fork-branch		外部编辑	
+1398824220	10.221.135.88	D	git_branch_model:git-fork-branch	uahoo	移除	

@@ -4,3 +4,5 @@
 1392283276	10.221.135.120	E	gitcommand:git_add	uahoo		
 1392283351	10.221.135.120	E	gitcommand:git_add	uahoo		
 1392283370	10.221.135.120	E	gitcommand:git_add	uahoo		
+1398671527	127.0.0.1	E	gitcommand:git_add		外部编辑	
+1398762759	10.221.135.88	D	gitcommand:git_add	uahoo	移除	

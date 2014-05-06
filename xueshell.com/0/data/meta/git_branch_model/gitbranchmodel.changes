@@ -26,3 +26,5 @@
 1394430910	10.221.135.122	E	git_branch_model:gitbranchmodel	uahoo		
 1395035613	10.221.135.150	E	git_branch_model:gitbranchmodel	uahoo		
 1395035983	10.221.135.150	E	git_branch_model:gitbranchmodel	uahoo	[Gitblit Tickets 模式] 	
+1398671527	127.0.0.1	E	git_branch_model:gitbranchmodel		外部编辑	
+1398758111	10.221.135.88	D	git_branch_model:gitbranchmodel	uahoo	移除	

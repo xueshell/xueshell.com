@@ -1,0 +1,4 @@
+  * echo 消除换行符
+  - sed -e ':a;N;s/n//;ta' filename //
+  - tr -d '\n' 
+  - 在Vi中，使用:%s/n//g  

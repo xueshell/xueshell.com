@@ -452,8 +452,9 @@ class helper_plugin_include extends DokuWiki_Plugin { // DokuWiki_Helper_Plugin
         $section_close_at = false;
         foreach($conv_idx as $idx) {
             if($ins[$idx][0] == 'header') {
-                if ($section_close_at === false) {
-                    // store the index of the first heading (the begin of the first section)
+                if ($section_close_at === false && isset($ins[$idx+1]) && $ins[$idx+1][0] == 'section_open') {
+                    // store the index of the first heading that is followed by a new section
+                    // the wrap plugin creates sections without section_open so the section shouldn't be closed before them
                     $section_close_at = $idx;
                 }
 
@@ -796,6 +797,11 @@ class helper_plugin_include extends DokuWiki_Plugin { // DokuWiki_Helper_Plugin
 
         $user     = $_SERVER['REMOTE_USER'];
         $group    = $INFO['userinfo']['grps'][0];
+
+        // set group for unregistered users
+        if (!isset($group)) {
+            $group = 'ALL';
+        }
 
         $time_stamp = time();
         if(preg_match('/@DATE(\w+)@/',$id,$matches)) {

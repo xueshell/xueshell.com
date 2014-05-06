@@ -1,1 +1,3 @@
 1395060416	10.212.40.248	C	gitcommand:git_describe	uahoo	创建	
+1398671527	127.0.0.1	E	gitcommand:git_describe		外部编辑	
+1398758367	10.221.135.88	D	gitcommand:git_describe	uahoo	移除	
