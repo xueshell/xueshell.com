@@ -1,0 +1,20 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 5.1test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 5.1test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw3">echo</span> <span class="re5">-n</span> <span class="st0">&quot;please input your name:&quot;</span>
+ <span class="kw2">read</span> name
+ <span class="kw3">echo</span> <span class="st0">&quot;hello <span class="es2">$name</span>, welcome to IT website&quot;</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./5.1test </span>
+ please input your name:twentyfour
+ hello twentyfour, welcome to IT website
+<span class="sy0">&lt;/</span>cod<span class="sy0">&gt;</span>
+通过一个-n选项使得脚本执行输入不用换行显示。
+ 如上通过<span class="kw3">echo</span>显示结果，实际上可以直接通过<span class="kw2">read</span>命令在-p选项下直接把输入的内容附加给后面指定的变量，如下例子，效果跟上面完全一样：
+<span class="sy0">&lt;</span>code<span class="sy0">&gt;</span>
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 5.1test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw2">read</span> <span class="re5">-p</span> <span class="st0">&quot;please input your name:&quot;</span> name
+ <span class="kw3">echo</span> <span class="st0">&quot;hello <span class="es2">$name</span>, welcome to IT website&quot;</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./5.1test </span>
+ please input your name:CCIE
+ hello CCIE, welcome to IT website

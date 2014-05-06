@@ -1,0 +1,13 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 1.1test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 1.1test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="re2">a</span>=<span class="nu0">1</span>
+ <span class="kw1">for</span> <span class="br0">&#40;</span><span class="br0">&#40;</span> <span class="re2">b</span>=<span class="nu0">1</span>; b<span class="sy0">&lt;</span>=<span class="re4">$1</span>; b++ <span class="br0">&#41;</span><span class="br0">&#41;</span>
+ <span class="kw1">do</span> 
+   <span class="re2">a</span>=$<span class="br0">&#91;</span> <span class="re1">$a</span> <span class="sy0">*</span> <span class="re1">$b</span> <span class="br0">&#93;</span>
+ <span class="kw1">done</span>
+ <span class="kw3">echo</span> the factorial of <span class="re4">$1</span> is <span class="re1">$a</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.1test 5</span>
+ the factorial of <span class="nu0">5</span> is <span class="nu0">120</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.1test 4</span>
+ the factorial of <span class="nu0">4</span> is <span class="nu0">24</span>

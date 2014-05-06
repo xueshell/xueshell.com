@@ -1,0 +1,14 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 5.2test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 5.2test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw1">if</span> <span class="kw2">read</span> <span class="re5">-t</span> <span class="nu0">5</span> <span class="re5">-p</span> <span class="st0">&quot;please input your name:&quot;</span>
+ <span class="kw1">then</span>
+   <span class="kw3">echo</span> <span class="st0">&quot;hello <span class="es2">$REPLY</span>, welcome to come back here&quot;</span>
+ <span class="kw1">else</span>
+   <span class="kw3">echo</span> <span class="st0">&quot;sorry , you are too slow &quot;</span>
+ <span class="kw1">fi</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./5.2test </span>
+ please input your name:twentyfour
+ hello twentyfour, welcome to come back here
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./5.2test </span>
+ please input your name:sorry , you are too slow 

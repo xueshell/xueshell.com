@@ -1,0 +1,6 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./4test -a -c -f -b test</span>
+ the <span class="re5">-a</span> option exists
+ the <span class="re5">-c</span> option exists
+ the <span class="st_h">'-f'</span> is not an option 
+ the <span class="re5">-b</span> option exists
+ the <span class="st_h">'test'</span> is not an option 

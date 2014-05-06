@@ -1,0 +1,15 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 5.2test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw2">read</span> <span class="re5">-n1</span> <span class="re5">-p</span> <span class="st0">&quot;do you want to continue [Y/N]?&quot;</span>
+ <span class="kw1">case</span> <span class="re1">$REPLY</span> <span class="kw1">in</span>
+ Y <span class="sy0">|</span> y<span class="br0">&#41;</span> <span class="kw3">echo</span>
+           <span class="kw3">echo</span> <span class="st0">&quot;fine ,continue on ..&quot;</span><span class="sy0">;;</span>
+ N <span class="sy0">|</span> n<span class="br0">&#41;</span> <span class="kw3">echo</span> 
+           <span class="kw3">echo</span> <span class="st0">&quot;OK, goodbye...&quot;</span><span class="sy0">;;</span>
+ <span class="kw1">esac</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./5.2test </span>
+ <span class="kw1">do</span> you want to <span class="kw3">continue</span> <span class="br0">&#91;</span>Y<span class="sy0">/</span>N<span class="br0">&#93;</span>?y
+ fine ,<span class="kw3">continue</span> on ..
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./5.2test </span>
+ <span class="kw1">do</span> you want to <span class="kw3">continue</span> <span class="br0">&#91;</span>Y<span class="sy0">/</span>N<span class="br0">&#93;</span>?N
+ OK, goodbye...

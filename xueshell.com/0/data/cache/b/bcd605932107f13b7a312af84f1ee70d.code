@@ -1,0 +1,8 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 3test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw3">echo</span> <span class="st0">&quot;the original parameter : $*&quot;</span>
+ <span class="kw3">shift</span> <span class="nu0">3</span>
+ <span class="kw3">echo</span> <span class="st0">&quot;the new shift parameter is : $1&quot;</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./3test aa bb cc dd ee</span>
+ the original parameter : aa bb <span class="kw2">cc</span> <span class="kw2">dd</span> ee
+ the new <span class="kw3">shift</span> parameter is : <span class="kw2">dd</span>

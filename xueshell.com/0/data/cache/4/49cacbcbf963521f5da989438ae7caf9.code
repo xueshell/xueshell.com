@@ -1,0 +1,14 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 1.1test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="re2">total</span>=$<span class="br0">&#91;</span> <span class="re4">$1</span> <span class="sy0">*</span> <span class="re4">$2</span> <span class="br0">&#93;</span>
+ <span class="kw3">echo</span> the first param is <span class="re4">$1</span>
+ <span class="kw3">echo</span> the second param is <span class="re4">$2</span>
+ <span class="kw3">echo</span> the total value is <span class="re1">$total</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.1test 2 3</span>
+ the first param is <span class="nu0">2</span>
+ the second param is <span class="nu0">3</span>
+ the total value is <span class="nu0">6</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.1test 4 7</span>
+ the first param is <span class="nu0">4</span>
+ the second param is <span class="nu0">7</span>
+ the total value is <span class="nu0">28</span>

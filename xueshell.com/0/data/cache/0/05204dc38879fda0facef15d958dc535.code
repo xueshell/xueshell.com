@@ -1,0 +1,7 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 1.1test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw3">echo</span> hello <span class="re4">$1</span>,glad to meet you.
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.1test 51cto gdin</span>
+ hello 51cto,glad to meet you.
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.1test 'netease corporation'</span>
+ hello netease corporation,glad to meet you.

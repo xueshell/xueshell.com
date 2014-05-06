@@ -1,0 +1,12 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 1.2test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re5">-n</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>
+ <span class="kw1">then</span>
+   <span class="kw3">echo</span> <span class="re4">$1</span> exists <span class="sy0">!</span>
+ <span class="kw1">else</span>
+   <span class="kw3">echo</span> your inputting is wrong
+ <span class="kw1">fi</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.2test twentyfour</span>
+ twentyfour exists <span class="sy0">!</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.2test </span>
+ your inputting is wrong

@@ -1,0 +1,21 @@
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 2.2test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 2.2test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="re2">a</span>=<span class="nu0">1</span>
+ <span class="kw1">for</span> param1 <span class="kw1">in</span> <span class="st0">&quot;$*&quot;</span>
+ <span class="kw1">do</span> 
+   <span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\$</span>* parameter #<span class="es2">$a</span> = <span class="es2">$param1</span>&quot;</span>
+   <span class="re2">a</span>=$<span class="br0">&#91;</span> <span class="re1">$a</span>+<span class="nu0">1</span> <span class="br0">&#93;</span>
+ <span class="kw1">done</span>
+ <span class="re2">b</span>=<span class="nu0">1</span>
+ <span class="kw1">for</span> param2 <span class="kw1">in</span> <span class="st0">&quot;$@&quot;</span>
+ <span class="kw1">do</span> 
+   <span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\$</span># parameter #<span class="es2">$b</span> = <span class="es2">$param2</span>&quot;</span>
+   <span class="re2">b</span>=$<span class="br0">&#91;</span> <span class="re1">$b</span>+<span class="nu0">1</span> <span class="br0">&#93;</span>
+ <span class="kw1">done</span>
+ <span class="re2">c</span>=<span class="nu0">1</span>
+ <span class="kw1">for</span> param3 <span class="kw1">in</span> <span class="st0">&quot;$#&quot;</span>
+ <span class="kw1">do</span> 
+   <span class="kw3">echo</span> <span class="st0">&quot;the total counts = <span class="es2">$param3</span>&quot;</span>
+   <span class="re2">c</span>=$<span class="br0">&#91;</span> <span class="re1">$c</span>+<span class="nu0">1</span> <span class="br0">&#93;</span>
+ <span class="kw1">done</span>

@@ -1,0 +1,8 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 2.1test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw3">echo</span> there were <span class="re4">$#</span> parameters supplied.
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 2.1test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./2.1test </span>
+ there were <span class="nu0">0</span> parameters supplied.
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./2.1test aa bb cc</span>
+ there were <span class="nu0">3</span> parameters supplied.

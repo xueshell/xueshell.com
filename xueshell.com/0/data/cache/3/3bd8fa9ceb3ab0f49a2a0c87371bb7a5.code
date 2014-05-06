@@ -1,0 +1,6 @@
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 3test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./3test 51cto emc linux rac</span>
+ parameter <span class="co0">#1 = 51cto</span>
+ parameter <span class="co0">#2 = emc</span>
+ parameter <span class="co0">#3 = linux</span>
+ parameter <span class="co0">#4 = rac</span>

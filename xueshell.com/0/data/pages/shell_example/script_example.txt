@@ -14,7 +14,7 @@
 
 ===1.1、读取参数===
  如下看个例子就能理解这个位置参数的概念了：
-<code>
+<code bash>
 [root@wzp ~]# chmod u+x 1.1test 
  [root@wzp ~]# cat 1.1test 
  #!/bin/bash
@@ -24,13 +24,14 @@
    a=$[ $a * $b ]
  done
  echo the factorial of $1 is $a
-</code>
  [root@wzp ~]# ./1.1test 5
  the factorial of 5 is 120
  [root@wzp ~]# ./1.1test 4
  the factorial of 4 is 24
+</code>
 主要来看./xx后面附带的命令行参数，只有一个参数也即为第一个参数很明显赋值为$1，通过for循环计算出累乘结果，所以你输入的第一个参数值改变了，结果也就随着改变。
  如果要输入更多的命令行参数，那么每个命令行参数必须使用空格分隔出来，下面看一个例子：
+<code bash>
 [root@wzp ~]# cat 1.1test 
  #!/bin/bash
  total=$[ $1 * $2 ]
@@ -45,8 +46,9 @@
  the first param is 4
  the second param is 7
  the total value is 28
+</code>
 如上脚本很容易理解，我们看到2/3和4/7都分别被赋值给$1和$2，这里就是通过命令行参数之间的空格分开实现的。当然，数值可以给赋值，对于文本字符串也是可以的，如果要将出现空格的连于一体的参数值可以通过单引号或者双引号括起来，这样bash shell就将其视为一个参数值，先来看个例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 1.1test 
  #!/bin/bash
  echo hello $1,glad to meet you.
@@ -58,6 +60,7 @@
 对于脚本中没有附带$2变量则把gdin参数忽略了。
  还有一点必须说明的：
  如果脚本输入的命令参数多于9个，就必须使用大括号把变量括起来，如{10}，来看个例子：
+<code bash>
 [root@wzp ~]# cat 1.1test 
  #!/bin/bash
  total=$[ ${10} + ${11} ]
@@ -68,9 +71,11 @@
  the tenth param is 10
  the eleventh param is 11
  the total is 21
+</code>
 对于这样的结果很好理解，只要注意下{10+}这个东东就行了！
 ===1.2、读取程序名称===
  一开始我就在上面提到程序名称用$0即可表示，Ok，先看个例子：
+<code bash>
 [root@wzp ~]# chmod u+x 1.2test 
  [root@wzp ~]# cat 1.2test 
  #!/bin/bash
@@ -79,8 +84,10 @@
  the name of the program is:./1.2test
  [root@wzp ~]# /root/1.2test 
  the name of the program is:/root/1.2test
+</coe>
 很明显，得出的结果不是我们要的，我们只要输出1.2test这个结果。它所传递的变量$0的字符串是程序的完整路径，而不是名称，这里我们可以通过basename命令实现只返回程序名称，把脚本修改成如下：
-<code>
+<code bash>
+
 [root@wzp ~]# cat 1.2test 
  #!/bin/bash
  name=`basename $0`
@@ -92,7 +99,7 @@
 </code>
 呵呵，这下通过basename实现我们要的结果，有点注意的是使用反单引号来给name赋值，否则命令无法生效！
  通过基于使用脚本的名称可以实现执行不同功能，下面看个例子：
-<code>
+<code bash>
 [root@wzp ~]# cp 1.2test 51cto
  [root@wzp ~]# ln -s 1.2test netease
  [root@wzp ~]# ls -l 1.2test 51cto netease 
@@ -120,6 +127,7 @@
 ===1.3、测试参数====
 
  在shell脚本中使用命令行参数要小心，如果执行脚本缺少必要的参数，则会出现报错信息，如下：
+<code bash>
 [root@wzp ~]# cat 1.1test 
  #!/bin/bash
  total=$[ ${10} + ${11} ]
@@ -131,9 +139,10 @@
  the tenth param is
  the elevnth param is
  the total is
+</code>
 我们不输入任何命令行参数，则脚本无法执行。
  所以，我们可以通过-n这个参数进行检测：
-<code>
+<code bash>
 [root@wzp ~]# cat 1.2test 
  #!/bin/bash
  if [ -n "$1" ]
@@ -153,7 +162,7 @@
  在bash shell中有一些特殊的变量用户跟踪命令行参数。
 ===2.1、参数计数===
  我们可以使用bash shell提供的特殊变量$#来检测执行脚本时所包含的命令行参数的个数，看如下例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 2.1test 
  #!/bin/bash
  echo there were $# parameters supplied.
@@ -170,7 +179,7 @@
 变量$*将所有参数视为一个单词
  变量$@将分别对待每个参数
  我们看个例子\(≧▽≦)/
-<code>
+<code bash>
  [root@wzp ~]# chmod u+x 2.2test 
  [root@wzp ~]# cat 2.2test 
  #!/bin/bash
@@ -193,6 +202,7 @@
    c=$[ $c+1 ]
  done
 </code>
+<code bash>
  [root@wzp ~]# ./2.2test a b c d e f
  $* parameter #1 = a b c d e f
  $# parameter #1 = a
@@ -202,13 +212,14 @@
  $# parameter #5 = e
  $# parameter #6 = f
  the total counts = 6
+</cod>
 通过一个for循环迭代特殊变量，充分体现出[email=$*$@$]$*$@$[/email]#三个特殊变量用途！
 
 ====3、移位====
 
 bash shell提供了一个工具叫shift命令，实现改变命令行参数的相对位置
 默认将每个参数变量左移一位。即为，$3的值移动给变量$2（$n+1->$n），而变量$1则被丢弃,当然，$0这个程序名称没变。下面看个例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 3test 
  #!/bin/bash
  count=1
@@ -220,7 +231,7 @@ bash shell提供了一个工具叫shift命令，实现改变命令行参数的�
  done
 </code>
 
-<code>
+<code bash>
  [root@wzp ~]# chmod u+x 3test 
  [root@wzp ~]# ./3test 51cto emc linux rac
  parameter #1 = 51cto
@@ -229,7 +240,7 @@ bash shell提供了一个工具叫shift命令，实现改变命令行参数的�
  parameter #4 = rac
 </code>
 每测试一个参数，使用shift命令将参数移前一位，所以通过while循环即使得每个参数都变成$1被循环下去显示出来。当然，我们可以指定shift的位数，而不是默认的一位。看如下例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 3test 
  #!/bin/bash
  echo "the original parameter : $*"
@@ -267,7 +278,7 @@ bash shell提供了一个工具叫shift命令，实现改变命令行参数的�
 === 4.1、处理简单选项===
 
  先来看一个例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 4test 
  #!/bin/bash
  while [ -n "$1" ]
@@ -280,18 +291,19 @@ bash shell提供了一个工具叫shift命令，实现改变命令行参数的�
  esac
  shift
  done
-</code>
+
  [root@wzp ~]# ./4test -a -b -c -d -e
  the -a option exists
  the -b option exists
  the -c option exists
  the '-d' is not an option 
  the '-e' is not an option 
+</code>
 通过case语句循环判断各个选项，并且通过shift灵活移动选项变量。
 
 ===4.2、从参数中分离选项===
  执行shell脚本经常会遇到使用选项又需要使用参数的情况。在linux中的标准方式是通过特殊字符码（--，双破折号）将二者分开，表示说当这个脚本程序发现双破折号后，就自动把剩余的命令行视为参数，而不再是选项了，如下看个例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 4test 
  #!/bin/bash
  while [ -n "$1" ]
@@ -322,7 +334,7 @@ bash shell提供了一个工具叫shift命令，实现改变命令行参数的�
 如上先通过while循环，把满足条件的选项显示出来，不满足条件的选项也显示出，并说明 is not an option ，当使用--把剩下的被脚本识别为参数的命令行则通过break跳出循环，并且在shift作用下置位成$1,然后在for循环下逐一显示出来，表示现实出来的即为参数，而非选项！
  如上的脚本得仔细分析，不然很容易出错。
  如果不通过双破折号隔离，如下的结果也是我们想象之中的：
-<code>
+<code bash>
 [root@wzp ~]# ./4test -a -c -f -b test
  the -a option exists
  the -c option exists
@@ -337,7 +349,7 @@ bash shell提供了一个工具叫shift命令，实现改变命令行参数的�
  有时在脚本执行过程中需要询问一个问题并等待执行脚本的人员应答，bash shell提供的read命令可以实现这一需求。
 ===5.1、基本读取===
 read命令接受标准输入（键盘输入），如下示例：
-<code>
+<code bash>
 [root@wzp ~]# chmod u+x 5.1test 
  [root@wzp ~]# cat 5.1test 
  #!/bin/bash
@@ -350,7 +362,7 @@ read命令接受标准输入（键盘输入），如下示例：
 </cod>
 通过一个-n选项使得脚本执行输入不用换行显示。
  如上通过echo显示结果，实际上可以直接通过read命令在-p选项下直接把输入的内容附加给后面指定的变量，如下例子，效果跟上面完全一样：
-<code>
+<code bash>
 [root@wzp ~]# cat 5.1test 
  #!/bin/bash
  read -p "please input your name:" name
@@ -368,7 +380,7 @@ read命令接受标准输入（键盘输入），如下示例：
  the content will be sent to $REPLY
 </code>
 我使用\把变量转义不被识别，在read命令下输入的内容将被缓存赋给环境变量$REPLY，这下再来看个例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 5.1test 
  #!/bin/bash
  read -p "please input your name:" 
@@ -382,7 +394,7 @@ read命令接受标准输入（键盘输入），如下示例：
 ===5.2、计时===
 
  如上我们可以通过read命令实现交互性的操作，但是假如没有执行脚本的人员操作，脚本则无法自动运行下去。这个时候就可以使用-t选项指定一个计时器，表示等待时间段（单位为秒），如果超过指定的时间，read命令将返回一个非零退出状态，通过判断语句则使脚本可以自动跳过运行下去，我们先看一个例子：
-<code>
+<code bash>
 [root@wzp ~]# chmod u+x 5.2test 
  [root@wzp ~]# cat 5.2test 
  #!/bin/bash
@@ -397,10 +409,10 @@ read命令接受标准输入（键盘输入），如下示例：
  hello twentyfour, welcome to come back here
  [root@wzp ~]# ./5.2test 
  please input your name:sorry , you are too slow 
-</coe>
+</code>
 如上通过-t 5是的输入超过5秒则跳到else的判断结果，有点需要注意就是-p必须放置在-t的后面，否则报错！如上我没有任何输入，超过5秒，则脚本返回了sorry , you are too slow的内容。
  到这里还有一个挺经典的-n选项不得不提，除了如上输入时间计时，read还可以通过添加-n选项计数输入的字符。等输入的字符达到预定数目时就自动退出，这里借助case看一个例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 5.2test 
  #!/bin/bash
  read -n1 -p "do you want to continue [Y/N]?"
@@ -420,7 +432,7 @@ read命令接受标准输入（键盘输入），如下示例：
 如上-n后面是数字1，表示read命令接收到一个字符就退出，所以输入Y/N后不用回车就马上执行下去了。这里出现了两个echo，主要是使得结果换行显示，更显人性化。还有就是通过|符号识别大小写，也是人性化。
 ===5.3、默读===
  有时候需要脚本用户进行输入，但输入的数据不显示出来，比如像password的输入。这里可以借用read命令下的-s选项，使得输入的数据颜色跟背景颜色一致，实现不显示数据的效果，看如下例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 5.3test 
  #!/bin/bash
  read -s -p "please input your passwd:"
@@ -434,7 +446,7 @@ read命令接受标准输入（键盘输入），如下示例：
 哈哈，这不失为一个非常棒的选项。还有，别以为数据颜色跟背景颜色一样后，你可以通过数据把数据选上而显示出来，linux命令行下输入的数据不占位，压根无法让你选上！
 ===5.4、读取文件===
 read命令可以读取linux系统上存储的文件数据，每调用一次read命令，都会去读取一行文本（注意，是一行，不是整个文件内容），当read命令读完的文本内容将以非零状态退出。借用while命令看一个例子：
-<code>
+<code bash>
 [root@wzp ~]# cat 5.4test 
  #!/bin/bash
  count=1
