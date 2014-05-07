@@ -233,3 +233,4 @@ shell_example:script_example
 shell_command:select
 script_example:input
 shell_command:echo
+build_in_command:ps1

@@ -54,3 +54,8 @@
 1399453667	10.221.135.100	C	shell_command:echo	uahoo	创建	
 1399453682	10.221.135.100	E	shell_command:echo	uahoo		
 1399453717	10.221.135.100	E	shell_command:echo	uahoo		
+1399457754	10.221.135.100	E	built_in_command:built_in_command	uahoo		
+1399457762	10.221.135.100	C	build_in_command:ps1	uahoo	创建	
+1399457786	10.221.135.100	E	built_in_command:built_in_command	uahoo		
+1399457822	10.221.135.100	E	build_in_command:ps1	uahoo		
+1399458212	10.221.135.100	E	build_in_command:ps1	uahoo		

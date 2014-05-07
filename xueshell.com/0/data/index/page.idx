@@ -177,3 +177,4 @@ shell_example:script_example
 shell_command:shell_command
 script_example:input
 shell_command:echo
+build_in_command:ps1

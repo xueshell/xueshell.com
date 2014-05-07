@@ -7,3 +7,5 @@
 [[built_in_command:returen_value | $? $# ]]
 
 [[built_in_command:exec | exec ]]
+
+[[build_in_command:PS1 | PS1 PS3 ]]
