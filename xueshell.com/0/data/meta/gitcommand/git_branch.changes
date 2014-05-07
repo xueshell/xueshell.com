@@ -17,3 +17,5 @@
 1395112219	10.221.135.150	E	gitcommand:git_branch	uahoo	[本地删除分支] 	
 1395112382	10.221.135.150	E	gitcommand:git_branch	uahoo	[删除远端仓库的分支？] 	
 1395112419	10.221.135.150	E	gitcommand:git_branch	uahoo	[删除远端仓库的分支和标签？] 	
+1398671527	127.0.0.1	E	gitcommand:git_branch		外部编辑	
+1399448983	10.221.135.100	D	gitcommand:git_branch	uahoo	移除	

@@ -11,3 +11,8 @@
 1399367522	10.221.135.100	E	shell_example:script_example	uahoo		
 1399367722	10.221.135.100	E	shell_example:script_example	uahoo		
 1399367772	10.221.135.100	E	shell_example:script_example	uahoo		
+1399368013	10.221.135.100	E	shell_example:script_example	uahoo		
+1399368054	10.221.135.100	E	shell_example:script_example	uahoo	[5、获取用户输入] 	
+1399368081	10.221.135.100	R	shell_example:script_example	uahoo	已恢复为旧版 (2014/05/06 17:20)	1399368013
+1399368113	10.221.135.100	E	shell_example:script_example	uahoo		
+1399453539	10.221.135.100	D	shell_example:script_example	uahoo	移除	

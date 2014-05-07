@@ -1,1 +1,3 @@
 1390881159	10.221.135.120	C	gitcommand:git_short_log	uahoo	创建	
+1398671527	127.0.0.1	E	gitcommand:git_short_log		外部编辑	
+1399449123	10.221.135.100	D	gitcommand:git_short_log	uahoo	移除	

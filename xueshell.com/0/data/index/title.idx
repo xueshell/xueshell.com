@@ -42,7 +42,7 @@ git 如何保存用户名?
 
 
 
-git log 日常用法
+
 
 
 git分支比较
@@ -62,12 +62,12 @@ git分支比较
 
 
 
-如何回退到某个指定版本提交？
+
 
 
 向远端仓库提交代码
 Git remote
-计算每次commit的唯一序数号
+
 
 
 
@@ -79,7 +79,7 @@ Git remote
 
 
 使用git subtree集成项目到子目录
-统计每个人的提交次数
+
 a
 
 
@@ -87,7 +87,7 @@ a
 
 
 
-创建本地新分支？
+
 
 
 
@@ -101,7 +101,7 @@ a
 
 
 保存工作区
-获得sha值
+
 
 
 
@@ -124,20 +124,16 @@ GitHub如何操作pull request？
 
 
 
-分离分支的情况
-detached HEAD 和 diverged HEAD
+
+
 
 查看工作目录的变更
 git rm
 
-git clean
+
 git fetch
 
 
-git 查看每次提交变更内容
-
-
-查看指定版本文件的内容
 
 
 
@@ -146,7 +142,11 @@ git 查看每次提交变更内容
 
 
 
-Gitflow
+
+
+
+
+
 
 
 
@@ -173,4 +173,7 @@ SED简介
 
 shell exec 　 解析
 
+
+
 shell 处理用户输入
+Linux echo命令

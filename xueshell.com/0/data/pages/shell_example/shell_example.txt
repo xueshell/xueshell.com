@@ -7,5 +7,5 @@
 [[shell_array:array|array]]
 
 ====输入====
-[[script_example| input ]]
+[[script_example:input| input ]]
 

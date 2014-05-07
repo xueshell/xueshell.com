@@ -1,3 +1,0 @@
-====detached HEAD 和 diverged HEAD ====
-====diverged HEAD ====
-====detached HEAD ====

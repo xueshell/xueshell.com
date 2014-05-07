@@ -1,0 +1,34 @@
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./2.2test a b c d e f</span>
+ <span class="re4">$*</span> parameter <span class="co0">#1 = a b c d e f</span>
+ <span class="re4">$#</span> parameter <span class="co0">#1 = a</span>
+ <span class="re4">$#</span> parameter <span class="co0">#2 = b</span>
+ <span class="re4">$#</span> parameter <span class="co0">#3 = c</span>
+ <span class="re4">$#</span> parameter <span class="co0">#4 = d</span>
+ <span class="re4">$#</span> parameter <span class="co0">#5 = e</span>
+ <span class="re4">$#</span> parameter <span class="co0">#6 = f</span>
+ the total counts = <span class="nu0">6</span>
+<span class="sy0">&lt;/</span>cod<span class="sy0">&gt;</span>
+éè¿ä¸ä¸ª<span class="kw1">for</span>å¾ªç¯è¿­ä»£ç¹æ®åéï¼ååä½ç°åº<span class="br0">&#91;</span><span class="re2">email</span>=<span class="re4">$*</span>$<span class="sy0">@</span>$<span class="br0">&#93;</span><span class="re4">$*</span>$<span class="sy0">@</span>$<span class="br0">&#91;</span><span class="sy0">/</span>email<span class="br0">&#93;</span><span class="co0">#ä¸ä¸ªç¹æ®åéç¨éï¼</span>
+&nbsp;
+====<span class="nu0">3</span>ãç§»ä½====
+&nbsp;
+<span class="kw2">bash</span> shellæä¾äºä¸ä¸ªå·¥å·å«<span class="kw3">shift</span>å½ä»¤ï¼å®ç°æ¹åå½ä»¤è¡åæ°çç¸å¯¹ä½ç½®
+é»è®¤å°æ¯ä¸ªåæ°åéå·¦ç§»ä¸ä½ãå³ä¸ºï¼<span class="re4">$3</span>çå¼ç§»å¨ç»åé<span class="re4">$2</span>ï¼<span class="re1">$n</span>+<span class="nu0">1</span>-<span class="sy0">&gt;</span><span class="re1">$n</span>ï¼ï¼èåé<span class="re4">$1</span>åè¢«ä¸¢å¼,å½ç¶ï¼<span class="re4">$0</span>è¿ä¸ªç¨åºåç§°æ²¡åãä¸é¢çä¸ªä¾å­ï¼
+&nbsp;
+<span class="sy0">&lt;</span>code <span class="kw2">bash</span><span class="sy0">&gt;</span>
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 3test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="re2">count</span>=<span class="nu0">1</span>
+ <span class="kw1">while</span> <span class="br0">&#91;</span> <span class="re5">-n</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>
+ <span class="kw1">do</span>
+ <span class="kw3">echo</span> <span class="st0">&quot;parameter #<span class="es2">$count</span> = $1&quot;</span>
+ <span class="re2">count</span>=$<span class="br0">&#91;</span> <span class="re1">$count</span> + <span class="nu0">1</span> <span class="br0">&#93;</span>
+ <span class="kw3">shift</span>
+ <span class="kw1">done</span>
+&nbsp;
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 3test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./3test 51cto emc linux rac</span>
+ parameter <span class="co0">#1 = 51cto</span>
+ parameter <span class="co0">#2 = emc</span>
+ parameter <span class="co0">#3 = linux</span>
+ parameter <span class="co0">#4 = rac</span>

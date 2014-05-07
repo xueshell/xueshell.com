@@ -20,3 +20,5 @@
 1393577420	10.221.135.74	E	gitcommand:git_log_stage	uahoo		
 1393577559	10.221.135.74	E	gitcommand:git_log_stage	uahoo		
 1393903237	10.221.135.103	E	gitcommand:git_log_stage	uahoo		
+1398671527	127.0.0.1	E	gitcommand:git_log_stage		外部编辑	
+1399449012	10.221.135.100	D	gitcommand:git_log_stage	uahoo	移除	

@@ -174,3 +174,6 @@ build_in_command:exec
 built_in_command:exec
 built_in_command:returen_value
 shell_example:script_example
+shell_command:shell_command
+script_example:input
+shell_command:echo

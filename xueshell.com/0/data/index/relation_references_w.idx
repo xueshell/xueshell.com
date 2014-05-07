@@ -230,3 +230,6 @@ build_in_command:exec
 built_in_command:returen_value
 built_in_command:exec
 shell_example:script_example
+shell_command:select
+script_example:input
+shell_command:echo

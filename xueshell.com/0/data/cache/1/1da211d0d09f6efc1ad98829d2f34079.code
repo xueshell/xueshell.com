@@ -1,0 +1,20 @@
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 1.2test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 1.2test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="kw3">echo</span> the name of the program is:<span class="re4">$0</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.2test </span>
+ the name of the program is:.<span class="sy0">/</span>1.2test
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># /root/1.2test </span>
+ the name of the program is:<span class="sy0">/</span>root<span class="sy0">/</span>1.2test
+<span class="sy0">&lt;/</span>coe<span class="sy0">&gt;</span>
+å¾ææ¾ï¼å¾åºçç»æä¸æ¯æä»¬è¦çï¼æä»¬åªè¦è¾åº1.2testè¿ä¸ªç»æãå®æä¼ éçåé<span class="re4">$0</span>çå­ç¬¦ä¸²æ¯ç¨åºçå®æ´è·¯å¾ï¼èä¸æ¯åç§°ï¼è¿éæä»¬å¯ä»¥éè¿<span class="kw2">basename</span>å½ä»¤å®ç°åªè¿åç¨åºåç§°ï¼æèæ¬ä¿®æ¹æå¦ä¸ï¼
+<span class="sy0">&lt;</span>code <span class="kw2">bash</span><span class="sy0">&gt;</span>
+&nbsp;
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 1.2test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="re2">name</span>=<span class="sy0">`</span><span class="kw2">basename</span> <span class="re4">$0</span><span class="sy0">`</span>
+ <span class="kw3">echo</span> the name of the program is:<span class="re1">$name</span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./1.2test </span>
+ the name of the program is:1.2test
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># $HOME/1.2test</span>
+ the name of the program is:1.2test

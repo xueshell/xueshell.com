@@ -1,0 +1,34 @@
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./2.2test a b c d e f</span>
+ <span class="re4">$*</span> parameter <span class="co0">#1 = a b c d e f</span>
+ <span class="re4">$#</span> parameter <span class="co0">#1 = a</span>
+ <span class="re4">$#</span> parameter <span class="co0">#2 = b</span>
+ <span class="re4">$#</span> parameter <span class="co0">#3 = c</span>
+ <span class="re4">$#</span> parameter <span class="co0">#4 = d</span>
+ <span class="re4">$#</span> parameter <span class="co0">#5 = e</span>
+ <span class="re4">$#</span> parameter <span class="co0">#6 = f</span>
+ the total counts = <span class="nu0">6</span>
+<span class="sy0">&lt;/</span>cod<span class="sy0">&gt;</span>
+通过一个<span class="kw1">for</span>循环迭代特殊变量，充分体现出<span class="br0">&#91;</span><span class="re2">email</span>=<span class="re4">$*</span>$<span class="sy0">@</span>$<span class="br0">&#93;</span><span class="re4">$*</span>$<span class="sy0">@</span>$<span class="br0">&#91;</span><span class="sy0">/</span>email<span class="br0">&#93;</span><span class="co0">#三个特殊变量用途！</span>
+&nbsp;
+====<span class="nu0">3</span>、移位====
+&nbsp;
+<span class="kw2">bash</span> shell提供了一个工具叫<span class="kw3">shift</span>命令，实现改变命令行参数的相对位置
+默认将每个参数变量左移一位。即为，<span class="re4">$3</span>的值移动给变量<span class="re4">$2</span>（<span class="re1">$n</span>+<span class="nu0">1</span>-<span class="sy0">&gt;</span><span class="re1">$n</span>），而变量<span class="re4">$1</span>则被丢弃,当然，<span class="re4">$0</span>这个程序名称没变。下面看个例子：
+&nbsp;
+<span class="sy0">&lt;</span>code <span class="kw2">bash</span><span class="sy0">&gt;</span>
+<span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># cat 3test </span>
+ <span class="co0">#!/bin/bash</span>
+ <span class="re2">count</span>=<span class="nu0">1</span>
+ <span class="kw1">while</span> <span class="br0">&#91;</span> <span class="re5">-n</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>
+ <span class="kw1">do</span>
+ <span class="kw3">echo</span> <span class="st0">&quot;parameter #<span class="es2">$count</span> = $1&quot;</span>
+ <span class="re2">count</span>=$<span class="br0">&#91;</span> <span class="re1">$count</span> + <span class="nu0">1</span> <span class="br0">&#93;</span>
+ <span class="kw3">shift</span>
+ <span class="kw1">done</span>
+&nbsp;
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># chmod u+x 3test </span>
+ <span class="br0">&#91;</span>root<span class="sy0">@</span>wzp ~<span class="br0">&#93;</span><span class="co0"># ./3test 51cto emc linux rac</span>
+ parameter <span class="co0">#1 = 51cto</span>
+ parameter <span class="co0">#2 = emc</span>
+ parameter <span class="co0">#3 = linux</span>
+ parameter <span class="co0">#4 = rac</span>
