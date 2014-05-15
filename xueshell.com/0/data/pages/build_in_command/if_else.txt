@@ -1,0 +1,408 @@
+1.bash把[[ $a -lt $b ]]看作一个单独的元素，并且返回一个退出码。退出码0为真，非零为假
+
+例如：
+
+a=1
+
+b=c
+
+[[ $a -lt $b ]]
+
+echo $?               #0  a小于b为真
+
+[[ $b -lt $a ]]  
+
+echo $?               #1  b小于a为假
+
+2.  ((...))和let...结果也能够返回一个退出码。当它们所测试的算术表达式的结果为非0的时候，它们的退出码将返回非0。退出码0为真，非零为假
+
+例如:
+
+let "1<2"
+
+echo $?              #0
+
+(( 0 && 1 )) 
+
+echo $?              #1
+
+3. if命令可以测试任何命令，不仅仅是括号中的条件
+
+例如，新建脚本test.sh，
+
+#!/bin/bash
+
+if grep -q root $1 
+
+# 参数提供的文件中，如果含有root字符串，则返回File contains at last on occurence of root
+
+# 其中-q用来阻止echo的输出grep获得的内容
+then
+    echo "$1 contains at last on occurence of root"
+else
+    echo "$1 does not contain"
+fi
+
+exit 0
+
+并chmod 777 test.sh，
+
+执行： ./test.h /etc/passwd
+
+之后，返回
+
+File contains at last on occurence of root
+
+4.一个if/then结构可以包含多级比较和tests(嵌套)
+
+if [ condition - true ]
+
+then
+
+    command  1
+
+    command  2
+
+    ...
+
+else
+
+    #可选
+
+    command  3
+
+    command  4
+
+    ...
+
+fi
+
+当if和then在一个条件测试的同一行时，必须用";"来终止if表达式(因为：if和then都是关键字)
+
+例如：
+
+if [ -x "$filename" ] ; then
+
+5.elif的用法：
+
+elif是else if的缩减形式：
+
+if [ condition1 ]
+
+then
+
+    command  1
+
+    command  2
+
+    command  3
+
+elif  [ condition 2 ]
+
+#same as else if
+
+then
+
+    command  4
+
+    command  5
+
+else
+
+    default-command
+
+(type ... #ls,test,cd 可以查看相应命令的类型 或 在/sbin/和/bin/下的路径)
+
+6.几种等效命令:test，/usr/bin/test，[]，/usr/bin/[]
+
+#!/bin/bash
+
+echo
+
+if test -z "$1"  #if /usr/bin/test -z "$1" 等效
+
+then
+
+   echo "input length is 0"
+
+else
+
+   echo "input length is not 0"
+
+fi
+
+echo
+
+if [ -z "$1" ]    #if /usr/bin/[ -z "$1" ] 等效
+
+then
+
+   echo "input length is 0"
+
+else
+
+   echo "input length is not 0"
+
+fi
+
+exit 0
+
+7.[[]]结构将没有文件扩展或单词分离，但是会发生参数扩展和命令替换
+
+8.在if后，也可以不用test/[]
+
+例如
+
+#!/bin/bash
+
+dir=$1
+
+if cd "$dir" 2>/dev/null
+
+#2>/dev/null隐藏了出错提示
+
+then
+
+     echo "Now in $dir"
+
+else
+
+     echo "Can't change to $dir"
+
+fi
+
+9.test或[]的使用，也不一定要有if
+
+例如
+
+#!/bin/bash
+
+var1=20
+
+var2=22
+
+[ "$var1" -ne "$var2" ] && echo "$var1 is not equal to $var2"
+
+home=/home
+
+[ -d $home ] || echo "$home directory does not exist"
+
+注意：
+
+&&：前一个操作失败，后一个就不再执行
+
+||   : 前一个操作成功，后一个就不再执行
+
+10.算数测试的使用(())
+
+(())结构计算并测试算数表达式的结果，退出码与[]相反
+
+true返回0，false返回1
+
+((0))                       #返回1
+
+((1))                       #返回0
+
+((5>4))                   #返回0
+
+((5>9))                   #返回1
+
+((5-5))                    #返回1
+
+((5/4))                    #大于1，返回0
+
+((1/2))                    #小于1，返回1
+
+((1/0))                    #报错，返回1
+
+11.文件测试操作：
+
+返回true，如果：
+
+-e                          文件存在
+
+-a                          文件存在（已被弃用）
+
+-f                           被测文件是一个regular文件（正常文件，非目录或设备）
+
+-s                          文件长度不为0
+
+-d                          被测对象是目录
+
+-b                          被测对象是块设备
+
+-c                          被测对象是字符设备
+
+-p                          被测对象是管道
+
+-h                          被测文件是符号连接
+
+-L                          被测文件是符号连接
+
+-S(大写)                 被测文件是一个socket
+
+-t                          关联到一个终端设备的文件描述符。用来检测脚本的stdin[-t0]或[-t1]是一个终端
+
+-r                          文件具有读权限，针对运行脚本的用户
+
+-w                         文件具有写权限，针对运行脚本的用户
+
+-x                          文件具有执行权限，针对运行脚本的用户
+
+-u                          set-user-id(suid)标志到文件，即普通用户可以使用的root权限文件，通过chmod +s file实现
+
+-k                          设置粘贴位
+
+-O                         运行脚本的用户是文件的所有者
+
+-G                         文件的group-id和运行脚本的用户相同
+
+-N                         从文件最后被阅读到现在，是否被修改
+
+f1 -nt f2                文件f1是否比f2新
+
+f1 -ot f2                文件f1是否比f2旧
+
+f1 -ef f2                文件f1和f2是否硬连接到同一个文件
+
+12.二元比较操作符，比较变量或比较数字
+
+整数比较：
+
+-eq                       等于            if [ "$a" -eq "$b" ]
+
+-ne                       不等于         if [ "$a" -ne "$b" ]
+
+-gt                        大于            if [ "$a" -gt "$b" ]
+
+-ge                       大于等于      if [ "$a" -ge "$b" ]
+
+-lt                         小于            if [ "$a" -lt "$b" ]
+
+-le                        小于等于      if [ "$a" -le "$b" ]
+
+<                          小于（需要双括号）       (( "$a" < "$b" ))
+
+<=                        小于等于(...)                (( "$a" <= "$b" ))
+
+>                          大于(...)                      (( "$a" > "$b" ))
+
+>=                        大于等于(...)                (( "$a" >= "$b" ))
+
+字符串比较：
+
+=                          等于           if [ "$a" = "$b" ]
+
+==                        与=等价
+
+!=                         不等于        if [ "$a" = "$b" ]
+
+<                          小于，在ASCII字母中的顺序：
+
+                            if [[ "$a" < "$b" ]]
+
+                            if [ "$a" \< "$b" ]         #需要对<进行转义
+
+>                          大于
+
+-z                         字符串为null，即长度为0
+
+-n                         字符串不为null，即长度不为0
+
+注意：
+
+使用-z或-n判断字符串变量时，必须要用""把变量引起来。
+
+例如：
+
+if [ -n $string1 ]  #string1未被初始化
+
+then
+
+    echo "String \"string1\" is not null."
+
+else
+
+    echo "String \"string1\" is null"
+
+fi
+
+#结果显示string1为非空，错误
+
+if [ -n "$string1" ]    #string1仍然未被初始化
+
+then
+
+    echo "String \"string1\" is not null"
+
+else
+
+    echo "String \"string1\" is null"
+
+fi
+
+#结果显示string1为空，结果正确
+
+if [ $string1 ]          #string1裸体判断
+
+then
+
+    echo "String \"string1\" is not null"
+
+else
+
+    echo "String \"string1\" is null"
+
+fi
+
+#结果正确
+
+#但这种用法存在漏洞，比如：
+
+string1="1 > 2"
+
+if [ $string1 ]
+
+then
+
+    echo "String \"string1\" is not null"
+
+else
+
+    echo "String \"string1\" is null"
+
+fi
+
+#实际上[]中的内容被扩展为[ "1 > 2" ]，所以结果会出错。而使用[[ $string1 ]]，则可以避免错误
+
+13.混合比较：
+
+-a                       逻辑与:exp1 -a exp2，如果exp1跟exp2都为true的话，这个表达式将返回true
+
+if [ exp1 -a exp2 ]
+
+与[[ condition1 && condition2 ]]功能相同
+
+-o                       逻辑或:exp1 -o exp2，如果exp1、exp2中，有一个为true的话，那么表达式返回true
+
+if [ exp1 -o exp2 ]
+
+与[[ condition1 || condition2 ]]功能相同
+
+14.嵌套的if/then条件test
+
+可以使用if/then来进行嵌套的条件test。最终的结果与上边的使用&&混合比较是相同的
+
+if [ condition1 ]
+
+then
+
+      if [ condition2 ]
+
+      then
+
+            do-something
+
+      fi
+
+fi

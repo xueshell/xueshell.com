@@ -178,3 +178,9 @@ shell_command:shell_command
 script_example:input
 shell_command:echo
 build_in_command:ps1
+build_in_command:grep
+built_in_command:mail
+buile_in_commnad:system_command
+built_in_command:crontab
+shell_example:script_example_rm_tab_space
+build_in_command:if_else

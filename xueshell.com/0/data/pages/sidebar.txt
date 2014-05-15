@@ -9,6 +9,7 @@
 
 ==== shell 内部命令 ====
   *  [[built_in_command:built_in_command|内部命令集]]
+  * [[buile_in_commnad:system_command|系统命令]]
 
 
 ==== sed和awk ====

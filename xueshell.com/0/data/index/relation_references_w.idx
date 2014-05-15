@@ -234,3 +234,15 @@ shell_command:select
 script_example:input
 shell_command:echo
 build_in_command:ps1
+build_in_command:grep
+built_in_command:mail
+buile_in_commnad:system_command
+built_in_command:crontab
+shell_example:script_example_rm_tab_space
+space:start
+build_in_command:if_else
+build_in_command:a_-lt_b
+build_in_command:b_-lt_a
+build_in_command:string1
+build_in_command:condition1_condition2
+build_in_command:condition1

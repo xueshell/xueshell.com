@@ -1,0 +1,748 @@
+
+<p>
+1.bash把<a href="/xueshell.com/0/doku.php?id=build_in_command:a_-lt_b" class="wikilink2" title="build_in_command:a_-lt_b" rel="nofollow">$a -lt $b</a>看作一个单独的元素，并且返回一个退出码。退出码0为真，非零为假
+</p>
+
+<p>
+例如：
+</p>
+
+<p>
+a=1
+</p>
+
+<p>
+b=c
+</p>
+
+<p>
+<a href="/xueshell.com/0/doku.php?id=build_in_command:a_-lt_b" class="wikilink2" title="build_in_command:a_-lt_b" rel="nofollow">$a -lt $b</a>
+</p>
+
+<p>
+echo $?               #0  a小于b为真
+</p>
+
+<p>
+<a href="/xueshell.com/0/doku.php?id=build_in_command:b_-lt_a" class="wikilink2" title="build_in_command:b_-lt_a" rel="nofollow">$b -lt $a</a>
+</p>
+
+<p>
+echo $?               #1  b小于a为假
+</p>
+
+<p>
+2.  <sup><a href="#fn__1" id="fnt__1" class="fn_top">1)</a></sup>和let…结果也能够返回一个退出码。当它们所测试的算术表达式的结果为非0的时候，它们的退出码将返回非0。退出码0为真，非零为假
+</p>
+
+<p>
+例如:
+</p>
+
+<p>
+let “1&lt;2”
+</p>
+
+<p>
+echo $?              #0
+</p>
+
+<p>
+<sup><a href="#fn__2" id="fnt__2" class="fn_top">2)</a></sup>
+</p>
+
+<p>
+echo $?              #1
+</p>
+
+<p>
+3. if命令可以测试任何命令，不仅仅是括号中的条件
+</p>
+
+<p>
+例如，新建脚本test.sh，
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+if grep -q root $1 
+</p>
+
+<p>
+# 参数提供的文件中，如果含有root字符串，则返回File contains at last on occurence of root
+</p>
+
+<p>
+# 其中-q用来阻止echo的输出grep获得的内容
+then
+</p>
+<pre class="code">  echo &quot;$1 contains at last on occurence of root&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code">  echo &quot;$1 does not contain&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+exit 0
+</p>
+
+<p>
+并chmod 777 test.sh，
+</p>
+
+<p>
+执行： ./test.h /etc/passwd
+</p>
+
+<p>
+之后，返回
+</p>
+
+<p>
+File contains at last on occurence of root
+</p>
+
+<p>
+4.一个if/then结构可以包含多级比较和tests(嵌套)
+</p>
+
+<p>
+if [ condition - true ]
+</p>
+
+<p>
+then
+</p>
+<pre class="code">  command  1</pre>
+<pre class="code">  command  2</pre>
+<pre class="code">  ...</pre>
+
+<p>
+else
+</p>
+<pre class="code">  #可选</pre>
+<pre class="code">  command  3</pre>
+<pre class="code">  command  4</pre>
+<pre class="code">  ...</pre>
+
+<p>
+fi
+</p>
+
+<p>
+当if和then在一个条件测试的同一行时，必须用”;”来终止if表达式(因为：if和then都是关键字)
+</p>
+
+<p>
+例如：
+</p>
+
+<p>
+if [ -x “$filename” ] ; then
+</p>
+
+<p>
+5.elif的用法：
+</p>
+
+<p>
+elif是else if的缩减形式：
+</p>
+
+<p>
+if [ condition1 ]
+</p>
+
+<p>
+then
+</p>
+<pre class="code">  command  1</pre>
+<pre class="code">  command  2</pre>
+<pre class="code">  command  3</pre>
+
+<p>
+elif  [ condition 2 ]
+</p>
+
+<p>
+#same as else if
+</p>
+
+<p>
+then
+</p>
+<pre class="code">  command  4</pre>
+<pre class="code">  command  5</pre>
+
+<p>
+else
+</p>
+<pre class="code">  default-command</pre>
+
+<p>
+(type … #ls,test,cd 可以查看相应命令的类型 或 在/sbin/和/bin/下的路径)
+</p>
+
+<p>
+6.几种等效命令:test，/usr/bin/test，[]，/usr/bin/[]
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+echo
+</p>
+
+<p>
+if test -z “$1”  #if /usr/bin/test -z “$1” 等效
+</p>
+
+<p>
+then
+</p>
+<pre class="code"> echo &quot;input length is 0&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code"> echo &quot;input length is not 0&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+echo
+</p>
+
+<p>
+if [ -z “$1” ]    #if /usr/bin/[ -z “$1” ] 等效
+</p>
+
+<p>
+then
+</p>
+<pre class="code"> echo &quot;input length is 0&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code"> echo &quot;input length is not 0&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+exit 0
+</p>
+
+<p>
+7.<span class="curid"><a href="/xueshell.com/0/doku.php?id=build_in_command:if_else" class="wikilink1" title="build_in_command:if_else">if_else</a></span>结构将没有文件扩展或单词分离，但是会发生参数扩展和命令替换
+</p>
+
+<p>
+8.在if后，也可以不用test/[]
+</p>
+
+<p>
+例如
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+dir=$1
+</p>
+
+<p>
+if cd “$dir” 2&gt;/dev/null
+</p>
+
+<p>
+#2&gt;/dev/null隐藏了出错提示
+</p>
+
+<p>
+then
+</p>
+<pre class="code">   echo &quot;Now in $dir&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code">   echo &quot;Can&#039;t change to $dir&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+9.test或[]的使用，也不一定要有if
+</p>
+
+<p>
+例如
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+var1=20
+</p>
+
+<p>
+var2=22
+</p>
+
+<p>
+[ “$var1” -ne “$var2” ] &amp;&amp; echo “$var1 is not equal to $var2”
+</p>
+
+<p>
+home=/home
+</p>
+
+<p>
+[ -d $home ] || echo “$home directory does not exist”
+</p>
+
+<p>
+注意：
+</p>
+
+<p>
+&amp;&amp;：前一个操作失败，后一个就不再执行
+</p>
+<div class="table sectionedit1"><table class="inline">
+	<tr class="row0">
+		
+	</tr>
+</table></div>
+<!-- EDIT1 TABLE [2674-2729] -->
+<p>
+10.算数测试的使用<sup><a href="#fn__3" id="fnt__3" class="fn_top">3)</a></sup>
+</p>
+
+<p>
+<sup><a href="#fn__4" id="fnt__4" class="fn_top">4)</a></sup>结构计算并测试算数表达式的结果，退出码与[]相反
+</p>
+
+<p>
+true返回0，false返回1
+</p>
+
+<p>
+<sup><a href="#fn__5" id="fnt__5" class="fn_top">5)</a></sup>                       #返回1
+</p>
+
+<p>
+<sup><a href="#fn__6" id="fnt__6" class="fn_top">6)</a></sup>                       #返回0
+</p>
+
+<p>
+<sup><a href="#fn__7" id="fnt__7" class="fn_top">7)</a></sup>                   #返回0
+</p>
+
+<p>
+<sup><a href="#fn__8" id="fnt__8" class="fn_top">8)</a></sup>                   #返回1
+</p>
+
+<p>
+<sup><a href="#fn__9" id="fnt__9" class="fn_top">9)</a></sup>                    #返回1
+</p>
+
+<p>
+<sup><a href="#fn__10" id="fnt__10" class="fn_top">10)</a></sup>                    #大于1，返回0
+</p>
+
+<p>
+<sup><a href="#fn__11" id="fnt__11" class="fn_top">11)</a></sup>                    #小于1，返回1
+</p>
+
+<p>
+<sup><a href="#fn__12" id="fnt__12" class="fn_top">12)</a></sup>                    #报错，返回1
+</p>
+
+<p>
+11.文件测试操作：
+</p>
+
+<p>
+返回true，如果：
+</p>
+
+<p>
+-e                          文件存在
+</p>
+
+<p>
+-a                          文件存在（已被弃用）
+</p>
+
+<p>
+-f                           被测文件是一个regular文件（正常文件，非目录或设备）
+</p>
+
+<p>
+-s                          文件长度不为0
+</p>
+
+<p>
+-d                          被测对象是目录
+</p>
+
+<p>
+-b                          被测对象是块设备
+</p>
+
+<p>
+-c                          被测对象是字符设备
+</p>
+
+<p>
+-p                          被测对象是管道
+</p>
+
+<p>
+-h                          被测文件是符号连接
+</p>
+
+<p>
+-L                          被测文件是符号连接
+</p>
+
+<p>
+-S(大写)                 被测文件是一个socket
+</p>
+
+<p>
+-t                          关联到一个终端设备的文件描述符。用来检测脚本的stdin[-t0]或[-t1]是一个终端
+</p>
+
+<p>
+-r                          文件具有读权限，针对运行脚本的用户
+</p>
+
+<p>
+-w                         文件具有写权限，针对运行脚本的用户
+</p>
+
+<p>
+-x                          文件具有执行权限，针对运行脚本的用户
+</p>
+
+<p>
+-u                          set-user-id(suid)标志到文件，即普通用户可以使用的root权限文件，通过chmod +s file实现
+</p>
+
+<p>
+-k                          设置粘贴位
+</p>
+
+<p>
+-O                         运行脚本的用户是文件的所有者
+</p>
+
+<p>
+-G                         文件的group-id和运行脚本的用户相同
+</p>
+
+<p>
+-N                         从文件最后被阅读到现在，是否被修改
+</p>
+
+<p>
+f1 -nt f2                文件f1是否比f2新
+</p>
+
+<p>
+f1 -ot f2                文件f1是否比f2旧
+</p>
+
+<p>
+f1 -ef f2                文件f1和f2是否硬连接到同一个文件
+</p>
+
+<p>
+12.二元比较操作符，比较变量或比较数字
+</p>
+
+<p>
+整数比较：
+</p>
+
+<p>
+-eq                       等于            if [ “$a” -eq “$b” ]
+</p>
+
+<p>
+-ne                       不等于         if [ “$a” -ne “$b” ]
+</p>
+
+<p>
+-gt                        大于            if [ “$a” -gt “$b” ]
+</p>
+
+<p>
+-ge                       大于等于      if [ “$a” -ge “$b” ]
+</p>
+
+<p>
+-lt                         小于            if [ “$a” -lt “$b” ]
+</p>
+
+<p>
+-le                        小于等于      if [ “$a” -le “$b” ]
+</p>
+
+<p>
+&lt;                          小于（需要双括号）       <sup><a href="#fn__13" id="fnt__13" class="fn_top">13)</a></sup>
+</p>
+
+<p>
+⇐                        小于等于(…)                <sup><a href="#fn__14" id="fnt__14" class="fn_top">14)</a></sup>
+</p>
+<blockquote><div class="no">
+                          大于(…)                      <sup><a href="#fn__15" id="fnt__15" class="fn_top">15)</a></sup></div></blockquote>
+<blockquote><div class="no">
+=                        大于等于(…)                <sup><a href="#fn__16" id="fnt__16" class="fn_top">16)</a></sup></div></blockquote>
+
+<p>
+字符串比较：
+</p>
+
+<p>
+=                          等于           if [ “$a” = “$b” ]
+</p>
+
+<p>
+==                        与=等价
+</p>
+
+<p>
+!=                         不等于        if [ “$a” = “$b” ]
+</p>
+
+<p>
+&lt;                          小于，在ASCII字母中的顺序：
+</p>
+<pre class="code">                          if [[ &quot;$a&quot; &lt; &quot;$b&quot; ]]</pre>
+<pre class="code">                          if [ &quot;$a&quot; \&lt; &quot;$b&quot; ]         #需要对&lt;进行转义</pre>
+<blockquote><div class="no">
+                          大于</div></blockquote>
+
+<p>
+-z                         字符串为null，即长度为0
+</p>
+
+<p>
+-n                         字符串不为null，即长度不为0
+</p>
+
+<p>
+注意：
+</p>
+
+<p>
+使用-z或-n判断字符串变量时，必须要用”“把变量引起来。
+</p>
+
+<p>
+例如：
+</p>
+
+<p>
+if [ -n $string1 ]  #string1未被初始化
+</p>
+
+<p>
+then
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is not null.&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is null&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+#结果显示string1为非空，错误
+</p>
+
+<p>
+if [ -n “$string1” ]    #string1仍然未被初始化
+</p>
+
+<p>
+then
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is not null&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is null&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+#结果显示string1为空，结果正确
+</p>
+
+<p>
+if [ $string1 ]          #string1裸体判断
+</p>
+
+<p>
+then
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is not null&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is null&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+#结果正确
+</p>
+
+<p>
+#但这种用法存在漏洞，比如：
+</p>
+
+<p>
+string1=“1 &gt; 2”
+</p>
+
+<p>
+if [ $string1 ]
+</p>
+
+<p>
+then
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is not null&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code">  echo &quot;String \&quot;string1\&quot; is null&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+#实际上[]中的内容被扩展为[ “1 &gt; 2” ]，所以结果会出错。而使用<a href="/xueshell.com/0/doku.php?id=build_in_command:string1" class="wikilink2" title="build_in_command:string1" rel="nofollow">$string1</a>，则可以避免错误
+</p>
+
+<p>
+13.混合比较：
+</p>
+
+<p>
+-a                       逻辑与:exp1 -a exp2，如果exp1跟exp2都为true的话，这个表达式将返回true
+</p>
+
+<p>
+if [ exp1 -a exp2 ]
+</p>
+
+<p>
+与<a href="/xueshell.com/0/doku.php?id=build_in_command:condition1_condition2" class="wikilink2" title="build_in_command:condition1_condition2" rel="nofollow">condition1 &amp;&amp; condition2</a>功能相同
+</p>
+
+<p>
+-o                       逻辑或:exp1 -o exp2，如果exp1、exp2中，有一个为true的话，那么表达式返回true
+</p>
+
+<p>
+if [ exp1 -o exp2 ]
+</p>
+
+<p>
+与<a href="/xueshell.com/0/doku.php?id=build_in_command:condition1" class="wikilink2" title="build_in_command:condition1" rel="nofollow">| condition2 </a>功能相同
+</p>
+
+<p>
+14.嵌套的if/then条件test
+</p>
+
+<p>
+可以使用if/then来进行嵌套的条件test。最终的结果与上边的使用&amp;&amp;混合比较是相同的
+</p>
+
+<p>
+if [ condition1 ]
+</p>
+
+<p>
+then
+</p>
+<pre class="code">    if [ condition2 ]</pre>
+<pre class="code">    then</pre>
+<pre class="code">          do-something</pre>
+<pre class="code">    fi</pre>
+
+<p>
+fi
+</p>
+<div class="footnotes">
+<div class="fn"><sup><a href="#fnt__1" id="fn__1" class="fn_bot">1)</a></sup> 
+…</div>
+<div class="fn"><sup><a href="#fnt__2" id="fn__2" class="fn_bot">2)</a></sup> 
+ 0 &amp;&amp; 1 </div>
+<div class="fn"><sup><a href="#fnt__3" id="fn__3" class="fn_bot">3)</a></sup> 
+, <sup><a href="#fnt__4" id="fn__4" class="fn_bot">4)</a></sup> 
+</div>
+<div class="fn"><sup><a href="#fnt__5" id="fn__5" class="fn_bot">5)</a></sup> 
+0</div>
+<div class="fn"><sup><a href="#fnt__6" id="fn__6" class="fn_bot">6)</a></sup> 
+1</div>
+<div class="fn"><sup><a href="#fnt__7" id="fn__7" class="fn_bot">7)</a></sup> 
+5&gt;4</div>
+<div class="fn"><sup><a href="#fnt__8" id="fn__8" class="fn_bot">8)</a></sup> 
+5&gt;9</div>
+<div class="fn"><sup><a href="#fnt__9" id="fn__9" class="fn_bot">9)</a></sup> 
+5-5</div>
+<div class="fn"><sup><a href="#fnt__10" id="fn__10" class="fn_bot">10)</a></sup> 
+5/4</div>
+<div class="fn"><sup><a href="#fnt__11" id="fn__11" class="fn_bot">11)</a></sup> 
+1/2</div>
+<div class="fn"><sup><a href="#fnt__12" id="fn__12" class="fn_bot">12)</a></sup> 
+1/0</div>
+<div class="fn"><sup><a href="#fnt__13" id="fn__13" class="fn_bot">13)</a></sup> 
+ “$a” &lt; “$b” </div>
+<div class="fn"><sup><a href="#fnt__14" id="fn__14" class="fn_bot">14)</a></sup> 
+ “$a” ⇐ “$b” </div>
+<div class="fn"><sup><a href="#fnt__15" id="fn__15" class="fn_bot">15)</a></sup> 
+ “$a” &gt; “$b” </div>
+<div class="fn"><sup><a href="#fnt__16" id="fn__16" class="fn_bot">16)</a></sup> 
+ “$a” &gt;= “$b” </div>
+</div>

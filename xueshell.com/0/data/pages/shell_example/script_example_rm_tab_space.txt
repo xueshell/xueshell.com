@@ -1,0 +1,61 @@
+====shell中+,*,[:space:]的用法====
+在linux中通常会使用shell结合正则表达式来过滤字符，本文将以一个简单的例子来说明+,*,[:space:]的一些用法
++ 匹配1个或多个字符
+* 匹配0个或多个字符
+[:space:] 匹配空白字符，包括空格，tab
+文件file是含有多个空格和tab的几行字符，下面将以file文件为例做几个简单的实验
+<code>
+[root@node1 ~]# cat file
+     5
+ 5
+   5
+5
+            5
+              5
+</code>
+
+删除空格
+<code>
+[root@node1 ~]# sed 's/ *//g' file
+5
+5
+5
+5
+    5
+    5
+[root@node1 ~]#
+</code>
+删除空格
+<code>
+[root@node1 ~]# sed 's/ +//g' file
+     5
+ 5
+   5
+5
+            5
+              5
+[root@node1 ~]#
+</code>
+没有起作用
+<code>
+[root@node1 ~]# sed 's/ \+//g' file
+5
+5
+5
+5
+    5
+    5
+[root@node1 ~]#
+</code>
++转义以后可以删除空格
+<code>
+[root@node1 ~]# sed 's/[[:space:]]//g' file
+5
+5
+5
+5
+5
+5
+[root@node1 ~]#
+</code>
+删除所有的空白字符，包括tab 

@@ -9,3 +9,9 @@
 [[built_in_command:exec | exec ]]
 
 [[build_in_command:PS1 | PS1 PS3 ]]
+
+[[build_in_command:grep | grep ]]
+
+[[built_in_command:mail | mail ]]
+
+[[build_in_command:if_else|if_else]]

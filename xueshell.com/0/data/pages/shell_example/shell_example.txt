@@ -9,3 +9,5 @@
 ====输入====
 [[script_example:input| input ]]
 
+====取消空格及空白符====
+[[script_example：rm_tab_space| rm_tab_space]]
