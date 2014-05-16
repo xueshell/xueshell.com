@@ -1,17 +1,3 @@
-1399453554	10.221.135.100	C	script_example:input	uahoo	创建	
-1399453581	10.221.135.100	E	shell_command:shell_command	uahoo		
-1399453667	10.221.135.100	C	shell_command:echo	uahoo	创建	
-1399453682	10.221.135.100	E	shell_command:echo	uahoo		
-1399453717	10.221.135.100	E	shell_command:echo	uahoo		
-1399457754	10.221.135.100	E	built_in_command:built_in_command	uahoo		
-1399457762	10.221.135.100	C	build_in_command:ps1	uahoo	创建	
-1399457786	10.221.135.100	E	built_in_command:built_in_command	uahoo		
-1399457822	10.221.135.100	E	build_in_command:ps1	uahoo		
-1399458212	10.221.135.100	E	build_in_command:ps1	uahoo		
-1399619375	10.221.135.118	E	built_in_command:built_in_command	uahoo		
-1399619561	10.221.135.118	C	build_in_command:grep	uahoo	创建	
-1399619588	10.221.135.118	E	build_in_command:grep	uahoo	[grep的用法] 	
-1399619609	10.221.135.118	E	build_in_command:grep	uahoo	[2. 在多个文件中检索指定的字串] 	
 1399619695	10.221.135.118	E	build_in_command:grep	uahoo		
 1399629341	10.221.135.118	E	built_in_command:built_in_command	uahoo		
 1399629347	10.221.135.118	C	built_in_command:mail	uahoo	创建	
@@ -24,3 +10,16 @@
 1400141457	10.221.135.142	E	shell_example:script_example_rm_tab_space	uahoo		
 1400142117	10.221.135.142	E	built_in_command:built_in_command	uahoo		
 1400142126	10.221.135.142	C	build_in_command:if_else	uahoo	创建	
+1400226544	10.221.135.142	E	built_in_command:mail	uahoo		
+1400227234	10.221.135.142	E	sidebar	uahoo		
+1400227306	10.221.135.142	C	unxi_command:unix_command	uahoo	创建	
+1400227314	10.221.135.142	E	unxi_command:unix_command	uahoo		
+1400227328	10.221.135.142	E	unxi_command:unix_command	uahoo		
+1400227417	10.221.135.142	E	unxi_command:unix_command	uahoo		
+1400227537	10.221.135.142	E	unxi_command:unix_command	uahoo		
+1400227562	10.221.135.142	E	unxi_command:unix_command	uahoo		
+1400227599	10.221.135.142	E	unxi_command:unix_command	uahoo		
+1400230071	10.221.135.142	C	unix_command:unix_find	uahoo	创建	
+1400230260	10.221.135.142	E	build_in_command:if_else	uahoo		
+1400230275	10.221.135.142	E	build_in_command:if_else	uahoo		
+1400230651	10.221.135.142	E	build_in_command:if_else	uahoo		

@@ -184,3 +184,5 @@ buile_in_commnad:system_command
 built_in_command:crontab
 shell_example:script_example_rm_tab_space
 build_in_command:if_else
+unxi_command:unix_command
+unix_command:unix_find

@@ -1,6 +1,6 @@
 
 <p>
-1.bash把<a href="/xueshell.com/0/doku.php?id=build_in_command:a_-lt_b" class="wikilink2" title="build_in_command:a_-lt_b" rel="nofollow">$a -lt $b</a>看作一个单独的元素，并且返回一个退出码。退出码0为真，非零为假
+1.bash把[[ $a -lt $b ]]看作一个单独的元素，并且返回一个退出码。退出码0为真，非零为假
 </p>
 
 <p>
@@ -13,18 +13,14 @@ a=1
 
 <p>
 b=c
-</p>
 
-<p>
-<a href="/xueshell.com/0/doku.php?id=build_in_command:a_-lt_b" class="wikilink2" title="build_in_command:a_-lt_b" rel="nofollow">$a -lt $b</a>
-</p>
+[[ $a -lt $b ]]
 
-<p>
 echo $?               #0  a小于b为真
 </p>
 
 <p>
-<a href="/xueshell.com/0/doku.php?id=build_in_command:b_-lt_a" class="wikilink2" title="build_in_command:b_-lt_a" rel="nofollow">$b -lt $a</a>
+ [[ $b -lt $a ]]  
 </p>
 
 <p>
@@ -32,7 +28,7 @@ echo $?               #1  b小于a为假
 </p>
 
 <p>
-2.  <sup><a href="#fn__1" id="fnt__1" class="fn_top">1)</a></sup>和let…结果也能够返回一个退出码。当它们所测试的算术表达式的结果为非0的时候，它们的退出码将返回非0。退出码0为真，非零为假
+2.  ((...))和let…结果也能够返回一个退出码。当它们所测试的算术表达式的结果为非0的时候，它们的退出码将返回非0。退出码0为真，非零为假
 </p>
 
 <p>
@@ -48,7 +44,7 @@ echo $?              #0
 </p>
 
 <p>
-<sup><a href="#fn__2" id="fnt__2" class="fn_top">2)</a></sup>
+(( 0 &amp;&amp; 1 )) 
 </p>
 
 <p>
@@ -248,7 +244,7 @@ exit 0
 </p>
 
 <p>
-7.<span class="curid"><a href="/xueshell.com/0/doku.php?id=build_in_command:if_else" class="wikilink1" title="build_in_command:if_else">if_else</a></span>结构将没有文件扩展或单词分离，但是会发生参数扩展和命令替换
+7.[[]]结构将没有文件扩展或单词分离，但是会发生参数扩展和命令替换
 </p>
 
 <p>
@@ -333,13 +329,13 @@ home=/home
 		
 	</tr>
 </table></div>
-<!-- EDIT1 TABLE [2674-2729] -->
+<!-- EDIT1 TABLE [2777-2832] -->
 <p>
-10.算数测试的使用<sup><a href="#fn__3" id="fnt__3" class="fn_top">3)</a></sup>
+10.算数测试的使用(())
 </p>
 
 <p>
-<sup><a href="#fn__4" id="fnt__4" class="fn_top">4)</a></sup>结构计算并测试算数表达式的结果，退出码与[]相反
+(())结构计算并测试算数表达式的结果，退出码与[]相反
 </p>
 
 <p>
@@ -347,38 +343,26 @@ true返回0，false返回1
 </p>
 
 <p>
-<sup><a href="#fn__5" id="fnt__5" class="fn_top">5)</a></sup>                       #返回1
+((0))       #返回1
 </p>
 
 <p>
-<sup><a href="#fn__6" id="fnt__6" class="fn_top">6)</a></sup>                       #返回0
+((1))                       #返回0
 </p>
 
 <p>
-<sup><a href="#fn__7" id="fnt__7" class="fn_top">7)</a></sup>                   #返回0
-</p>
+((5&gt;4))                   #返回0
 
-<p>
-<sup><a href="#fn__8" id="fnt__8" class="fn_top">8)</a></sup>                   #返回1
-</p>
+((5&gt;9))                   #返回1
 
-<p>
-<sup><a href="#fn__9" id="fnt__9" class="fn_top">9)</a></sup>                    #返回1
-</p>
+((5-5))                    #返回1
 
-<p>
-<sup><a href="#fn__10" id="fnt__10" class="fn_top">10)</a></sup>                    #大于1，返回0
-</p>
+((5/4))                    #大于1，返回0
 
-<p>
-<sup><a href="#fn__11" id="fnt__11" class="fn_top">11)</a></sup>                    #小于1，返回1
-</p>
+((1/2))                    #小于1，返回1
 
-<p>
-<sup><a href="#fn__12" id="fnt__12" class="fn_top">12)</a></sup>                    #报错，返回1
-</p>
+((1/0))                    #报错，返回1
 
-<p>
 11.文件测试操作：
 </p>
 
@@ -511,16 +495,16 @@ f1 -ef f2                文件f1和f2是否硬连接到同一个文件
 </p>
 
 <p>
-&lt;                          小于（需要双括号）       <sup><a href="#fn__13" id="fnt__13" class="fn_top">13)</a></sup>
+&lt;                          小于（需要双括号）       <sup><a href="#fn__1" id="fnt__1" class="fn_top">1)</a></sup>
 </p>
 
 <p>
-⇐                        小于等于(…)                <sup><a href="#fn__14" id="fnt__14" class="fn_top">14)</a></sup>
+⇐                        小于等于(…)                <sup><a href="#fn__2" id="fnt__2" class="fn_top">2)</a></sup>
 </p>
 <blockquote><div class="no">
-                          大于(…)                      <sup><a href="#fn__15" id="fnt__15" class="fn_top">15)</a></sup></div></blockquote>
+                          大于(…)                      <sup><a href="#fn__3" id="fnt__3" class="fn_top">3)</a></sup></div></blockquote>
 <blockquote><div class="no">
-=                        大于等于(…)                <sup><a href="#fn__16" id="fnt__16" class="fn_top">16)</a></sup></div></blockquote>
+=                        大于等于(…)                <sup><a href="#fn__4" id="fnt__4" class="fn_top">4)</a></sup></div></blockquote>
 
 <p>
 字符串比较：
@@ -715,34 +699,11 @@ fi
 </p>
 <div class="footnotes">
 <div class="fn"><sup><a href="#fnt__1" id="fn__1" class="fn_bot">1)</a></sup> 
-…</div>
-<div class="fn"><sup><a href="#fnt__2" id="fn__2" class="fn_bot">2)</a></sup> 
- 0 &amp;&amp; 1 </div>
-<div class="fn"><sup><a href="#fnt__3" id="fn__3" class="fn_bot">3)</a></sup> 
-, <sup><a href="#fnt__4" id="fn__4" class="fn_bot">4)</a></sup> 
-</div>
-<div class="fn"><sup><a href="#fnt__5" id="fn__5" class="fn_bot">5)</a></sup> 
-0</div>
-<div class="fn"><sup><a href="#fnt__6" id="fn__6" class="fn_bot">6)</a></sup> 
-1</div>
-<div class="fn"><sup><a href="#fnt__7" id="fn__7" class="fn_bot">7)</a></sup> 
-5&gt;4</div>
-<div class="fn"><sup><a href="#fnt__8" id="fn__8" class="fn_bot">8)</a></sup> 
-5&gt;9</div>
-<div class="fn"><sup><a href="#fnt__9" id="fn__9" class="fn_bot">9)</a></sup> 
-5-5</div>
-<div class="fn"><sup><a href="#fnt__10" id="fn__10" class="fn_bot">10)</a></sup> 
-5/4</div>
-<div class="fn"><sup><a href="#fnt__11" id="fn__11" class="fn_bot">11)</a></sup> 
-1/2</div>
-<div class="fn"><sup><a href="#fnt__12" id="fn__12" class="fn_bot">12)</a></sup> 
-1/0</div>
-<div class="fn"><sup><a href="#fnt__13" id="fn__13" class="fn_bot">13)</a></sup> 
  “$a” &lt; “$b” </div>
-<div class="fn"><sup><a href="#fnt__14" id="fn__14" class="fn_bot">14)</a></sup> 
+<div class="fn"><sup><a href="#fnt__2" id="fn__2" class="fn_bot">2)</a></sup> 
  “$a” ⇐ “$b” </div>
-<div class="fn"><sup><a href="#fnt__15" id="fn__15" class="fn_bot">15)</a></sup> 
+<div class="fn"><sup><a href="#fnt__3" id="fn__3" class="fn_bot">3)</a></sup> 
  “$a” &gt; “$b” </div>
-<div class="fn"><sup><a href="#fnt__16" id="fn__16" class="fn_bot">16)</a></sup> 
+<div class="fn"><sup><a href="#fnt__4" id="fn__4" class="fn_bot">4)</a></sup> 
  “$a” &gt;= “$b” </div>
 </div>

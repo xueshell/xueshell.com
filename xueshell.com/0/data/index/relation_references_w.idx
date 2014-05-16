@@ -246,3 +246,8 @@ build_in_command:b_-lt_a
 build_in_command:string1
 build_in_command:condition1_condition2
 build_in_command:condition1
+unxi_command:unix_command
+unix_command:unxi_command_example
+shell_reg_exp:shell_reg_exp
+shell_reg_exp:shell_reg_exp_example
+unix_command:unix_find

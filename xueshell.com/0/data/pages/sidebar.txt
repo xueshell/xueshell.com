@@ -6,11 +6,18 @@
   * [[shell_example:shell_example|shell实例]]
 
 
+==== Linux 系统命令 ====
+
+  * [[unxi_command:unix_command| 系统命令]]
+  * [[unix_command:unxi_command_example| 例子 ]]
 
 ==== shell 内部命令 ====
   *  [[built_in_command:built_in_command|内部命令集]]
   * [[buile_in_commnad:system_command|系统命令]]
 
+==== 正则表达式====
+  * [[shell_reg_exp:shell_reg_exp|正则表达式]]
+  * [[shell_reg_exp:shell_reg_exp_example|例子]]
 
 ==== sed和awk ====
 
@@ -23,19 +30,6 @@
 ==== 环境与工具====
   * [[shell_tools:tools|客户端]]
 
-
-
-
-
-
-==== 代码托管 ====
-  * [[git_host:git_repo_localnet|本地托管]]
-  * [[git_host:git_repo_online|在线托管]]
-
-
-
-==== 客户端====
-  * [[git_tools:git_client|客户端]]
 
 
 ==== 训练营 ====
