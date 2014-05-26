@@ -251,3 +251,9 @@ unix_command:unxi_command_example
 shell_reg_exp:shell_reg_exp
 shell_reg_exp:shell_reg_exp_example
 unix_command:unix_find
+unix_command:unix_mutt
+script_example:rm_ctrl_m
+built_in_command:break_continue
+built_in_commnad:built_in_command_example
+built_in_command:menu
+built_in_commnad:shift

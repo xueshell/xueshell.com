@@ -1,0 +1,72 @@
+break 命令可以带一个参数，一个不带参数的break 循环只能退出最内层的循环，而break N可以退出N 层循环。
+continue 命令也可以带一个参数，一个不带参数的continue 命令只去掉本次循环的剩余代码，而continue N 将会把N 层循环剩余的代码都去掉，但是循环的次数不变。
+<code bash>
+#!/bin/sh  
+
+for i in a b c d
+
+do
+
+        echo
+
+        echo -n "$i "
+
+        for j in `seq 10`
+
+        do
+
+                if [ $j == 5 ]; then
+
+                #       break
+
+                #       break 2
+
+                #       continue
+
+                        continue 2
+
+                fi
+
+        echo -n "$j "
+
+        done
+
+        echo
+
+done
+
+echo
+</code>
+
+break结果：
+<code>
+a 1 2 3 4 
+b 1 2 3 4 
+c 1 2 3 4 
+d 1 2 3 4 
+</code>
+
+break 2的结果：
+<code>
+a 1 2 3 4 
+</code>
+continue结果：
+<code>
+a 1 2 3 4 6 7 8 9 10 
+b 1 2 3 4 6 7 8 9 10 
+c 1 2 3 4 6 7 8 9 10 
+d 1 2 3 4 6 7 8 9 10
+</code>
+continue 2的结果：
+<code>
+a 1 2 3 4 
+b 1 2 3 4 
+c 1 2 3 4 
+d 1 2 3 4 
+</code>
+
+===========================================================
+
+break 直接结束本层循环
+
+continue 忽略continue之下的代码，直接进行下一次循环

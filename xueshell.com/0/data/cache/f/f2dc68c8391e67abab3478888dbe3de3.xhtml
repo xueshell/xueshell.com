@@ -1,0 +1,78 @@
+
+<h2 class="sectionedit1" id="shift">shift</h2>
+<div class="level2">
+
+<p>
+shift命令会重新分配位置参数，其实就是把所有的位置参数都向左移动一个位置。
+</p>
+
+<p>
+比如shift 3表示原来的$4现在变成$1，原来的$5现在变成$2等等，原来的$1、$2、$3丢弃，$0不移动。不带参数的shift命令相当于shift 1。
+我们知道，对于位置变量或命令行参数，其个数必须是确定的，或者当 Shell 程序不知道其个数时，可以把所有参数一起赋值给变量$*。若用户要求 Shell 在不知道位置变量个数的情况下，还能逐个的把参数一一处理，也就是在 $1 后为 $2,在 $2 后面为 $3 等。在 shift 命令执行前变量 $1 的值在 shift 命令执行后就不可用了。
+</p>
+<pre class="code bash">&nbsp;
+    <span class="co0">#!/bin/bash  </span>
+    <span class="co0"># 使用'shift'来逐步存取所有的位置参数.   </span>
+&nbsp;
+    <span class="co0">#  给脚本命个名, 比如shft,  </span>
+    <span class="co0">#+ 然后给脚本传递一些位置参数, 比如:   </span>
+    <span class="co0">#          ./shft a b c def 23 skidoo  </span>
+&nbsp;
+    <span class="kw1">until</span> <span class="br0">&#91;</span> <span class="re5">-z</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>  <span class="co0"># 直到所有的位置参数都被存取完...  </span>
+    <span class="kw1">do</span>  
+      <span class="kw3">echo</span> <span class="st0">&quot;第一个参数为: $1 参数个数为: $#&quot;</span>  
+      <span class="kw3">shift</span>  
+    <span class="kw1">done</span>  
+&nbsp;
+    <span class="kw3">echo</span> <span class="re5">--------------</span>  
+&nbsp;
+    <span class="kw3">exit</span> <span class="nu0">0</span>  </pre>
+
+<p>
+然后执行
+</p>
+<pre class="code bash">    <span class="co0"># sh ./shft a b c def 23 skidoo  </span>
+&nbsp;
+&nbsp;
+&nbsp;
+    第一个参数为: a 参数个数为: <span class="nu0">6</span>  
+    第一个参数为: b 参数个数为: <span class="nu0">5</span>  
+    第一个参数为: c 参数个数为: <span class="nu0">4</span>  
+    第一个参数为: def 参数个数为: <span class="nu0">3</span>  
+    第一个参数为: <span class="nu0">23</span> 参数个数为: <span class="nu0">2</span>  
+    第一个参数为: skidoo 参数个数为: <span class="nu0">1</span>  
+    <span class="re5">--------------</span>  </pre>
+
+<p>
+从上可知 shift 命令每执行一次，变量的个数($#)减一，而变量值提前一位。
+</p>
+
+<p>
+下面代码用 until 和 shift 命令计算所有命令行参数的和。
+</p>
+<pre class="code bash">    <span class="co0">#!/bin/bash  </span>
+    <span class="co0">#shift 上档命令的应用(shft2.sh)  </span>
+    <span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re4">$#</span> <span class="re5">-eq</span> <span class="nu0">0</span> <span class="br0">&#93;</span>  
+    <span class="kw1">then</span>  
+    <span class="kw3">echo</span> <span class="st0">&quot;Usage:shift2.sh 参数&quot;</span>  
+    <span class="kw3">exit</span> <span class="nu0">1</span>  
+    <span class="kw1">fi</span>  
+    <span class="re2">sum</span>=<span class="nu0">0</span>  
+    <span class="kw1">until</span> <span class="br0">&#91;</span> <span class="re4">$#</span> <span class="re5">-eq</span> <span class="nu0">0</span> <span class="br0">&#93;</span>  
+    <span class="kw1">do</span>  
+    <span class="re2">sum</span>=<span class="sy0">`</span><span class="kw2">expr</span> <span class="re1">$sum</span> + <span class="re4">$1</span><span class="sy0">`</span>  
+    <span class="kw3">shift</span>  
+    <span class="kw1">done</span>  
+    <span class="kw3">echo</span> <span class="st0">&quot;sum is: <span class="es2">$sum</span>&quot;</span>  </pre>
+
+<p>
+然后执行
+</p>
+<pre class="code bash">    <span class="co0"># sh shft2.sh 10 20 30  </span>
+    <span class="kw2">sum</span> is: <span class="nu0">60</span>  </pre>
+
+<p>
+Shift 命令还有另外一个重要用途, Bash 定义了9个位置变量，从 $1 到 $9,这并不意味着用户在命令行只能使用9个参数，借助 shift 命令可以访问多于9个的参数。Shift 命令一次移动参数的个数由其所带的参数指定。例如当 shell 程序处理完前九个命令行参数后，可以使用 shift 9 命令把 $10 移到 $1。
+</p>
+
+</div>

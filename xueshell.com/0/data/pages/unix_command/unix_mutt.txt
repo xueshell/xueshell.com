@@ -1,0 +1,69 @@
+原来一直使用mail命令来发送邮件，但是配置起来特别麻烦，需要配置sendmail的很多东西。而且还必须启动sendmail才能保证邮件发送成功。那么有没有类似于foxmail,outlook这样的邮件客户端软件，并且有命令行的形式，来发送邮件呢。mutt和msmtp提供了一个很好的解决方案。
+
+以下是配置方案：
+
+1)下载msmtp
+
+wget http://downloads.sourceforge.net ... 206451&big_mirror=0
+
+2)解压：
+
+tar jxvf msmtp-1.4.16.tar.bz2
+
+3）安装：
+
+./configure --prefix=/usr/local/msmtp
+
+make
+
+make install
+
+4) 配置 msmtp账号：
+
+新建文件/usr/local/msmtp/etc/msmtprc
+
+编辑内容：
+
+# Set default values for all following accounts.
+
+defaults
+
+# The SMTP server of the provider.
+
+account test
+
+host 发送邮件服务器名称
+
+from 发送的邮件Email
+
+auth login
+
+user 邮件服务器登录账号
+
+password 邮件服务器登陆密码
+
+# Set a default account
+
+account default : test
+
+5）保存退出，测试客户端是否可用
+
+/usr/local/smtp/bin/msmtp 目标邮件地址
+
+随便输入一些字符，然后按ctrl+D退出，去目标邮件地址查看邮件是否收到。
+
+6）配置mutt,mutt一般linux都会默认安装，可以使用which mutt查看mutt安装的路径。
+
+编辑mutt配置文件：/etc/Muttrc,修改一下几行：
+
+set sendmail="/opt/msmtp/bin/msmtp"
+
+set use_from=yes
+
+set realname="发送邮件地址"
+
+set editor="vi"
+
+7)保存退出，测试一下mutt是否有效：
+
+echo "测试测试" | mutt -s "测试" 测试邮件地址

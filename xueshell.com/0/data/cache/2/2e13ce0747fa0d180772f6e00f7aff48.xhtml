@@ -1,0 +1,80 @@
+
+<p>
+break 命令可以带一个参数，一个不带参数的break 循环只能退出最内层的循环，而break N可以退出N 层循环。
+continue 命令也可以带一个参数，一个不带参数的continue 命令只去掉本次循环的剩余代码，而continue N 将会把N 层循环剩余的代码都去掉，但是循环的次数不变。
+</p>
+<pre class="code bash"><span class="co0">#!/bin/sh  </span>
+&nbsp;
+<span class="kw1">for</span> i <span class="kw1">in</span> a b c d
+&nbsp;
+<span class="kw1">do</span>
+&nbsp;
+        <span class="kw3">echo</span>
+&nbsp;
+        <span class="kw3">echo</span> <span class="re5">-n</span> <span class="st0">&quot;<span class="es2">$i</span> &quot;</span>
+&nbsp;
+        <span class="kw1">for</span> j <span class="kw1">in</span> <span class="sy0">`</span><span class="kw2">seq</span> <span class="nu0">10</span><span class="sy0">`</span>
+&nbsp;
+        <span class="kw1">do</span>
+&nbsp;
+                <span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re1">$j</span> == <span class="nu0">5</span> <span class="br0">&#93;</span>; <span class="kw1">then</span>
+&nbsp;
+                <span class="co0">#       break</span>
+&nbsp;
+                <span class="co0">#       break 2</span>
+&nbsp;
+                <span class="co0">#       continue</span>
+&nbsp;
+                        <span class="kw3">continue</span> <span class="nu0">2</span>
+&nbsp;
+                <span class="kw1">fi</span>
+&nbsp;
+        <span class="kw3">echo</span> <span class="re5">-n</span> <span class="st0">&quot;<span class="es2">$j</span> &quot;</span>
+&nbsp;
+        <span class="kw1">done</span>
+&nbsp;
+        <span class="kw3">echo</span>
+&nbsp;
+<span class="kw1">done</span>
+&nbsp;
+<span class="kw3">echo</span></pre>
+
+<p>
+break结果：
+</p>
+<pre class="code">a 1 2 3 4 
+b 1 2 3 4 
+c 1 2 3 4 
+d 1 2 3 4 </pre>
+
+<p>
+break 2的结果：
+</p>
+<pre class="code">a 1 2 3 4 </pre>
+
+<p>
+continue结果：
+</p>
+<pre class="code">a 1 2 3 4 6 7 8 9 10 
+b 1 2 3 4 6 7 8 9 10 
+c 1 2 3 4 6 7 8 9 10 
+d 1 2 3 4 6 7 8 9 10</pre>
+
+<p>
+continue 2的结果：
+</p>
+<pre class="code">a 1 2 3 4 
+b 1 2 3 4 
+c 1 2 3 4 
+d 1 2 3 4 </pre>
+<div class="level1">
+
+<p>
+break 直接结束本层循环
+</p>
+
+<p>
+continue 忽略continue之下的代码，直接进行下一次循环
+</p>
+
+</div>

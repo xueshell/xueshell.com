@@ -11,3 +11,5 @@
 
 ====取消空格及空白符====
 [[script_example：rm_tab_space| rm_tab_space]]
+
+[[script_example:rm_ctrl_m | rm_ctrl_m 符号]]

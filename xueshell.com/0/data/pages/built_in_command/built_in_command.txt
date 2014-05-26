@@ -15,3 +15,7 @@
 [[built_in_command:mail | mail ]]
 
 [[build_in_command:if_else|if_else]]
+
+[[built_in_commnad:shift| shift]]
+
+[[built_in_command:break_continue| break_continue]]

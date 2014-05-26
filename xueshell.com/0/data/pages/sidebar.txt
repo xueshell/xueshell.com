@@ -13,7 +13,7 @@
 
 ==== shell 内部命令 ====
   *  [[built_in_command:built_in_command|内部命令集]]
-  * [[buile_in_commnad:system_command|系统命令]]
+  * [[built_in_commnad:built_in_command_example | 例子]]
 
 ==== 正则表达式====
   * [[shell_reg_exp:shell_reg_exp|正则表达式]]

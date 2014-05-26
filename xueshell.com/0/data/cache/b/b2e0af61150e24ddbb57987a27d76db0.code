@@ -1,0 +1,17 @@
+&nbsp;
+    <span class="co0">#!/bin/bash  </span>
+    <span class="co0"># 使用'shift'来逐步存取所有的位置参数.   </span>
+&nbsp;
+    <span class="co0">#  给脚本命个名, 比如shft,  </span>
+    <span class="co0">#+ 然后给脚本传递一些位置参数, 比如:   </span>
+    <span class="co0">#          ./shft a b c def 23 skidoo  </span>
+&nbsp;
+    <span class="kw1">until</span> <span class="br0">&#91;</span> <span class="re5">-z</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>  <span class="co0"># 直到所有的位置参数都被存取完...  </span>
+    <span class="kw1">do</span>  
+      <span class="kw3">echo</span> <span class="st0">&quot;第一个参数为: $1 参数个数为: $#&quot;</span>  
+      <span class="kw3">shift</span>  
+    <span class="kw1">done</span>  
+&nbsp;
+    <span class="kw3">echo</span> <span class="re5">--------------</span>  
+&nbsp;
+    <span class="kw3">exit</span> <span class="nu0">0</span>  

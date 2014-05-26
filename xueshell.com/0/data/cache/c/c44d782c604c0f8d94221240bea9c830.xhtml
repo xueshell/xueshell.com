@@ -1,0 +1,76 @@
+
+<h2 class="sectionedit1" id="select_创建菜单">select 创建菜单</h2>
+<div class="level2">
+<pre class="code bash"><span class="co0">#!/bin/bash</span>
+<span class="co0">#</span>
+<span class="co0"># SCRIPT: select_system_info_menu.bash</span>
+<span class="co0"># AUTHOR: Randy Michael</span>
+<span class="co0"># DATE: 1/17/2008</span>
+<span class="co0"># REV: 1.0</span>
+<span class="co0"># </span>
+<span class="co0"># PURPOSE: This shell script uses the shell's select</span>
+<span class="co0"># command to create a menu to show system information</span>
+&nbsp;
+<span class="co0"># Clear the screen</span>
+<span class="kw2">clear</span>
+&nbsp;
+<span class="co0"># Display the menu title header</span>
+<span class="kw3">echo</span> <span class="re5">-e</span> <span class="st0">&quot;<span class="es1">\n</span><span class="es1">\t</span>SYSTEM INFORMATION MENU<span class="es1">\n</span>&quot;</span>
+&nbsp;
+<span class="co0"># Define the menu prompt</span>
+&nbsp;
+<span class="re2">PS3</span>=<span class="st0">&quot;Select an option and press Enter: &quot;</span>
+&nbsp;
+<span class="co0"># The select command defines what the menu</span>
+<span class="co0"># will look like</span>
+&nbsp;
+<span class="kw1">select</span> i <span class="kw1">in</span> OS Host Filesystems Date Users Quit
+<span class="kw1">do</span>
+   <span class="kw1">case</span> <span class="re1">$i</span> <span class="kw1">in</span>
+      OS<span class="br0">&#41;</span>    <span class="kw3">echo</span>
+             <span class="kw2">uname</span>
+             <span class="sy0">;;</span>
+      Host<span class="br0">&#41;</span>  <span class="kw3">echo</span>
+             <span class="kw2">hostname</span>
+             <span class="sy0">;;</span>
+      Filesystems<span class="br0">&#41;</span>
+             <span class="kw3">echo</span>
+             <span class="kw2">df</span> <span class="re5">-k</span> <span class="sy0">|</span> <span class="kw2">more</span>
+             <span class="sy0">;;</span>
+      Date<span class="br0">&#41;</span>  <span class="kw3">echo</span>
+             <span class="kw2">date</span>
+             <span class="sy0">;;</span>
+      Users<span class="br0">&#41;</span> <span class="kw3">echo</span>
+             <span class="kw2">who</span>
+             <span class="sy0">;;</span>
+      Quit<span class="br0">&#41;</span>  <span class="kw3">break</span>
+             <span class="sy0">;;</span>
+   <span class="kw1">esac</span>
+&nbsp;
+   <span class="co0"># Setting the select command's REPLY variable</span>
+   <span class="co0"># to NULL causes the menu to be redisplayed</span>
+&nbsp;
+   <span class="re2">REPLY</span>=
+&nbsp;
+   <span class="co0"># Pause before redisplaying the menu</span>
+&nbsp;
+   <span class="kw3">echo</span> <span class="re5">-e</span> <span class="st0">&quot;<span class="es1">\n</span>Press Enter to Continue...\c&quot;</span>
+   <span class="kw2">read</span>
+&nbsp;
+   <span class="co0"># Ready to redisplay the menu again</span>
+&nbsp;
+   <span class="co0"># clear the screen</span>
+&nbsp;
+   <span class="kw2">clear</span>
+&nbsp;
+   <span class="co0"># Display the menu title header</span>
+&nbsp;
+   <span class="kw3">echo</span> <span class="re5">-e</span> <span class="st0">&quot;<span class="es1">\n</span><span class="es1">\t</span>SYSTEM INFORMATION MENU<span class="es1">\n</span>&quot;</span>
+&nbsp;
+<span class="kw1">done</span>
+&nbsp;
+<span class="co0"># Clear the screen before exiting</span>
+&nbsp;
+<span class="kw2">clear</span></pre>
+
+</div>

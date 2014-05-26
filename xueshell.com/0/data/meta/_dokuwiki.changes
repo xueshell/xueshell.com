@@ -1,25 +1,27 @@
-1399619695	10.221.135.118	E	build_in_command:grep	uahoo		
-1399629341	10.221.135.118	E	built_in_command:built_in_command	uahoo		
-1399629347	10.221.135.118	C	built_in_command:mail	uahoo	创建	
-1399964568	10.221.135.128	E	sidebar	uahoo		
-1399964605	10.221.135.128	C	buile_in_commnad:system_command	uahoo	创建	
-1399964612	10.221.135.128	C	built_in_command:crontab	uahoo	创建	
-1400141328	10.221.135.142	E	shell_example:shell_example	uahoo		
-1400141335	10.221.135.142	C	shell_example:script_example_rm_tab_space	uahoo	创建	
-1400141431	10.221.135.142	E	shell_example:script_example_rm_tab_space	uahoo		
-1400141457	10.221.135.142	E	shell_example:script_example_rm_tab_space	uahoo		
-1400142117	10.221.135.142	E	built_in_command:built_in_command	uahoo		
-1400142126	10.221.135.142	C	build_in_command:if_else	uahoo	创建	
-1400226544	10.221.135.142	E	built_in_command:mail	uahoo		
-1400227234	10.221.135.142	E	sidebar	uahoo		
-1400227306	10.221.135.142	C	unxi_command:unix_command	uahoo	创建	
-1400227314	10.221.135.142	E	unxi_command:unix_command	uahoo		
-1400227328	10.221.135.142	E	unxi_command:unix_command	uahoo		
-1400227417	10.221.135.142	E	unxi_command:unix_command	uahoo		
-1400227537	10.221.135.142	E	unxi_command:unix_command	uahoo		
-1400227562	10.221.135.142	E	unxi_command:unix_command	uahoo		
-1400227599	10.221.135.142	E	unxi_command:unix_command	uahoo		
-1400230071	10.221.135.142	C	unix_command:unix_find	uahoo	创建	
 1400230260	10.221.135.142	E	build_in_command:if_else	uahoo		
 1400230275	10.221.135.142	E	build_in_command:if_else	uahoo		
 1400230651	10.221.135.142	E	build_in_command:if_else	uahoo		
+1400640405	10.221.135.166	E	unxi_command:unix_command	uahoo		
+1400640447	10.221.135.166	E	unxi_command:unix_command	uahoo		
+1400640503	10.221.135.166	C	unix_command:unix_mutt	uahoo	创建	
+1400654367	10.221.135.166	E	shell_example:shell_example	uahoo		
+1400654432	10.221.135.166	C	script_example:rm_ctrl_m	uahoo	创建	
+1400654482	10.221.135.166	E	script_example:rm_ctrl_m	uahoo		
+1400662309	10.221.135.166	E	built_in_command:built_in_command	uahoo		
+1400662315	10.221.135.166	C	built_in_command:break_continue	uahoo	创建	
+1400662348	10.221.135.166	E	built_in_command:break_continue	uahoo		
+1400662356	10.221.135.166	E	built_in_command:break_continue	uahoo		
+1400662442	10.221.135.166	E	built_in_command:break_continue	uahoo		
+1400750536	10.221.135.169	D	buile_in_commnad:system_command	uahoo	移除	
+1400750548	10.221.135.169	E	unxi_command:unix_command	uahoo		
+1400750555	10.221.135.169	E	unxi_command:unix_command	uahoo		
+1400750640	10.221.135.169	E	sidebar	uahoo		
+1400750758	10.221.135.169	C	built_in_commnad:built_in_command_example	uahoo	创建	
+1400751451	10.221.135.169	C	built_in_command:menu	uahoo	创建	
+1401086053	10.221.135.182	E	built_in_command:built_in_command	uahoo		
+1401086062	10.221.135.182	E	built_in_command:built_in_command	uahoo		
+1401086089	10.221.135.182	C	built_in_commnad:shift	uahoo	创建	
+1401086101	10.221.135.182	E	built_in_commnad:shift	uahoo		
+1401086725	10.221.135.182	E	built_in_commnad:shift	uahoo		
+1401087120	10.221.135.182	E	built_in_commnad:shift	uahoo		
+1401087202	10.221.135.182	E	built_in_commnad:shift	uahoo		

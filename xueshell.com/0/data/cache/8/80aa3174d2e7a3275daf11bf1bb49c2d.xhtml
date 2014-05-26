@@ -1,0 +1,140 @@
+
+<p>
+原来一直使用mail命令来发送邮件，但是配置起来特别麻烦，需要配置sendmail的很多东西。而且还必须启动sendmail才能保证邮件发送成功。那么有没有类似于foxmail,outlook这样的邮件客户端软件，并且有命令行的形式，来发送邮件呢。mutt和msmtp提供了一个很好的解决方案。
+</p>
+
+<p>
+以下是配置方案：
+</p>
+
+<p>
+1)下载msmtp
+</p>
+
+<p>
+wget <a href="http://downloads.sourceforge.net" class="urlextern" title="http://downloads.sourceforge.net"  rel="nofollow">http://downloads.sourceforge.net</a> … 206451&amp;big_mirror=0
+</p>
+
+<p>
+2)解压：
+</p>
+
+<p>
+tar jxvf msmtp-1.4.16.tar.bz2
+</p>
+
+<p>
+3）安装：
+</p>
+
+<p>
+./configure –prefix=/usr/local/msmtp
+</p>
+
+<p>
+make
+</p>
+
+<p>
+make install
+</p>
+
+<p>
+4) 配置 msmtp账号：
+</p>
+
+<p>
+新建文件/usr/local/msmtp/etc/msmtprc
+</p>
+
+<p>
+编辑内容：
+</p>
+
+<p>
+# Set default values for all following accounts.
+</p>
+
+<p>
+defaults
+</p>
+
+<p>
+# The SMTP server of the provider.
+</p>
+
+<p>
+account test
+</p>
+
+<p>
+host 发送邮件服务器名称
+</p>
+
+<p>
+from 发送的邮件Email
+</p>
+
+<p>
+auth login
+</p>
+
+<p>
+user 邮件服务器登录账号
+</p>
+
+<p>
+password 邮件服务器登陆密码
+</p>
+
+<p>
+# Set a default account
+</p>
+
+<p>
+account default : test
+</p>
+
+<p>
+5）保存退出，测试客户端是否可用
+</p>
+
+<p>
+/usr/local/smtp/bin/msmtp 目标邮件地址
+</p>
+
+<p>
+随便输入一些字符，然后按ctrl+D退出，去目标邮件地址查看邮件是否收到。
+</p>
+
+<p>
+6）配置mutt,mutt一般linux都会默认安装，可以使用which mutt查看mutt安装的路径。
+</p>
+
+<p>
+编辑mutt配置文件：/etc/Muttrc,修改一下几行：
+</p>
+
+<p>
+set sendmail=“/opt/msmtp/bin/msmtp”
+</p>
+
+<p>
+set use_from=yes
+</p>
+
+<p>
+set realname=“发送邮件地址”
+</p>
+
+<p>
+set editor=“vi”
+</p>
+
+<p>
+7)保存退出，测试一下mutt是否有效：
+</p>
+
+<p>
+echo “测试测试” | mutt -s “测试” 测试邮件地址
+</p>

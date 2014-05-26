@@ -1,0 +1,35 @@
+<span class="co0">#!/bin/sh  </span>
+&nbsp;
+<span class="kw1">for</span> i <span class="kw1">in</span> a b c d
+&nbsp;
+<span class="kw1">do</span>
+&nbsp;
+        <span class="kw3">echo</span>
+&nbsp;
+        <span class="kw3">echo</span> <span class="re5">-n</span> <span class="st0">&quot;<span class="es2">$i</span> &quot;</span>
+&nbsp;
+        <span class="kw1">for</span> j <span class="kw1">in</span> <span class="sy0">`</span><span class="kw2">seq</span> <span class="nu0">10</span><span class="sy0">`</span>
+&nbsp;
+        <span class="kw1">do</span>
+&nbsp;
+                <span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re1">$j</span> == <span class="nu0">5</span> <span class="br0">&#93;</span>; <span class="kw1">then</span>
+&nbsp;
+                <span class="co0">#       break</span>
+&nbsp;
+                <span class="co0">#       break 2</span>
+&nbsp;
+                <span class="co0">#       continue</span>
+&nbsp;
+                        <span class="kw3">continue</span> <span class="nu0">2</span>
+&nbsp;
+                <span class="kw1">fi</span>
+&nbsp;
+        <span class="kw3">echo</span> <span class="re5">-n</span> <span class="st0">&quot;<span class="es2">$j</span> &quot;</span>
+&nbsp;
+        <span class="kw1">done</span>
+&nbsp;
+        <span class="kw3">echo</span>
+&nbsp;
+<span class="kw1">done</span>
+&nbsp;
+<span class="kw3">echo</span>
