@@ -257,3 +257,16 @@ built_in_command:break_continue
 built_in_commnad:built_in_command_example
 built_in_command:menu
 built_in_commnad:shift
+wiki:sectionm
+wiki:sectionn
+wiki:sectionp
+wiki:sectionx
+wiki:sectiony
+wiki:sectionz
+built_in_command:case
+built_in_command:if_else
+built_in_command:string1
+built_in_command:condition1_condition2
+built_in_command:condition1
+built_in_command:grep
+built_in_command:ps1

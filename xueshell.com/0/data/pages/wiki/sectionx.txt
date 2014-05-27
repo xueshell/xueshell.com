@@ -1,0 +1,4 @@
+输入输出
+  * [[built_in_command:read | read ]]
+  * [[built_in_command:echo | echo ]]
+  * [[built_in_command:case | case ]]

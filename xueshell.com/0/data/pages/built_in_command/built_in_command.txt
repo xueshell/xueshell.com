@@ -1,21 +1,9 @@
-[[built_in_command:shell_ifs| IFS]]
 
-[[built_in_command:read| read ]]
 
-[[built_in_command:echo | echo ]]
+|{{page>wiki:sectionM&nofooter&noeditbutton}}|{{page>wiki:sectionN&nofooter&noeditbutton}}|{{page>wiki:sectionP&nofooter&noeditbutton}}  | 
 
-[[built_in_command:returen_value | $? $# ]]
 
-[[built_in_command:exec | exec ]]
+|{{page>wiki:sectionX&nofooter&noeditbutton}}|{{page>wiki:sectionY&nofooter&noeditbutton}}|{{page>wiki:sectionZ&nofooter&noeditbutton}}  | 
 
-[[build_in_command:PS1 | PS1 PS3 ]]
 
-[[build_in_command:grep | grep ]]
 
-[[built_in_command:mail | mail ]]
-
-[[build_in_command:if_else|if_else]]
-
-[[built_in_commnad:shift| shift]]
-
-[[built_in_command:break_continue| break_continue]]
