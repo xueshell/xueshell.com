@@ -208,11 +208,11 @@ By using four or more dashes, you can make a horizontal line:
 
 </div>
 <!-- EDIT11 SECTION "Headline Level 3" [5657-5883] -->
-<h2 class="sectionedit12" id="images_and_other_files">Images and Other Files</h2>
+<h2 class="sectionedit12" id="media_files">Media Files</h2>
 <div class="level2">
 
 <p>
-You can include external and internal <a href="http://www.dokuwiki.org/images" class="interwiki iw_doku" title="http://www.dokuwiki.org/images">images</a> with curly brackets. Optionally you can specify the size of them.
+You can include external and internal <a href="http://www.dokuwiki.org/images" class="interwiki iw_doku" title="http://www.dokuwiki.org/images">images, videos and audio files</a> with curly brackets. Optionally you can specify the size of them.
 </p>
 
 <p>
@@ -264,16 +264,61 @@ Of course, you can add a title (displayed as a tooltip by most browsers), too.
 <pre class="code">{{ wiki:dokuwiki-128.png |This is the caption}}</pre>
 
 <p>
-If you specify a filename (external or internal) that is not an image (<code>gif, jpeg, png</code>), then it will be displayed as a link instead.
-</p>
-
-<p>
 For linking an image to another page see <a href="#image_links" title="wiki:syntax ↵" class="wikilink1">Image Links</a> above.
 </p>
 
 </div>
-<!-- EDIT12 SECTION "Images and Other Files" [5884-7356] -->
-<h2 class="sectionedit13" id="lists">Lists</h2>
+<!-- EDIT12 SECTION "Media Files" [5884-7238] -->
+<h3 class="sectionedit13" id="supported_media_formats">Supported Media Formats</h3>
+<div class="level3">
+
+<p>
+DokuWiki can embed the following media formats directly.
+</p>
+<div class="table sectionedit14"><table class="inline">
+	<tr class="row0">
+		<td class="col0"> Image </td><td class="col1 leftalign"> <code>gif</code>, <code>jpg</code>, <code>png</code>  </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> Video </td><td class="col1"> <code>webm</code>, <code>ogv</code>, <code>mp4</code> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Audio </td><td class="col1 leftalign"> <code>ogg</code>, <code>mp3</code>, <code>wav</code>  </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Flash </td><td class="col1 leftalign"> <code>swf</code>                    </td>
+	</tr>
+</table></div>
+<!-- EDIT14 TABLE [7332-7487] -->
+<p>
+If you specify a filename that is not a supported media format, then it will be displayed as a link instead.
+</p>
+
+</div>
+<!-- EDIT13 SECTION "Supported Media Formats" [7239-7598] -->
+<h3 class="sectionedit15" id="fallback_formats">Fallback Formats</h3>
+<div class="level3">
+
+<p>
+Unfortunately not all browsers understand all video and audio formats. To mitigate the problem, you can upload your file in different formats for maximum browser compatibility.
+</p>
+
+<p>
+For example consider this embedded mp4 video:
+</p>
+<pre class="code">{{video.mp4|A funny video}}</pre>
+
+<p>
+When you upload a <code>video.webm</code> and <code>video.ogv</code> next to the referenced <code>video.mp4</code>, DokuWiki will automatically add them as alternatives so that one of the three files is understood by your browser.
+</p>
+
+<p>
+Additionally DokuWiki supports a “poster” image which will be shown before the video has started. That image needs to have the same filename as the video and be either a jpg or png file. In the example above a <code>video.jpg</code> file would work.
+</p>
+
+</div>
+<!-- EDIT15 SECTION "Fallback Formats" [7599-8329] -->
+<h2 class="sectionedit16" id="lists">Lists</h2>
 <div class="level2">
 
 <p>
@@ -318,8 +363,8 @@ Also take a look at the <a href="http://www.dokuwiki.org/faq%3Alists" class="int
 </p>
 
 </div>
-<!-- EDIT13 SECTION "Lists" [7357-8016] -->
-<h2 class="sectionedit14" id="text_conversions">Text Conversions</h2>
+<!-- EDIT16 SECTION "Lists" [8330-8989] -->
+<h2 class="sectionedit17" id="text_conversions">Text Conversions</h2>
 <div class="level2">
 
 <p>
@@ -331,8 +376,8 @@ The text to image conversion is mainly done for smileys. And the text to <abbr t
 </p>
 
 </div>
-<!-- EDIT14 SECTION "Text Conversions" [8017-8321] -->
-<h3 class="sectionedit15" id="text_to_image_conversions">Text to Image Conversions</h3>
+<!-- EDIT17 SECTION "Text Conversions" [8990-9294] -->
+<h3 class="sectionedit18" id="text_to_image_conversions">Text to Image Conversions</h3>
 <div class="level3">
 
 <p>
@@ -382,8 +427,8 @@ DokuWiki converts commonly used <a href="http://en.wikipedia.org/wiki/emoticon" 
 </ul>
 
 </div>
-<!-- EDIT15 SECTION "Text to Image Conversions" [8322-8977] -->
-<h3 class="sectionedit16" id="text_to_html_conversions">Text to HTML Conversions</h3>
+<!-- EDIT18 SECTION "Text to Image Conversions" [9295-9950] -->
+<h3 class="sectionedit19" id="text_to_html_conversions">Text to HTML Conversions</h3>
 <div class="level3">
 
 <p>
@@ -406,8 +451,8 @@ There are three exceptions which do not come from that pattern file: multiplicat
 </p>
 
 </div>
-<!-- EDIT16 SECTION "Text to HTML Conversions" [8978-9685] -->
-<h2 class="sectionedit17" id="quoting">Quoting</h2>
+<!-- EDIT19 SECTION "Text to HTML Conversions" [9951-10658] -->
+<h2 class="sectionedit20" id="quoting">Quoting</h2>
 <div class="level2">
 
 <p>
@@ -448,17 +493,19 @@ I think we should do it
 </div></blockquote>
 
 </div>
-<!-- EDIT17 SECTION "Quoting" [9686-10058] -->
-<h2 class="sectionedit18" id="tables">Tables</h2>
+<!-- EDIT20 SECTION "Quoting" [10659-11031] -->
+<h2 class="sectionedit21" id="tables">Tables</h2>
 <div class="level2">
 
 <p>
 DokuWiki supports a simple syntax to create tables.
 </p>
-<div class="table sectionedit19"><table class="inline">
+<div class="table sectionedit22"><table class="inline">
+	<thead>
 	<tr class="row0">
 		<th class="col0 leftalign"> Heading 1      </th><th class="col1 leftalign"> Heading 2       </th><th class="col2 leftalign"> Heading 3          </th>
 	</tr>
+	</thead>
 	<tr class="row1">
 		<td class="col0 leftalign"> Row 1 Col 1    </td><td class="col1 leftalign"> Row 1 Col 2     </td><td class="col2 leftalign"> Row 1 Col 3        </td>
 	</tr>
@@ -469,7 +516,7 @@ DokuWiki supports a simple syntax to create tables.
 		<td class="col0 leftalign"> Row 3 Col 1    </td><td class="col1 leftalign"> Row 3 Col 2     </td><td class="col2 leftalign"> Row 3 Col 3        </td>
 	</tr>
 </table></div>
-<!-- EDIT19 TABLE [10132-10363] -->
+<!-- EDIT22 TABLE [11105-11336] -->
 <p>
 Table rows have to start and end with a <code>|</code> for normal rows or a <code>^</code> for headers.
 </p>
@@ -485,10 +532,12 @@ To connect cells horizontally, just make the next cell completely empty as shown
 <p>
 Vertical tableheaders are possible, too.
 </p>
-<div class="table sectionedit20"><table class="inline">
+<div class="table sectionedit23"><table class="inline">
+	<thead>
 	<tr class="row0">
 		<td class="col0 leftalign">              </td><th class="col1 leftalign"> Heading 1            </th><th class="col2 leftalign"> Heading 2          </th>
 	</tr>
+	</thead>
 	<tr class="row1">
 		<th class="col0 leftalign"> Heading 3    </th><td class="col1 leftalign"> Row 1 Col 2          </td><td class="col2 leftalign"> Row 1 Col 3        </td>
 	</tr>
@@ -499,7 +548,7 @@ Vertical tableheaders are possible, too.
 		<th class="col0 leftalign"> Heading 5    </th><td class="col1 leftalign"> Row 2 Col 2          </td><td class="col2 leftalign"> Row 2 Col 3        </td>
 	</tr>
 </table></div>
-<!-- EDIT20 TABLE [10883-11126] -->
+<!-- EDIT23 TABLE [11856-12099] -->
 <p>
 As you can see, it&#039;s the cell separator before a cell which decides about the formatting:
 </p>
@@ -511,10 +560,12 @@ As you can see, it&#039;s the cell separator before a cell which decides about t
 <p>
 You can have rowspans (vertically connected cells) by adding <code>:::</code> into the cells below the one to which they should connect.
 </p>
-<div class="table sectionedit21"><table class="inline">
+<div class="table sectionedit24"><table class="inline">
+	<thead>
 	<tr class="row0">
 		<th class="col0 leftalign"> Heading 1      </th><th class="col1 leftalign"> Heading 2                  </th><th class="col2 leftalign"> Heading 3          </th>
 	</tr>
+	</thead>
 	<tr class="row1">
 		<td class="col0 leftalign"> Row 1 Col 1    </td><td class="col1" rowspan="3"> this cell spans vertically </td><td class="col2 leftalign"> Row 1 Col 3        </td>
 	</tr>
@@ -525,7 +576,7 @@ You can have rowspans (vertically connected cells) by adding <code>:::</code> in
 		<td class="col0 leftalign"> Row 3 Col 1    </td><td class="col1 leftalign"> Row 2 Col 3        </td>
 	</tr>
 </table></div>
-<!-- EDIT21 TABLE [11601-11876] -->
+<!-- EDIT24 TABLE [12574-12849] -->
 <p>
 Apart from the rowspan syntax those cells should not contain anything else.
 </p>
@@ -537,10 +588,12 @@ Apart from the rowspan syntax those cells should not contain anything else.
 <p>
 You can align the table contents, too. Just add at least two whitespaces at the opposite end of your text: Add two spaces on the left to align right, two spaces on the right to align left and two spaces at least at both ends for centered text.
 </p>
-<div class="table sectionedit22"><table class="inline">
+<div class="table sectionedit25"><table class="inline">
+	<thead>
 	<tr class="row0">
 		<th class="col0 centeralign" colspan="3">           Table with alignment           </th>
 	</tr>
+	</thead>
 	<tr class="row1">
 		<td class="col0 rightalign">         right</td><td class="col1 centeralign">    center    </td><td class="col2 leftalign">left          </td>
 	</tr>
@@ -551,7 +604,7 @@ You can align the table contents, too. Just add at least two whitespaces at the 
 		<td class="col0"> xxxxxxxxxxxx </td><td class="col1"> xxxxxxxxxxxx </td><td class="col2"> xxxxxxxxxxxx </td>
 	</tr>
 </table></div>
-<!-- EDIT22 TABLE [12485-12672] -->
+<!-- EDIT25 TABLE [13458-13645] -->
 <p>
 This is how it looks in the source:
 </p>
@@ -565,8 +618,8 @@ Note: Vertical alignment is not supported.
 </p>
 
 </div>
-<!-- EDIT18 SECTION "Tables" [10059-12951] -->
-<h2 class="sectionedit23" id="no_formatting">No Formatting</h2>
+<!-- EDIT21 SECTION "Tables" [11032-13924] -->
+<h2 class="sectionedit26" id="no_formatting">No Formatting</h2>
 <div class="level2">
 
 <p>
@@ -585,8 +638,8 @@ This is some text which contains addresses like this: http://www.splitbrain.org 
 The same is true for %%//__this__ text// with a smiley ;-)%%.</pre>
 
 </div>
-<!-- EDIT23 SECTION "No Formatting" [12952-13607] -->
-<h2 class="sectionedit24" id="code_blocks">Code Blocks</h2>
+<!-- EDIT26 SECTION "No Formatting" [13925-14580] -->
+<h2 class="sectionedit27" id="code_blocks">Code Blocks</h2>
 <div class="level2">
 
 <p>
@@ -608,8 +661,8 @@ This is pretty much the same, but you could use it to show that you quoted a fil
 &lt;/file&gt;</pre>
 
 </div>
-<!-- EDIT24 SECTION "Code Blocks" [13608-14349] -->
-<h3 class="sectionedit25" id="syntax_highlighting">Syntax Highlighting</h3>
+<!-- EDIT27 SECTION "Code Blocks" [14581-15322] -->
+<h3 class="sectionedit28" id="syntax_highlighting">Syntax Highlighting</h3>
 <div class="level3">
 
 <p>
@@ -630,8 +683,8 @@ The following language strings are currently recognized: <em>4cs, 6502acme, 6502
 </p>
 
 </div>
-<!-- EDIT25 SECTION "Syntax Highlighting" [14350-16776] -->
-<h3 class="sectionedit26" id="downloadable_code_blocks">Downloadable Code Blocks</h3>
+<!-- EDIT28 SECTION "Syntax Highlighting" [15323-17749] -->
+<h3 class="sectionedit29" id="downloadable_code_blocks">Downloadable Code Blocks</h3>
 <div class="level3">
 
 <p>
@@ -650,8 +703,8 @@ If you don&#039;t want any highlighting but want a downloadable file, specify a 
 </p>
 
 </div>
-<!-- EDIT26 SECTION "Downloadable Code Blocks" [16777-17307] -->
-<h2 class="sectionedit27" id="embedding_html_and_php">Embedding HTML and PHP</h2>
+<!-- EDIT29 SECTION "Downloadable Code Blocks" [17750-18280] -->
+<h2 class="sectionedit30" id="embedding_html_and_php">Embedding HTML and PHP</h2>
 <div class="level2">
 
 <p>
@@ -676,40 +729,42 @@ This is some &lt;span style=&quot;color:red;font-size:150%;&quot;&gt;inline HTML
 PHP example:
 </p>
 <pre class="code">&lt;php&gt;
-echo &#039;A logo generated by PHP:&#039;;
-echo &#039;&lt;img src=&quot;&#039; . $_SERVER[&#039;PHP_SELF&#039;] . &#039;?=&#039; . php_logo_guid() . &#039;&quot; alt=&quot;PHP Logo !&quot; /&gt;&#039;;
-echo &#039;(generated inline HTML)&#039;;
+echo &#039;The PHP version: &#039;;
+echo phpversion();
+echo &#039; (generated inline HTML)&#039;;
 &lt;/php&gt;
 &lt;PHP&gt;
 echo &#039;&lt;table class=&quot;inline&quot;&gt;&lt;tr&gt;&lt;td&gt;The same, but inside a block level element:&lt;/td&gt;&#039;;
-echo &#039;&lt;td&gt;&lt;img src=&quot;&#039; . $_SERVER[&#039;PHP_SELF&#039;] . &#039;?=&#039; . php_logo_guid() . &#039;&quot; alt=&quot;PHP Logo !&quot; /&gt;&lt;/td&gt;&#039;;
+echo &#039;&lt;td&gt;&#039;.phpversion().&#039;&lt;/td&gt;&#039;;
 echo &#039;&lt;/tr&gt;&lt;/table&gt;&#039;;
 &lt;/PHP&gt;</pre>
 
 <p>
-<code class="code php"><span class="kw1">echo</span> <span class="st_h">'A logo generated by PHP:'</span><span class="sy0">;</span>
-<span class="kw1">echo</span> <span class="st_h">'&lt;img src=&quot;'</span> <span class="sy0">.</span> <span class="re0">$_SERVER</span><span class="br0">&#91;</span><span class="st_h">'PHP_SELF'</span><span class="br0">&#93;</span> <span class="sy0">.</span> <span class="st_h">'?='</span> <span class="sy0">.</span> <a href="http://www.php.net/php_logo_guid"><span class="kw3">php_logo_guid</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="st_h">'&quot; alt=&quot;PHP Logo !&quot; /&gt;'</span><span class="sy0">;</span>
-<span class="kw1">echo</span> <span class="st_h">'(inline HTML)'</span><span class="sy0">;</span></code>
+<code class="code php"><span class="kw1">echo</span> <span class="st_h">'The PHP version: '</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <a href="http://www.php.net/phpversion"><span class="kw3">phpversion</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="st_h">' (inline HTML)'</span><span class="sy0">;</span></code>
 </p>
 <pre class="code php"><span class="kw1">echo</span> <span class="st_h">'&lt;table class=&quot;inline&quot;&gt;&lt;tr&gt;&lt;td&gt;The same, but inside a block level element:&lt;/td&gt;'</span><span class="sy0">;</span>
-<span class="kw1">echo</span> <span class="st_h">'&lt;td&gt;&lt;img src=&quot;'</span> <span class="sy0">.</span> <span class="re0">$_SERVER</span><span class="br0">&#91;</span><span class="st_h">'PHP_SELF'</span><span class="br0">&#93;</span> <span class="sy0">.</span> <span class="st_h">'?='</span> <span class="sy0">.</span> <a href="http://www.php.net/php_logo_guid"><span class="kw3">php_logo_guid</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="st_h">'&quot; alt=&quot;PHP Logo !&quot; /&gt;&lt;/td&gt;'</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="st_h">'&lt;td&gt;'</span><span class="sy0">.</span><a href="http://www.php.net/phpversion"><span class="kw3">phpversion</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">.</span><span class="st_h">'&lt;/td&gt;'</span><span class="sy0">;</span>
 <span class="kw1">echo</span> <span class="st_h">'&lt;/tr&gt;&lt;/table&gt;'</span><span class="sy0">;</span></pre>
 <p>
 <strong>Please Note</strong>: <abbr title="HyperText Markup Language">HTML</abbr> and PHP embedding is disabled by default in the configuration. If disabled, the code is displayed instead of executed.
 </p>
 
 </div>
-<!-- EDIT27 SECTION "Embedding HTML and PHP" [17308-18837] -->
-<h2 class="sectionedit28" id="rss_atom_feed_aggregation">RSS/ATOM Feed Aggregation</h2>
+<!-- EDIT30 SECTION "Embedding HTML and PHP" [18281-19514] -->
+<h2 class="sectionedit31" id="rss_atom_feed_aggregation">RSS/ATOM Feed Aggregation</h2>
 <div class="level2">
 
 <p>
 <a href="/xueshell.com/0/doku.php?id=wiki:dokuwiki" class="wikilink1" title="wiki:dokuwiki">DokuWiki</a> can integrate data from external XML feeds. For parsing the XML feeds, <a href="http://simplepie.org/" class="urlextern" title="http://simplepie.org/"  rel="nofollow">SimplePie</a> is used. All formats understood by SimplePie can be used in DokuWiki as well. You can influence the rendering by multiple additional space separated parameters:
 </p>
-<div class="table sectionedit29"><table class="inline">
+<div class="table sectionedit32"><table class="inline">
+	<thead>
 	<tr class="row0">
 		<th class="col0 leftalign"> Parameter  </th><th class="col1"> Description </th>
 	</tr>
+	</thead>
 	<tr class="row1">
 		<td class="col0"> any number </td><td class="col1"> will be used as maximum number items to show, defaults to 8 </td>
 	</tr>
@@ -729,7 +784,7 @@ echo &#039;&lt;/tr&gt;&lt;/table&gt;&#039;;
 		<td class="col0"> <em>n</em>[dhm] </td><td class="col1"> refresh period, where d=days, h=hours, m=minutes. (e.g. 12h = 12 hours). </td>
 	</tr>
 </table></div>
-<!-- EDIT29 TABLE [19158-19598] -->
+<!-- EDIT32 TABLE [19835-20275] -->
 <p>
 The refresh period defaults to 4 hours. Any value below 10 minutes will be treated as 10 minutes. <a href="/xueshell.com/0/doku.php?id=wiki:dokuwiki" class="wikilink1" title="wiki:dokuwiki">DokuWiki</a> will generally try to supply a cached version of a page, obviously this is inappropriate when the page contains dynamic external content. The parameter tells <a href="/xueshell.com/0/doku.php?id=wiki:dokuwiki" class="wikilink1" title="wiki:dokuwiki">DokuWiki</a> to re-render the page if it is more than <em>refresh period</em> since the page was last rendered.
 </p>
@@ -738,19 +793,21 @@ The refresh period defaults to 4 hours. Any value below 10 minutes will be treat
 <strong>Example:</strong>
 </p>
 <pre class="code">{{rss&gt;http://slashdot.org/index.rss 5 author date 1h }}</pre>
-<ul class="rss"><li><div class="li"><em>获取该 RSS 信息时产生错误：</em><a href="http://slashdot.org/index.rss" class="urlextern" title="http://slashdot.org/index.rss"  rel="nofollow">http://slashdot.org/index.rss</a></div></li></ul>
+<ul class="rss"><li><div class="li"><a href="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/Q_8Nf20Re34/story01.htm" class="urlextern" title="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/Q_8Nf20Re34/story01.htm"  rel="nofollow">Mesa 10.2 Will Feature Better Adreno Driver, OpenMAX, Cherryview Support</a> 由 Unknown Lamer (2014/05/27 15:15)</div></li><li><div class="li"><a href="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/D2YFMgZJQ_8/story01.htm" class="urlextern" title="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/D2YFMgZJQ_8/story01.htm"  rel="nofollow">US Nuclear Plants Expanding Long-Term Waste Storage Facilities</a> 由 Unknown Lamer (2014/05/27 12:10)</div></li><li><div class="li"><a href="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/oJjBKeHjzHA/story01.htm" class="urlextern" title="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/oJjBKeHjzHA/story01.htm"  rel="nofollow">Chelsea Clinton At NCWIT: More PE, Less Zuckerberg</a> 由 Unknown Lamer (2014/05/27 10:10)</div></li><li><div class="li"><a href="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/ydTkCz4Q-2w/story01.htm" class="urlextern" title="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/ydTkCz4Q-2w/story01.htm"  rel="nofollow">PHK: HTTP 2.0 Should Be Scrapped</a> 由 Unknown Lamer (2014/05/27 08:19)</div></li><li><div class="li"><a href="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/0QQUhXlBrXg/story01.htm" class="urlextern" title="http://rss.slashdot.org/~r/Slashdot/slashdot/~3/0QQUhXlBrXg/story01.htm"  rel="nofollow">http://rss.slashdot.org/~r/Slashdot/slashdot/~3/0QQUhXlBrXg/story01.htm</a> 由 Unknown Lamer (2014/05/27 07:30)</div></li></ul>
 </div>
-<!-- EDIT28 SECTION "RSS/ATOM Feed Aggregation" [18838-20117] -->
-<h2 class="sectionedit30" id="control_macros">Control Macros</h2>
+<!-- EDIT31 SECTION "RSS/ATOM Feed Aggregation" [19515-20794] -->
+<h2 class="sectionedit33" id="control_macros">Control Macros</h2>
 <div class="level2">
 
 <p>
 Some syntax influences how DokuWiki renders a page without creating any output it self. The following control macros are availble:
 </p>
-<div class="table sectionedit31"><table class="inline">
+<div class="table sectionedit34"><table class="inline">
+	<thead>
 	<tr class="row0">
 		<th class="col0 leftalign"> Macro           </th><th class="col1"> Description </th>
 	</tr>
+	</thead>
 	<tr class="row1">
 		<td class="col0 leftalign"> ~~NOTOC~~   </td><td class="col1"> If this macro is found on the page, no table of contents will be created </td>
 	</tr>
@@ -758,18 +815,18 @@ Some syntax influences how DokuWiki renders a page without creating any output i
 		<td class="col0"> ~~NOCACHE~~ </td><td class="col1"> DokuWiki caches all output by default. Sometimes this might not be wanted (eg. when the &lt;php&gt; syntax above is used), adding this macro will force DokuWiki to rerender a page on every call </td>
 	</tr>
 </table></div>
-<!-- EDIT31 TABLE [20278-20620] -->
+<!-- EDIT34 TABLE [20955-21297] -->
 </div>
-<!-- EDIT30 SECTION "Control Macros" [20118-20621] -->
-<h2 class="sectionedit32" id="syntax_plugins">Syntax Plugins</h2>
+<!-- EDIT33 SECTION "Control Macros" [20795-21298] -->
+<h2 class="sectionedit35" id="syntax_plugins">Syntax Plugins</h2>
 <div class="level2">
 
 <p>
 DokuWiki&#039;s syntax can be extended by <a href="http://www.dokuwiki.org/plugins" class="interwiki iw_doku" title="http://www.dokuwiki.org/plugins">Plugins</a>. How the installed plugins are used is described on their appropriate description pages. The following syntax plugins are available in this particular DokuWiki installation:
 </p>
-<ul><li><div class="li"><a href="http://dokuwiki.org/plugin:maplink" class="urlextern" title="http://dokuwiki.org/plugin:maplink"  rel="nofollow">maplink</a> <em></em> 由 <a href="mailto:" class="mail">chlw; based on work by Eli Fenton (Anchor Plugin) and J. Drost-Tenfelde (iCalendar Plugin)</a><br /></div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:todo" class="urlextern" title="https://www.dokuwiki.org/plugin:todo"  rel="nofollow">ToDo</a> <em>2013-04-13</em> 由 <a href="mailto:&#x62;&#x61;&#x62;&#x62;&#x61;&#x67;&#x65;&#x40;&#x64;&#x69;&#x67;&#x69;&#x74;&#x61;&#x6c;&#x62;&#x72;&#x69;&#x6e;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;&#x3b;&#x20;&#x64;&#x6f;&#x6b;&#x75;&#x77;&#x69;&#x6b;&#x69;&#x40;&#x73;&#x70;&#x72;&#x6f;&#x73;&#x73;&#x65;&#x6e;&#x77;&#x61;&#x6e;&#x6e;&#x65;&#x2e;&#x61;&#x74;" class="mail" title="&#x62;&#x61;&#x62;&#x62;&#x61;&#x67;&#x65;&#x40;&#x64;&#x69;&#x67;&#x69;&#x74;&#x61;&#x6c;&#x62;&#x72;&#x69;&#x6e;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;&#x3b;&#x20;&#x64;&#x6f;&#x6b;&#x75;&#x77;&#x69;&#x6b;&#x69;&#x40;&#x73;&#x70;&#x72;&#x6f;&#x73;&#x73;&#x65;&#x6e;&#x77;&#x61;&#x6e;&#x6e;&#x65;&#x2e;&#x61;&#x74;">Babbage; Leo Eibler</a><br />Create a checkbox based todo list with optional user assignment (by using &lt;todo&gt;This is a ToDo&lt;/todo&gt;). In combination with dokuwiki searchpattern plugin (at least v20130411) it is a lightweight task list management system. Set a todo to complete by using # sign: &lt;todo #&gt;Completed Task&lt;/todo&gt;. Assign a todo to a user leo with @leo: &lt;todo @leo&gt;Task for Leo&lt;/todo&gt;. Use following searchpattern regular expressions to manage all todos on a single page. Use this for open todos: ~~SEARCHPATTERN#&#039;/&lt;todo[^#&gt;]*&gt;.*?&lt;\/todo[\W]*?&gt;/&#039;?? _ToDo ??~~ Use this for completed todos: ~~SEARCHPATTERN#&#039;/&lt;todo[^#&gt;]*#[^&gt;]*&gt;.*?&lt;\/todo[\W]*?&gt;/&#039;?? _ToDo ??~~ Use this for a list of all assigned todos: ~~SEARCHPATTERN#&#039;/&lt;todo[^@&gt;]*@([^\W]+)[^#&gt;]*(#)?[^&gt;]*&gt;(.*?)&lt;\/todo[\W]*?&gt;/&#039;?? $2,1,3 ??~~</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:include" class="urlextern" title="http://dokuwiki.org/plugin:include"  rel="nofollow">include plugin</a> <em>2013-11-25</em> 由 <a href="mailto:&#x6d;&#x69;&#x63;&#x68;&#x61;&#x65;&#x6c;&#x40;&#x63;&#x6f;&#x6e;&#x74;&#x65;&#x6e;&#x74;&#x2d;&#x73;&#x70;&#x61;&#x63;&#x65;&#x2e;&#x64;&#x65;" class="mail" title="&#x6d;&#x69;&#x63;&#x68;&#x61;&#x65;&#x6c;&#x40;&#x63;&#x6f;&#x6e;&#x74;&#x65;&#x6e;&#x74;&#x2d;&#x73;&#x70;&#x61;&#x63;&#x65;&#x2e;&#x64;&#x65;">Michael Hamann, Gina Häussge, Christopher Smith, Michael Klier, Esther Brunner</a><br />Functions to include another page in a wiki page</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:vshare" class="urlextern" title="http://www.dokuwiki.org/plugin:vshare"  rel="nofollow">Video Sharing Site Plugin</a> <em>2013-04-23</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Easily embed videos from various Video Sharing sites. Example: {{youtube&gt;XXXXXX}}</div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:wrap" class="urlextern" title="https://www.dokuwiki.org/plugin:wrap"  rel="nofollow">Wrap Plugin</a> <em>2014-02-04</em> 由 <a href="mailto:&#x61;&#x6e;&#x69;&#x6b;&#x61;&#x40;&#x73;&#x65;&#x6c;&#x66;&#x74;&#x68;&#x69;&#x6e;&#x6b;&#x65;&#x72;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x69;&#x6b;&#x61;&#x40;&#x73;&#x65;&#x6c;&#x66;&#x74;&#x68;&#x69;&#x6e;&#x6b;&#x65;&#x72;&#x2e;&#x6f;&#x72;&#x67;">Anika Henke</a><br />Universal plugin which combines functionalities of many other plugins. Wrap wiki text inside containers (divs or spans) and give them a class (choose from a variety of preset classes), a width and/or a language with its associated text direction.</div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:color" class="urlextern" title="https://www.dokuwiki.org/plugin:color"  rel="nofollow">color syntax plugin</a> <em>2008-02-06</em> 由 <a href="mailto:&#x63;&#x68;&#x72;&#x69;&#x73;&#x40;&#x6a;&#x61;&#x6c;&#x61;&#x6b;&#x61;&#x69;&#x2e;&#x63;&#x6f;&#x2e;&#x75;&#x6b;" class="mail" title="&#x63;&#x68;&#x72;&#x69;&#x73;&#x40;&#x6a;&#x61;&#x6c;&#x61;&#x6b;&#x61;&#x69;&#x2e;&#x63;&#x6f;&#x2e;&#x75;&#x6b;">Christopher Smith</a><br />Write colored text in DokuWiki.</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:info" class="urlextern" title="http://dokuwiki.org/plugin:info"  rel="nofollow">Info Plugin</a> <em>2013-02-16</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Displays information about various DokuWiki internals</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:textrotate" class="urlextern" title="http://dokuwiki.org/plugin:textrotate"  rel="nofollow">TextRotate Plugin</a> <em>2013-10-25</em> 由 <a href="mailto:" class="mail">lisps</a><br />converts a string into an image and rotates it</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:wikicalendar" class="urlextern" title="http://dokuwiki.org/plugin:wikicalendar"  rel="nofollow">WikiCalendar Plugin</a> <em></em> 由 <a href="mailto:&#x63;&#x68;&#x69;&#x40;&#x63;&#x68;&#x69;&#x6d;&#x65;&#x72;&#x69;&#x63;&#x2e;&#x64;&#x65;" class="mail" title="&#x63;&#x68;&#x69;&#x40;&#x63;&#x68;&#x69;&#x6d;&#x65;&#x72;&#x69;&#x63;&#x2e;&#x64;&#x65;">Michael Klier (chi)</a><br />Implements a simple Calendar with links to wikipages.</div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:indexmenu" class="urlextern" title="https://www.dokuwiki.org/plugin:indexmenu"  rel="nofollow">Indexmenu Plugin</a> <em>2013-04-24</em> 由 <a href="mailto:&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x40;&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x2e;&#x6e;&#x65;&#x74;&#x73;&#x6f;&#x6e;&#x73;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x40;&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x2e;&#x6e;&#x65;&#x74;&#x73;&#x6f;&#x6e;&#x73;&#x2e;&#x6f;&#x72;&#x67;">Samuele Tognini</a><br />Show a customizable and sortable index for a namespace</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:note" class="urlextern" title="http://www.dokuwiki.org/plugin:note"  rel="nofollow">Note Plugin</a> <em>2009-06-15</em> 由 <a href="mailto:&#x6f;&#x6c;&#x69;&#x76;&#x65;&#x40;&#x64;&#x65;&#x65;&#x70;&#x2d;&#x6f;&#x63;&#x65;&#x61;&#x6e;&#x2e;&#x6e;&#x65;&#x74;" class="mail" title="&#x6f;&#x6c;&#x69;&#x76;&#x65;&#x40;&#x64;&#x65;&#x65;&#x70;&#x2d;&#x6f;&#x63;&#x65;&#x61;&#x6e;&#x2e;&#x6e;&#x65;&#x74;">Olivier Cortès / Eric Hameleers / Christopher Smith / Aurélien Bompard</a><br />Add Note/Important/Tip/Warning Capability (DIV+CSS box)</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:fontcolor" class="urlextern" title="http://www.dokuwiki.org/plugin:fontcolor"  rel="nofollow">fontcolor Plugin</a> <em>2009-02-04</em> 由 <a href="mailto:&#x74;&#x68;&#x6f;&#x72;&#x73;&#x74;&#x65;&#x6e;&#x2e;&#x73;&#x74;&#x72;&#x61;&#x74;&#x6d;&#x61;&#x6e;&#x6e;&#x40;&#x77;&#x65;&#x62;&#x2e;&#x64;&#x65;" class="mail" title="&#x74;&#x68;&#x6f;&#x72;&#x73;&#x74;&#x65;&#x6e;&#x2e;&#x73;&#x74;&#x72;&#x61;&#x74;&#x6d;&#x61;&#x6e;&#x6e;&#x40;&#x77;&#x65;&#x62;&#x2e;&#x64;&#x65;">ThorstenStratmann</a><br />color text with a specific color<br />                         Syntax: &lt;fc color&gt;Your Text &lt;/fc&gt;</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:gallery" class="urlextern" title="http://www.dokuwiki.org/plugin:gallery"  rel="nofollow">Gallery Plugin</a> <em>2013-02-16</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Creates a gallery of images from a namespace or RSS/ATOM feed</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:workflow" class="urlextern" title="http://dokuwiki.org/plugin:workflow"  rel="nofollow">workflow plugin</a> <em>2014-01-05</em> 由 <a href="mailto:&#x72;&#x79;&#x61;&#x6e;&#x2e;&#x62;&#x6f;&#x64;&#x65;&#x72;&#x40;&#x73;&#x75;&#x72;&#x65;&#x74;&#x79;&#x63;&#x61;&#x6d;&#x2e;&#x63;&#x6f;&#x6d;" class="mail" title="&#x72;&#x79;&#x61;&#x6e;&#x2e;&#x62;&#x6f;&#x64;&#x65;&#x72;&#x40;&#x73;&#x75;&#x72;&#x65;&#x74;&#x79;&#x63;&#x61;&#x6d;&#x2e;&#x63;&#x6f;&#x6d;">Ryan Boder</a><br />Interactive Workflow Wizardry</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:translation" class="urlextern" title="http://www.dokuwiki.org/plugin:translation"  rel="nofollow">Translation Plugin</a> <em>2013-09-25</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Supports the easy setup of a multi-language wiki.</div></li></ul>
+<ul><li><div class="li"><a href="http://dokuwiki.org/plugin:maplink" class="urlextern" title="http://dokuwiki.org/plugin:maplink"  rel="nofollow">maplink</a> <em></em> 由 <a href="mailto:" class="mail">chlw; based on work by Eli Fenton (Anchor Plugin) and J. Drost-Tenfelde (iCalendar Plugin)</a><br /></div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:todo" class="urlextern" title="https://www.dokuwiki.org/plugin:todo"  rel="nofollow">ToDo</a> <em>2014-03-17</em> 由 <a href="mailto:&#x62;&#x61;&#x62;&#x62;&#x61;&#x67;&#x65;&#x40;&#x64;&#x69;&#x67;&#x69;&#x74;&#x61;&#x6c;&#x62;&#x72;&#x69;&#x6e;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;&#x3b;&#x20;&#x64;&#x6f;&#x6b;&#x75;&#x77;&#x69;&#x6b;&#x69;&#x40;&#x73;&#x70;&#x72;&#x6f;&#x73;&#x73;&#x65;&#x6e;&#x77;&#x61;&#x6e;&#x6e;&#x65;&#x2e;&#x61;&#x74;" class="mail" title="&#x62;&#x61;&#x62;&#x62;&#x61;&#x67;&#x65;&#x40;&#x64;&#x69;&#x67;&#x69;&#x74;&#x61;&#x6c;&#x62;&#x72;&#x69;&#x6e;&#x6b;&#x2e;&#x63;&#x6f;&#x6d;&#x3b;&#x20;&#x64;&#x6f;&#x6b;&#x75;&#x77;&#x69;&#x6b;&#x69;&#x40;&#x73;&#x70;&#x72;&#x6f;&#x73;&#x73;&#x65;&#x6e;&#x77;&#x61;&#x6e;&#x6e;&#x65;&#x2e;&#x61;&#x74;">Babbage; Leo Eibler</a><br />Create a checkbox based todo list with optional user assignment (by using &lt;todo&gt;This is a ToDo&lt;/todo&gt;). In combination with dokuwiki searchpattern plugin it is a lightweight task list management system.</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:include" class="urlextern" title="http://dokuwiki.org/plugin:include"  rel="nofollow">include plugin</a> <em>2013-11-25</em> 由 <a href="mailto:&#x6d;&#x69;&#x63;&#x68;&#x61;&#x65;&#x6c;&#x40;&#x63;&#x6f;&#x6e;&#x74;&#x65;&#x6e;&#x74;&#x2d;&#x73;&#x70;&#x61;&#x63;&#x65;&#x2e;&#x64;&#x65;" class="mail" title="&#x6d;&#x69;&#x63;&#x68;&#x61;&#x65;&#x6c;&#x40;&#x63;&#x6f;&#x6e;&#x74;&#x65;&#x6e;&#x74;&#x2d;&#x73;&#x70;&#x61;&#x63;&#x65;&#x2e;&#x64;&#x65;">Michael Hamann, Gina Häussge, Christopher Smith, Michael Klier, Esther Brunner</a><br />Functions to include another page in a wiki page</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:vshare" class="urlextern" title="http://www.dokuwiki.org/plugin:vshare"  rel="nofollow">Video Sharing Site Plugin</a> <em>2013-04-23</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Easily embed videos from various Video Sharing sites. Example: {{youtube&gt;XXXXXX}}</div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:wrap" class="urlextern" title="https://www.dokuwiki.org/plugin:wrap"  rel="nofollow">Wrap Plugin</a> <em>2014-02-04</em> 由 <a href="mailto:&#x61;&#x6e;&#x69;&#x6b;&#x61;&#x40;&#x73;&#x65;&#x6c;&#x66;&#x74;&#x68;&#x69;&#x6e;&#x6b;&#x65;&#x72;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x69;&#x6b;&#x61;&#x40;&#x73;&#x65;&#x6c;&#x66;&#x74;&#x68;&#x69;&#x6e;&#x6b;&#x65;&#x72;&#x2e;&#x6f;&#x72;&#x67;">Anika Henke</a><br />Universal plugin which combines functionalities of many other plugins. Wrap wiki text inside containers (divs or spans) and give them a class (choose from a variety of preset classes), a width and/or a language with its associated text direction.</div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:color" class="urlextern" title="https://www.dokuwiki.org/plugin:color"  rel="nofollow">color syntax plugin</a> <em>2008-02-06</em> 由 <a href="mailto:&#x63;&#x68;&#x72;&#x69;&#x73;&#x40;&#x6a;&#x61;&#x6c;&#x61;&#x6b;&#x61;&#x69;&#x2e;&#x63;&#x6f;&#x2e;&#x75;&#x6b;" class="mail" title="&#x63;&#x68;&#x72;&#x69;&#x73;&#x40;&#x6a;&#x61;&#x6c;&#x61;&#x6b;&#x61;&#x69;&#x2e;&#x63;&#x6f;&#x2e;&#x75;&#x6b;">Christopher Smith</a><br />Write colored text in DokuWiki.</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:info" class="urlextern" title="http://dokuwiki.org/plugin:info"  rel="nofollow">Info Plugin</a> <em>2013-02-16</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Displays information about various DokuWiki internals</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:textrotate" class="urlextern" title="http://dokuwiki.org/plugin:textrotate"  rel="nofollow">TextRotate Plugin</a> <em>2013-10-25</em> 由 <a href="mailto:" class="mail">lisps</a><br />converts a string into an image and rotates it</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:wikicalendar" class="urlextern" title="http://dokuwiki.org/plugin:wikicalendar"  rel="nofollow">WikiCalendar Plugin</a> <em></em> 由 <a href="mailto:&#x63;&#x68;&#x69;&#x40;&#x63;&#x68;&#x69;&#x6d;&#x65;&#x72;&#x69;&#x63;&#x2e;&#x64;&#x65;" class="mail" title="&#x63;&#x68;&#x69;&#x40;&#x63;&#x68;&#x69;&#x6d;&#x65;&#x72;&#x69;&#x63;&#x2e;&#x64;&#x65;">Michael Klier (chi)</a><br />Implements a simple Calendar with links to wikipages.</div></li><li><div class="li"><a href="https://www.dokuwiki.org/plugin:indexmenu" class="urlextern" title="https://www.dokuwiki.org/plugin:indexmenu"  rel="nofollow">Indexmenu Plugin</a> <em>2013-04-24</em> 由 <a href="mailto:&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x40;&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x2e;&#x6e;&#x65;&#x74;&#x73;&#x6f;&#x6e;&#x73;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x40;&#x73;&#x61;&#x6d;&#x75;&#x65;&#x6c;&#x65;&#x2e;&#x6e;&#x65;&#x74;&#x73;&#x6f;&#x6e;&#x73;&#x2e;&#x6f;&#x72;&#x67;">Samuele Tognini</a><br />Show a customizable and sortable index for a namespace</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:note" class="urlextern" title="http://www.dokuwiki.org/plugin:note"  rel="nofollow">Note Plugin</a> <em>2009-06-15</em> 由 <a href="mailto:&#x6f;&#x6c;&#x69;&#x76;&#x65;&#x40;&#x64;&#x65;&#x65;&#x70;&#x2d;&#x6f;&#x63;&#x65;&#x61;&#x6e;&#x2e;&#x6e;&#x65;&#x74;" class="mail" title="&#x6f;&#x6c;&#x69;&#x76;&#x65;&#x40;&#x64;&#x65;&#x65;&#x70;&#x2d;&#x6f;&#x63;&#x65;&#x61;&#x6e;&#x2e;&#x6e;&#x65;&#x74;">Olivier Cortès / Eric Hameleers / Christopher Smith / Aurélien Bompard</a><br />Add Note/Important/Tip/Warning Capability (DIV+CSS box)</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:fontcolor" class="urlextern" title="http://www.dokuwiki.org/plugin:fontcolor"  rel="nofollow">fontcolor Plugin</a> <em>2009-02-04</em> 由 <a href="mailto:&#x74;&#x68;&#x6f;&#x72;&#x73;&#x74;&#x65;&#x6e;&#x2e;&#x73;&#x74;&#x72;&#x61;&#x74;&#x6d;&#x61;&#x6e;&#x6e;&#x40;&#x77;&#x65;&#x62;&#x2e;&#x64;&#x65;" class="mail" title="&#x74;&#x68;&#x6f;&#x72;&#x73;&#x74;&#x65;&#x6e;&#x2e;&#x73;&#x74;&#x72;&#x61;&#x74;&#x6d;&#x61;&#x6e;&#x6e;&#x40;&#x77;&#x65;&#x62;&#x2e;&#x64;&#x65;">ThorstenStratmann</a><br />color text with a specific color<br />                         Syntax: &lt;fc color&gt;Your Text &lt;/fc&gt;</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:gallery" class="urlextern" title="http://www.dokuwiki.org/plugin:gallery"  rel="nofollow">Gallery Plugin</a> <em>2013-02-16</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Creates a gallery of images from a namespace or RSS/ATOM feed</div></li><li><div class="li"><a href="http://dokuwiki.org/plugin:workflow" class="urlextern" title="http://dokuwiki.org/plugin:workflow"  rel="nofollow">workflow plugin</a> <em>2014-01-05</em> 由 <a href="mailto:&#x72;&#x79;&#x61;&#x6e;&#x2e;&#x62;&#x6f;&#x64;&#x65;&#x72;&#x40;&#x73;&#x75;&#x72;&#x65;&#x74;&#x79;&#x63;&#x61;&#x6d;&#x2e;&#x63;&#x6f;&#x6d;" class="mail" title="&#x72;&#x79;&#x61;&#x6e;&#x2e;&#x62;&#x6f;&#x64;&#x65;&#x72;&#x40;&#x73;&#x75;&#x72;&#x65;&#x74;&#x79;&#x63;&#x61;&#x6d;&#x2e;&#x63;&#x6f;&#x6d;">Ryan Boder</a><br />Interactive Workflow Wizardry</div></li><li><div class="li"><a href="http://www.dokuwiki.org/plugin:translation" class="urlextern" title="http://www.dokuwiki.org/plugin:translation"  rel="nofollow">Translation Plugin</a> <em>2013-09-25</em> 由 <a href="mailto:&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;" class="mail" title="&#x61;&#x6e;&#x64;&#x69;&#x40;&#x73;&#x70;&#x6c;&#x69;&#x74;&#x62;&#x72;&#x61;&#x69;&#x6e;&#x2e;&#x6f;&#x72;&#x67;">Andreas Gohr</a><br />Supports the easy setup of a multi-language wiki.</div></li></ul>
 </div>
-<!-- EDIT32 SECTION "Syntax Plugins" [20622-] --><div class="footnotes">
+<!-- EDIT35 SECTION "Syntax Plugins" [21299-] --><div class="footnotes">
 <div class="fn"><sup><a href="#fnt__1" id="fn__1" class="fn_bot">1)</a></sup> 
 This is a footnote</div>
 <div class="fn"><sup><a href="#fnt__2" id="fn__2" class="fn_bot">2)</a></sup> 

@@ -1,3 +1,344 @@
 <pre class="code bash"><span class="kw2">cat</span> <span class="re4">$1</span> <span class="sy0">|</span> <span class="kw2">sed</span> <span class="re5">-e</span> <span class="st_h">'s/&gt;/?\/g'</span> <span class="sy0">|</span> <span class="kw2">grep</span> <span class="st_h">''</span><span class="sy0">&lt;</span>a<span class="st_h">' | while IFS='</span><span class="st0">&quot;' read a b c
 do echo <span class="es2">$b</span>
 done</span></pre>
+
+<h2 class="sectionedit1" id="shell中read的选项及用法">Shell中read的选项及用法</h2>
+<div class="level2">
+
+<p>
+1. Read的一些选项
+</p>
+
+<p>
+　Read可以带有-a, -d, -e, -n, -p, -r, -t, 和 -s八个选项。
+</p>
+
+<p>
+-a ：将内容读入到数值中
+</p>
+
+<p>
+echo -n “Input muliple values into an array:”
+read -a array
+echo “get ${#array[@]} values in array”
+</p>
+
+<p>
+-d ：表示delimiter，即定界符，一般情况下是以IFS为参数的间隔，但是通过-d，我们可以定义一直读到出现执行的字符位置。例如read –d madfds value，读到有m的字符的时候就不在继续向后读，例如输入为 hello m，有效值为“hello”，请注意m前面的空格等会被删除。这种方式可以输入多个字符串，例如定义“.”作为结符号等等。
+</p>
+
+<p>
+-e ：只用于互相交互的脚本，它将readline用于收集输入行。读到这几句话不太明白什么意思，先跳过。
+</p>
+
+<p>
+-n ：用于限定最多可以有多少字符可以作为有效读入。例如echo –n 4 value1 value2，如果我们试图输入12 34，则只有前面有效的12 3，作为输入，实际上在你输入第4个字符‘3’后，就自动结束输入。这里结果是value为12，value2为3。
+</p>
+
+<p>
+-p ：用于给出提示符，在前面的例子中我们使用了echo –n “…“来给出提示符，可以使用read –p ‘… my promt?’value的方式只需一个语句来表示。
+</p>
+
+<p>
+-r ：在参数输入中，我们可以使用’/’表示没有输入完，换行继续输入，如果我们需要行最后的’/’作为有效的字符，可以通过-r来进行。此外在输入字符中，我们希望/n这类特殊字符生效，也应采用-r选项。
+</p>
+
+<p>
+-s ：对于一些特殊的符号，例如箭头号，不将他们在terminal上打印，例如read –s key，我们按光标，在回车之后，如果我们要求显示，即echo，光标向上，如果不使用-s，在输入的时候，输入处显示^[[A，即在terminal上 打印，之后如果要求echo，光标会上移。
+</p>
+
+<p>
+-t ：用于表示等待输入的时间，单位为秒，等待时间超过，将继续执行后面的脚本，注意不作为null输入，参数将保留原有的值
+</p>
+
+<p>
+2. Read的相关实例
+</p>
+
+<p>
+a. 拼接文件
+</p>
+
+<p>
+#将afile文件中的前三行与bfile中的前四行拼接在一起
+while read -u3 i &amp;&amp; read -u4 j;do
+echo $i $j
+done 3&lt;afile 4&lt;bfile
+</p>
+
+<p>
+b. 输入不在终端显示
+</p>
+
+<p>
+read -p “Input passwd:” -s Passwd
+echo $Passwd
+</p>
+
+<p>
+c. 限时输入,否则退出
+</p>
+
+<p>
+#延迟五秒，没有输入将自动退出
+read -p “Input a number:” -t 5 Number
+</p>
+
+<p>
+d. 读取限定字符
+</p>
+
+<p>
+#从输入中取5个字符
+read -p “Input a word:” -n 5 Word
+</p>
+
+<p>
+e. 等待输出q退出
+</p>
+
+<p>
+#输入，直到输入q，将自动退出
+read -dp -p “Input some words end with q:” word
+</p>
+
+</div>
+<!-- EDIT1 SECTION "Shell中read的选项及用法" [106-2783] -->
+<h2 class="sectionedit2" id="read_基本读取">read 基本读取</h2>
+<div class="level2">
+
+<p>
+read命令 -n(不换行) -p(提示语句) -n(字符个数) -t(等待时间) -s(不回显)
+</p>
+
+<p>
+1、基本读取
+</p>
+
+<p>
+read命令接收标准输入（键盘）的输入，或其他文件描述符的输入（后面在说）。得到输入后，read命令将数据放入一个标准变量中。下面是read命令
+</p>
+
+<p>
+的最简单形式::
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+echo -n “Enter your name:”   <em>参数-n的作用是不换行，echo默认是换行
+
+read  name                   </em>从键盘输入
+</p>
+
+<p>
+echo “hello $name,welcome to my program”     <em>显示信息
+
+exit 0                       </em>退出shell程序。
+</p>
+
+<p>
+<em><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong>
+
+由于read命令提供了-p参数，允许在read命令行中直接指定一个提示。
+
+所以上面的脚本可以简写成下面的脚本::
+
+#!/bin/bash
+
+read -p “Enter your name:” name
+
+echo “hello $name, welcome to my program”
+
+exit 0
+
+在上面read后面的变量只有name一个，也可以有多个，这时如果输入多个数据，则第一个数据给第一个变量，第二个数据给第二个变量，如果输入数据个数过多，则最后所有的值都给第一个变量。如果太少输入不会结束。
+
+</em><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong><strong></strong>*
+</p>
+
+<p>
+在read命令行中也可以不指定变量.如果不指定变量，那么read命令会将接收到的数据放置在环境变量REPLY中。
+</p>
+
+<p>
+例如::
+</p>
+
+<p>
+read -p “Enter a number”
+</p>
+
+<p>
+环境变量REPLY中包含输入的所有数据，可以像使用其他变量一样在shell脚本中使用环境变量REPLY.
+</p>
+
+<p>
+2、计时输入.
+</p>
+
+<p>
+使用read命令存在着潜在危险。脚本很可能会停下来一直等待用户的输入。如果无论是否输入数据脚本都必须继续执行，那么可以使用-t选项指定一个计时器。
+</p>
+
+<p>
+-t选项指定read命令等待输入的秒数。当计时满时，read命令返回一个非零退出状态;
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+if read -t 5 -p “please enter your name:” name
+</p>
+
+<p>
+then 
+</p>
+<pre class="code">  echo &quot;hello $name ,welcome to my script&quot;</pre>
+
+<p>
+else
+</p>
+<pre class="code">  echo &quot;sorry,too slow&quot;</pre>
+
+<p>
+fi
+</p>
+
+<p>
+exit 0
+</p>
+
+<p>
+除了输入时间计时，还可以设置read命令计数输入的字符。当输入的字符数目达到预定数目时，自动退出，并将输入的数据赋值给变量。
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+read -n1 -p “Do you want to continue [Y/N]?” answer
+</p>
+
+<p>
+case $answer in
+</p>
+
+<p>
+Y | y)
+</p>
+<pre class="code">    echo &quot;fine ,continue&quot;;;</pre>
+
+<p>
+N | n)
+</p>
+<pre class="code">    echo &quot;ok,good bye&quot;;;</pre>
+
+<p>
+*)
+</p>
+<pre class="code">   echo &quot;error choice&quot;;;</pre>
+
+<p>
+esac
+</p>
+
+<p>
+exit 0
+</p>
+
+<p>
+该例子使用了-n选项，后接数值1，指示read命令只要接受到一个字符就退出。只要按下一个字符进行回答，read命令立即
+</p>
+
+<p>
+接受输入并将其传给变量。无需按回车键。
+</p>
+
+<p>
+3、默读（输入不显示在监视器上）
+</p>
+
+<p>
+有时会需要脚本用户输入，但不希望输入的数据显示在监视器上。典型的例子就是输入密码，当然还有很多其他需要隐藏的数据。
+</p>
+
+<p>
+-s选项能够使read命令中输入的数据不显示在监视器上（实际上，数据是显示的，只是read命令将文本颜色设置成与背景相同的颜色）。
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+read  -s  -p “Enter your password:” pass
+</p>
+
+<p>
+echo “your password is $pass”
+</p>
+
+<p>
+exit 0 
+</p>
+
+<p>
+4、读文件
+</p>
+
+<p>
+最后，还可以使用read命令读取Linux系统上的文件。
+</p>
+
+<p>
+每次调用read命令都会读取文件中的“一行”文本。当文件没有可读的行时，read命令将以非零状态退出。
+</p>
+
+<p>
+读取文件的关键是如何将文本中的数据传送给read命令。
+</p>
+
+<p>
+最常用的方法是对文件使用cat命令并通过管道将结果直接传送给包含read命令的while命令
+</p>
+
+<p>
+例子::
+</p>
+
+<p>
+#!/bin/bash
+</p>
+
+<p>
+count=1    <em>赋值语句，不加空格
+
+cat test | while read line        </em>cat 命令的输出作为read命令的输入,read读到的值放在line中
+</p>
+
+<p>
+do
+</p>
+<pre class="code"> echo &quot;Line $count:$line&quot;</pre>
+<pre class="code"> count=$[ $count + 1 ]          //注意中括号中的空格。</pre>
+
+<p>
+done
+</p>
+
+<p>
+echo “finish”
+</p>
+
+<p>
+exit 0
+</p>
+
+</div>
+<!-- EDIT2 SECTION "read 基本读取" [2784-] -->

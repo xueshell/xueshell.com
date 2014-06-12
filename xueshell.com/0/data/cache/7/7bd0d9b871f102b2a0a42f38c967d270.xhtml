@@ -1,0 +1,175 @@
+
+<h3 class="sectionedit1" id="错误方法举例">错误方法举例</h3>
+<div class="level3">
+
+<p>
+a)
+</p>
+
+<p>
+var=1+1
+echo $var
+</p>
+
+<p>
+输出的结果是1+1，悲剧，呵呵
+</p>
+
+<p>
+b)
+var=1
+var=$var+1
+echo $var
+输出结果是1+1，依然悲剧，呵呵
+</p>
+
+</div>
+<!-- EDIT1 SECTION "错误方法举例" [1-165] -->
+<h3 class="sectionedit2" id="正确方法">正确方法</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="使用let">使用let</h4>
+<div class="level4">
+<pre class="code">var=1
+let &quot;var+=1&quot;
+echo $var</pre>
+
+<p>
+输出结果为2，这次没有悲剧
+</p>
+
+<p>
+注意：
+</p>
+<ul>
+<li class="level1"><div class="li"> 经我测试let几乎支持所有的运算符，在网上看到一篇文章说“let不支持++、–和逗号、(、)”,但经我测试自加、自减、以及括号的优先级都得到了很好的支持</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+<li class="level1"><div class="li"> 方幂运算应使用“**”</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+<li class="level1"><div class="li"> 参数在表达式中直接访问，不必加$ </div>
+</li>
+<li class="level1"><div class="li"> 一般情况下算数表达式可以不加双引号，但是若表达式中有bash中的关键字则需加上 </div>
+</li>
+<li class="level1"><div class="li"> let后的表达式只能进行整数运算 </div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="使用">使用(())</h4>
+<div class="level4">
+<pre class="code">var=1
+((var+=1))
+echo $var</pre>
+
+<p>
+输出结果为2
+注意：
+<sup><a href="#fn__1" id="fnt__1" class="fn_top">1)</a></sup>的使用方法与let完全相同
+</p>
+
+</div>
+
+<h4 id="使用1">使用$[]</h4>
+<div class="level4">
+<pre class="code">var=1
+var=$[$var+1]
+echo $var</pre>
+
+<p>
+输出结果位2
+注意：
+a)$[]将中括号内的表达式作为数学运算先计算结果再输出
+b)对$[]中的变量进行访问时前面需要加$
+c)$[]支持的运算符与let相同，但也只支持整数运算
+</p>
+
+</div>
+
+<h4 id="使用expr">使用expr</h4>
+<div class="level4">
+<pre class="code">var=1
+var=`expr $var + 1`
+echo $var</pre>
+
+<p>
+输出结果为2
+注意：
+</p>
+<ul>
+<li class="level1"><div class="li"> expr后的表达式个符号间需用空格隔开</div>
+</li>
+<li class="level1"><div class="li"> expr支持的操作符有： |、&amp;、&lt;、⇐、=、!=、&gt;=、&gt;、+、-、*、/、%</div>
+</li>
+<li class="level1"><div class="li"> expr支持的操作符中所在使用时需用\进行转义的有：|、&amp;、&lt;、⇐、&gt;=、&gt;、*</div>
+</li>
+<li class="level1"><div class="li"> expr同样只支持整数运算</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="使用bc_可以进行浮点数计算">使用bc(可以进行浮点数计算)</h4>
+<div class="level4">
+<pre class="code">var=1
+var=`echo &quot;$var+1&quot;|bc`
+echo $var</pre>
+
+<p>
+输出结果为2
+</p>
+
+<p>
+介绍：
+bc是linux下的一个简单计算器，支持浮点数计算，在命令行下输入bc即进入计算器程序，而我们想在程序中直接进行浮点数计算时，利用一个简单的管道即可解决问题。
+注意：
+1)经我测试bc支持除位操作运算符之外的所有运算符。
+2)bc中要使用scale进行精度设置
+3)浮点数计算实例
+var=3.14
+var=`echo “scale=2;$var*3”|bc`
+echo $var
+输出结果为9.42
+</p>
+
+</div>
+
+<h4 id="使用awk_可已进行浮点数计算">使用awk(可已进行浮点数计算)</h4>
+<div class="level4">
+<pre class="code">var=1
+var=`echo &quot;$var 1&quot;|awk &#039;{printf(&quot;%g&quot;,$1*$2)}&#039;`
+echo $var</pre>
+
+<p>
+输出结果为2
+</p>
+
+<p>
+介绍：
+awk是一种文本处理工具，同时也是一种程序设计语言，作为一种程序设计语言，awk支持多种运算，而我们可以利用awk来进行浮点数计算，和上面bc一样，通过一个简单的管道，我们便可在程序中直接调用awk进行浮点数计算。
+注意：
+1)awk支持除微操作运算符之外的所有运算符
+2)awk内置有log、sqr、cos、sin等等函数
+3)浮点数计算实例
+var=3.14
+var=`echo “$var 2”|awk &#039;{printf(“%g”,sin($1/$2))}&#039;`
+echo $var
+输出结果为1
+</p>
+
+</div>
+<!-- EDIT2 SECTION "正确方法" [166-2788] -->
+<h3 class="sectionedit3" id="总结">总结</h3>
+<div class="level3">
+
+</div>
+<!-- EDIT3 SECTION "总结" [2789-] --><div class="footnotes">
+<div class="fn"><sup><a href="#fnt__1" id="fn__1" class="fn_bot">1)</a></sup> 
+</div>
+</div>

@@ -1,0 +1,16 @@
+<span class="co0">#!/bin/bash</span>
+<span class="re2">FRUIT</span>=<span class="re4">$1</span>         <span class="co0">#注意没有空格</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re5">-z</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>        <span class="co0">#中括号跟 -z 要有空格</span>
+<span class="kw1">then</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;没有在第一个参数输入水果&quot;</span>
+<span class="kw1">else</span>
+<span class="kw1">case</span> <span class="st0">&quot;<span class="es2">$FRUIT</span>&quot;</span> <span class="kw1">in</span>
+&nbsp;
+     apple<span class="sy0">|</span>APPLE<span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;THE FRUIT is apple&quot;</span><span class="sy0">;;</span>
+&nbsp;
+     banana<span class="sy0">|</span>BANANA<span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;THE FRULT is banana&quot;</span><span class="sy0">;;</span>
+     <span class="co0">#可以使用*）来表示默认选项，注意最后要用两个分号来结尾</span>
+&nbsp;
+     <span class="sy0">*</span><span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;输入的是不是我要的水果啊？&quot;</span><span class="sy0">;;</span>
+<span class="kw1">esac</span>
+<span class="kw1">fi</span>

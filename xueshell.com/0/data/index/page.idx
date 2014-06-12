@@ -201,3 +201,8 @@ wiki:sectionz
 built_in_command:if_else
 built_in_command:grep
 built_in_command:ps1
+build_in_command
+built_in_command:case_in
+script_example:arg_input
+resolve_task:resolve_task
+resolve_task:mathmatic_operator

@@ -1,0 +1,78 @@
+
+<h3 class="sectionedit1" id="shell中case的用法">shell中case的用法</h3>
+<div class="level3">
+
+<p>
+case语句 ：它能够把变量的内容与多个模板进行匹配,再根据成功
+匹配的模板去决定应该执行哪部分代码。 
+使用格式：
+</p>
+<pre class="code">case 匹配母板 in
+模板1 [ | 模板2 ] … ) 语句组 ;;
+模板3 [ | 模板4 ] … ) 语句组 ;;
+esac</pre>
+
+<p>
+case语句的匹配是从上往下地匹配顺序。因此，case语句编写的原则是从上往下，模板从特殊到普通。在C语言里，case语句中有default模板，而在shell程序设计中，可能将模板写成*，就可以完成相同的功能。
+例程:
+</p>
+<pre class="code bash"><span class="co0">#!/bin/sh</span>
+&nbsp;
+<span class="kw3">echo</span> <span class="st0">&quot;Please input <span class="es1">\&quot;</span>yes<span class="es1">\&quot;</span> or <span class="es1">\&quot;</span>no<span class="es1">\&quot;</span>&quot;</span>
+&nbsp;
+<span class="kw2">read</span> var
+&nbsp;
+<span class="kw1">case</span> <span class="st0">&quot;<span class="es2">$var</span>&quot;</span> <span class="kw1">in</span>
+&nbsp;
+<span class="br0">&#91;</span>yY<span class="br0">&#93;</span><span class="br0">&#91;</span>eE<span class="br0">&#93;</span><span class="br0">&#91;</span>sS<span class="br0">&#93;</span> <span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;Your input is YES&quot;</span> <span class="sy0">;;</span>
+&nbsp;
+<span class="br0">&#91;</span>nN<span class="br0">&#93;</span><span class="br0">&#91;</span>oO<span class="br0">&#93;</span> <span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;Your input is no&quot;</span> <span class="sy0">;;</span>
+&nbsp;
+<span class="sy0">*</span> <span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;Input Error!&quot;</span> <span class="sy0">;;</span>
+&nbsp;
+<span class="kw1">esac</span>
+&nbsp;
+<span class="kw3">exit</span> <span class="nu0">0</span></pre>
+
+<p>
+例2：
+</p>
+<pre class="code bash"><span class="co0">#!/bin/bash</span>
+<span class="re2">FRUIT</span>=<span class="re4">$1</span>         <span class="co0">#注意没有空格</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re5">-z</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>        <span class="co0">#中括号跟 -z 要有空格</span>
+<span class="kw1">then</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;没有在第一个参数输入水果&quot;</span>
+<span class="kw1">else</span>
+<span class="kw1">case</span> <span class="st0">&quot;<span class="es2">$FRUIT</span>&quot;</span> <span class="kw1">in</span>
+&nbsp;
+     apple<span class="sy0">|</span>APPLE<span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;THE FRUIT is apple&quot;</span><span class="sy0">;;</span>
+&nbsp;
+     banana<span class="sy0">|</span>BANANA<span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;THE FRULT is banana&quot;</span><span class="sy0">;;</span>
+     <span class="co0">#可以使用*）来表示默认选项，注意最后要用两个分号来结尾</span>
+&nbsp;
+     <span class="sy0">*</span><span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;输入的是不是我要的水果啊？&quot;</span><span class="sy0">;;</span>
+<span class="kw1">esac</span>
+<span class="kw1">fi</span></pre>
+
+<p>
+#### $1既是外部传参的值，如：运行该脚本的时候：./test.sh apple
+####此处apple既是$1
+<em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em>___
+</p>
+
+<p>
+另外一个需要学习的脚本
+ 
+</p>
+<pre class="code bash"><span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="re2">HOSTS</span>=<span class="st0">&quot; nss.sh cs.sh SS.sh ds_handler2 tomcat blog httpd &quot;</span>
+&nbsp;
+<span class="kw1">for</span> myHost <span class="kw1">in</span> <span class="re1">$HOSTS</span>
+<span class="kw1">do</span>
+<span class="re2">count</span>=<span class="br0">&#40;</span><span class="sy0">`</span><span class="kw2">ps</span> aux <span class="sy0">|</span><span class="kw2">grep</span> <span class="re5">-v</span> <span class="kw2">grep</span> <span class="sy0">|</span><span class="kw2">grep</span> <span class="re1">$myHost</span> <span class="sy0">|</span><span class="kw2">wc</span> -l<span class="sy0">`</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$myHost</span>
+<span class="kw3">echo</span> <span class="re1">$count</span>
+<span class="kw1">done</span></pre>
+
+</div>

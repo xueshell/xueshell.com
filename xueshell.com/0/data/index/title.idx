@@ -1,7 +1,7 @@
 
 Formatting Syntax
 Welcome to your new DokuWiki
-命令
+shell 语言
 DokuWiki
 
 git 如何保存用户名?
@@ -163,7 +163,7 @@ SED简介
 
 
 
-
+Shell中read的选项及用法
 
 
 
@@ -201,3 +201,8 @@ shift
 
 grep的用法
 
+<<<str
+shell中case的用法
+
+
+错误方法举例

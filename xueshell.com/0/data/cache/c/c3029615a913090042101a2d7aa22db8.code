@@ -1,0 +1,10 @@
+<span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="re2">HOSTS</span>=<span class="st0">&quot; nss.sh cs.sh SS.sh ds_handler2 tomcat blog httpd &quot;</span>
+&nbsp;
+<span class="kw1">for</span> myHost <span class="kw1">in</span> <span class="re1">$HOSTS</span>
+<span class="kw1">do</span>
+<span class="re2">count</span>=<span class="br0">&#40;</span><span class="sy0">`</span><span class="kw2">ps</span> aux <span class="sy0">|</span><span class="kw2">grep</span> <span class="re5">-v</span> <span class="kw2">grep</span> <span class="sy0">|</span><span class="kw2">grep</span> <span class="re1">$myHost</span> <span class="sy0">|</span><span class="kw2">wc</span> -l<span class="sy0">`</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$myHost</span>
+<span class="kw3">echo</span> <span class="re1">$count</span>
+<span class="kw1">done</span>

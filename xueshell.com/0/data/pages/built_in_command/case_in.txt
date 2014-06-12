@@ -1,0 +1,71 @@
+====shell中case的用法=====
+ 
+case语句 ：它能够把变量的内容与多个模板进行匹配,再根据成功
+匹配的模板去决定应该执行哪部分代码。 
+使用格式：
+<code>
+case 匹配母板 in
+模板1 [ | 模板2 ] … ) 语句组 ;;
+模板3 [ | 模板4 ] … ) 语句组 ;;
+esac
+</code>
+
+case语句的匹配是从上往下地匹配顺序。因此，case语句编写的原则是从上往下，模板从特殊到普通。在C语言里，case语句中有default模板，而在shell程序设计中，可能将模板写成*，就可以完成相同的功能。
+例程:
+<code bash>
+#!/bin/sh
+ 
+echo "Please input \"yes\" or \"no\""
+ 
+read var
+ 
+case "$var" in
+ 
+[yY][eE][sS] ) echo "Your input is YES" ;;
+ 
+[nN][oO] ) echo "Your input is no" ;;
+ 
+* ) echo "Input Error!" ;;
+ 
+esac
+ 
+exit 0
+</code>
+例2：
+<code bash>
+#!/bin/bash
+FRUIT=$1         #注意没有空格
+if [ -z "$1" ]        #中括号跟 -z 要有空格
+then
+        echo "没有在第一个参数输入水果"
+else
+case "$FRUIT" in
+     
+     apple|APPLE) echo "THE FRUIT is apple";;
+     
+     banana|BANANA) echo "THE FRULT is banana";;
+     #可以使用*）来表示默认选项，注意最后要用两个分号来结尾
+
+     *) echo "输入的是不是我要的水果啊？";;
+esac
+fi
+
+</code>
+ 
+#### $1既是外部传参的值，如：运行该脚本的时候：./test.sh apple
+####此处apple既是$1
+___________________________________________________________
+
+另外一个需要学习的脚本
+ <code bash>
+#!/bin/bash
+ 
+HOSTS=" nss.sh cs.sh SS.sh ds_handler2 tomcat blog httpd "
+ 
+for myHost in $HOSTS
+do
+count=(`ps aux |grep -v grep |grep $myHost |wc -l`)
+echo $myHost
+echo $count
+done
+</code>

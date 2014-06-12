@@ -1,0 +1,33 @@
+<span class="co0">#!/bin/bash</span>
+<span class="re2">FRUIT</span>=<span class="re4">$1</span>         <span class="co0">#注意没有空格</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re5">-z</span> <span class="st0">&quot;$1&quot;</span> <span class="br0">&#93;</span>        <span class="co0">#中括号跟 -z 要有空格</span>
+<span class="kw1">then</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;没有在第一个参数输入水果&quot;</span>
+<span class="kw1">else</span>
+<span class="kw1">case</span> <span class="st0">&quot;<span class="es2">$FRUIT</span>&quot;</span> <span class="kw1">in</span>
+&nbsp;
+     apple<span class="sy0">|</span>APPLE<span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;THE FRUIT is apple&quot;</span><span class="sy0">;;</span>
+&nbsp;
+     banana<span class="sy0">|</span>BANANA<span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;THE FRULT is banana&quot;</span><span class="sy0">;;</span>
+     <span class="co0">#可以使用*）来表示默认选项，注意最后要用两个分号来结尾</span>
+&nbsp;
+     <span class="sy0">*</span><span class="br0">&#41;</span> <span class="kw3">echo</span> <span class="st0">&quot;输入的是不是我要的水果啊？&quot;</span><span class="sy0">;;</span>
+<span class="kw1">esac</span>
+<span class="kw1">fi</span>
+<span class="sy0">&lt;</span>code<span class="sy0">&gt;</span>
+&nbsp;
+<span class="co0">#### $1既是外部传参的值，如：运行该脚本的时候：./test.sh apple</span>
+<span class="co0">####此处apple既是$1</span>
+___________________________________________________________
+另外一个需要学习的脚本
+ <span class="sy0">&lt;</span>code <span class="kw2">bash</span><span class="sy0">&gt;</span>
+<span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="re2">HOSTS</span>=<span class="st0">&quot; nss.sh cs.sh SS.sh ds_handler2 tomcat blog httpd &quot;</span>
+&nbsp;
+<span class="kw1">for</span> myHost <span class="kw1">in</span> <span class="re1">$HOSTS</span>
+<span class="kw1">do</span>
+<span class="re2">count</span>=<span class="br0">&#40;</span><span class="sy0">`</span><span class="kw2">ps</span> aux <span class="sy0">|</span><span class="kw2">grep</span> <span class="re5">-v</span> <span class="kw2">grep</span> <span class="sy0">|</span><span class="kw2">grep</span> <span class="re1">$myHost</span> <span class="sy0">|</span><span class="kw2">wc</span> -l<span class="sy0">`</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$myHost</span>
+<span class="kw3">echo</span> <span class="re1">$count</span>
+<span class="kw1">done</span>

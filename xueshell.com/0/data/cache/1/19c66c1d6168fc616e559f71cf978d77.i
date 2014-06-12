@@ -1,0 +1,4 @@
+a:14:{i:0;a:3:{i:0;s:14:"document_start";i:1;a:0:{}i:2;i:0;}i:1;a:3:{i:0;s:6:"header";i:1;a:3:{i:0;s:6:"<<<str";i:1;i:3;i:2;i:3;}i:2;i:3;}i:2;a:3:{i:0;s:12:"section_open";i:1;a:1:{i:0;i:3;}i:2;i:3;}i:3;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:3;}i:4;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:6:"<file
+";}i:2;i:17;}i:5;a:3:{i:0;s:6:"entity";i:1;a:1:{i:0;s:2:"<<";}i:2;i:23;}i:6;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:61:"<str
+Here Strings
+A variant of here documents, the format is:";}i:2;i:25;}i:7;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:86;}i:8;a:3:{i:0;s:12:"preformatted";i:1;a:1:{i:0;s:8:" <<<word";}i:2;i:86;}i:9;a:3:{i:0;s:6:"p_open";i:1;a:0:{}i:2;i:86;}i:10;a:3:{i:0;s:5:"cdata";i:1;a:1:{i:0;s:71:"The word is expanded and supplied to the command on its standard input.";}i:2;i:98;}i:11;a:3:{i:0;s:7:"p_close";i:1;a:0:{}i:2;i:169;}i:12;a:3:{i:0;s:13:"section_close";i:1;a:0:{}i:2;i:169;}i:13;a:3:{i:0;s:12:"document_end";i:1;a:0:{}i:2;i:169;}}

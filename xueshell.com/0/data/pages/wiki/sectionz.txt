@@ -2,3 +2,4 @@
   * [[built_in_command:if_else| if_else]]
   * while
   * test
+  * [[built_in_command:case_in | case_in]]
