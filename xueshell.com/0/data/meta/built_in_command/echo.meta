@@ -1,5 +1,23 @@
-a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1398830226;s:8:"modified";i:1398830365;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1398830365;s:2:"ip";s:13:"10.221.135.88";s:4:"type";s:1:"E";s:2:"id";s:21:"built_in_command:echo";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:103:"*  echo 消除换行符
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1398830226;s:8:"modified";i:1403162095;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1403162095;s:2:"ip";s:13:"10.221.135.37";s:4:"type";s:1:"E";s:2:"id";s:21:"built_in_command:echo";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}s:5:"title";s:23:"echo -n 不换行输出";s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:347:"*  echo 消除换行符
 
 	*  sed -e ':a;N;s/n;ta' filename 
 	*  tr -d '\n' 
-	*  在Vi中，使用:%s/ng";}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1398830226;s:8:"modified";i:1398830365;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1398830365;s:2:"ip";s:13:"10.221.135.88";s:4:"type";s:1:"E";s:2:"id";s:21:"built_in_command:echo";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}}}
+	*  在Vi中，使用:%s/ng                
+
+echo -n 不换行输出
+
+
+$echo -n "123"
+$echo "456"
+
+
+最终输出 
+123456
+
+而不是
+123
+456
+
+echo -e 处理特殊字符
+
+若字符串中出现以下字符，则特别加以处理，而不会将它当成一般文字输出：";}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1398830226;s:8:"modified";i:1403162095;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1403162095;s:2:"ip";s:13:"10.221.135.37";s:4:"type";s:1:"E";s:2:"id";s:21:"built_in_command:echo";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}}}

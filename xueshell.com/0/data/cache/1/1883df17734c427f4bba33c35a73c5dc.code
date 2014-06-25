@@ -1,0 +1,8 @@
+    <span class="br0">&#91;</span>chengmo<span class="sy0">@</span>localhost ~<span class="br0">&#93;</span>$ <span class="kw3">echo</span> <span class="co1">${abc-'ok'}</span>
+    ok
+    <span class="br0">&#91;</span>chengmo<span class="sy0">@</span>localhost ~<span class="br0">&#93;</span>$ <span class="kw3">echo</span> <span class="re1">$abc</span>
+&nbsp;
+    <span class="br0">&#91;</span>chengmo<span class="sy0">@</span>localhost ~<span class="br0">&#93;</span>$ <span class="kw3">echo</span> <span class="co1">${abc='ok'}</span>
+    ok
+    <span class="br0">&#91;</span>chengmo<span class="sy0">@</span>localhost ~<span class="br0">&#93;</span>$ <span class="kw3">echo</span> <span class="re1">$abc</span>
+    ok

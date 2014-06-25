@@ -165,7 +165,7 @@ SED简介
 
 Shell中read的选项及用法
 
-
+echo -n 不换行输出
 
 
 
@@ -201,8 +201,16 @@ shift
 
 grep的用法
 
-<<<str
+
 shell中case的用法
 
 
-错误方法举例
+shell中四则运算
+<<<str
+
+
+
+${varname:-word}
+<<EO和EOF
+
+

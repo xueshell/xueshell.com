@@ -1,0 +1,10 @@
+<span class="re1">$echo</span> <span class="re5">-e</span> <span class="st0">&quot;a\bdddd&quot;</span>
+dddd
+&nbsp;
+<span class="re1">$echo</span> <span class="re5">-e</span> <span class="st0">&quot;a\adddd&quot;</span> <span class="sy0">//</span>输出同时会发出报警声音
+adddd
+&nbsp;
+&nbsp;
+<span class="re1">$echo</span> <span class="re5">-e</span> <span class="st0">&quot;a<span class="es1">\n</span>dddd&quot;</span> <span class="sy0">//</span>自动换行
+a
+dddd

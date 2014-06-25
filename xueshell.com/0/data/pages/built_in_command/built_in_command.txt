@@ -5,5 +5,8 @@
 
 |{{page>wiki:sectionX&nofooter&noeditbutton}}|{{page>wiki:sectionY&nofooter&noeditbutton}}|{{page>wiki:sectionZ&nofooter&noeditbutton}}  | 
 
+| {{page>wiki:variable&nofooter&noeditbutton}}  | {{page>shell_language:string&nofooter&noeditbutton}}  | {{page>wiki:sectionZ&nofooter&noeditbutton}}  |
+
+
 
 

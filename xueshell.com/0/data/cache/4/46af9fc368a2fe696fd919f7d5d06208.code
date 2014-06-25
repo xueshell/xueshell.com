@@ -1,0 +1,18 @@
+    表达式                	含义
+&nbsp;
+    <span class="co1">${#string}</span> 	                <span class="re1">$string</span>的长度
+    <span class="co1">${string:position}</span>   	在<span class="re1">$string</span>中, 从位置<span class="re1">$position</span>开始提取子串
+    <span class="co1">${string:position:length}</span> 	在<span class="re1">$string</span>中, 从位置<span class="re1">$position</span>开始提取长度为<span class="re1">$length</span>的子串
+&nbsp;
+    <span class="co1">${string#substring}</span> 	从变量<span class="re1">$string</span>的开头, 删除最短匹配<span class="re1">$substring</span>的子串
+    <span class="co1">${string##substring}</span> 	从变量<span class="re1">$string</span>的开头, 删除最长匹配<span class="re1">$substring</span>的子串
+    <span class="co1">${string%substring}</span> 	从变量<span class="re1">$string</span>的结尾, 删除最短匹配<span class="re1">$substring</span>的子串
+    <span class="co1">${string%%substring}</span> 	从变量<span class="re1">$string</span>的结尾, 删除最长匹配<span class="re1">$substring</span>的子串
+&nbsp;
+    <span class="co1">${string/substring/replacement}</span> 	使用<span class="re1">$replacement</span>, 来代替第一个匹配的<span class="re1">$substring</span>
+    <span class="co1">${string//substring/replacement}</span> 	使用<span class="re1">$replacement</span>, 代替所有匹配的<span class="re1">$substring</span>
+    <span class="co1">${string/#substring/replacement}</span> 	如果<span class="re1">$string</span>的前缀匹配<span class="re1">$substring</span>, 那么就用<span class="re1">$replacement</span>来代替匹配到的<span class="re1">$substring</span>
+    <span class="co1">${string/%substring/replacement}</span> 	如果<span class="re1">$string</span>的后缀匹配<span class="re1">$substring</span>, 那么就用<span class="re1">$replacement</span>来代替匹配到的<span class="re1">$substring</span>
+&nbsp;
+&nbsp;
+说明：<span class="st0">&quot;* <span class="es2">$substring</span>”可以是一个正则表达式.</span>

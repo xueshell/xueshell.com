@@ -1,0 +1,35 @@
+====<<EO和EOF====
+<< EOF 是执行一命令，命令从<<EOF行开始到EOF出现的地方结束。例如:
+<code bash>
+ftp -n << EOF
+open $host 21
+user $user $password
+cd $remote_dir
+lcd $local_dir
+get $file_name
+bye
+EOF
+</code>
+
+<<- EOF 与 << EOF 只有细微的差别(在菜单式命令中每行的开头可以不必顶格)，下面这段代码使用<<EOF会出错，必须使用<<-EOF
+<code bash>
+ftp -n <<- EOF
+        open $host 21
+        user $user $password
+        cd $remote_dir
+        lcd $local_dir
+        get $file_name
+        bye
+        EOF
+</code>
+EOF并不是唯一的，例如可以这样：
+<code bash>
+ftp -n <<- !
+        open $host 21
+        user $user $password
+        cd $remote_dir
+        lcd $local_dir
+        get $file_name
+        bye
+        !
+</code>        

@@ -1,0 +1,18 @@
+    表达式 	        含义
+&nbsp;
+    <span class="co1">${var}</span> 	        变量var的值, 与<span class="re1">$var</span>相同
+    <span class="co1">${var-DEFAULT}</span> 	如果var没有被声明, 那么就以<span class="re1">$DEFAULT</span>作为其值 <span class="sy0">*</span>
+    <span class="co1">${var:-DEFAULT}</span> 	如果var没有被声明, 或者其值为空, 那么就以<span class="re1">$DEFAULT</span>作为其值 <span class="sy0">*</span>
+&nbsp;
+    <span class="co1">${var=DEFAULT}</span> 	如果var没有被声明, 那么就以<span class="re1">$DEFAULT</span>作为其值 <span class="sy0">*</span>
+    <span class="co1">${var:=DEFAULT}</span> 	如果var没有被声明, 或者其值为空, 那么就以<span class="re1">$DEFAULT</span>作为其值 <span class="sy0">*</span>
+&nbsp;
+    <span class="co1">${var+OTHER}</span> 	如果var声明了, 那么其值就是<span class="re1">$OTHER</span>, 否则就为null字符串
+    <span class="co1">${var:+OTHER}</span> 	如果var被设置了, 那么其值就是<span class="re1">$OTHER</span>, 否则就为null字符串
+&nbsp;
+    <span class="co1">${var?ERR_MSG}</span> 	如果var没被声明, 那么就打印<span class="re1">$ERR_MSG</span> <span class="sy0">*</span>
+    <span class="co1">${var:?ERR_MSG}</span> 	如果var没被设置, 那么就打印<span class="re1">$ERR_MSG</span> <span class="sy0">*</span>
+&nbsp;
+    <span class="co1">${!varprefix*}</span> 	匹配之前所有以varprefix开头进行声明的变量
+    <span class="co1">${!varprefix@}</span> 	匹配之前所有以varprefix开头进行声明的变量
+&nbsp;

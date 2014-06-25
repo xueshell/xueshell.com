@@ -1,3 +1,5 @@
 [[shell_command:select| select 创建菜单]]
 
 [[shell_command:echo | echo 输出]]
+
+[[shell_command:str_in | <<<符号]]  

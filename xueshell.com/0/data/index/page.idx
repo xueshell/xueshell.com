@@ -206,3 +206,11 @@ built_in_command:case_in
 script_example:arg_input
 resolve_task:resolve_task
 resolve_task:mathmatic_operator
+shell_command:str_in
+shell_concept:shell_concept
+shell_concept:shell_brief
+wiki:variable
+command:varibale
+built_in_command:eof
+shell_language:string
+string:string_operator

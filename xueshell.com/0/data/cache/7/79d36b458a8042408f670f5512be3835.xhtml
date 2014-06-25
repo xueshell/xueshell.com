@@ -1,0 +1,41 @@
+
+<h3 class="sectionedit1" id="eo和eof">&lt;&lt;EO和EOF</h3>
+<div class="level3">
+
+<p>
+« <abbr title="End of file">EOF</abbr> 是执行一命令，命令从«EOF行开始到EOF出现的地方结束。例如:
+</p>
+<pre class="code bash"><span class="kw2">ftp</span> <span class="re5">-n</span> <span class="co2">&lt;&lt; EOF
+open $host 21
+user $user $password
+cd $remote_dir
+lcd $local_dir
+get $file_name
+bye
+EOF</span></pre>
+
+<p>
+«- <abbr title="End of file">EOF</abbr> 与 « <abbr title="End of file">EOF</abbr> 只有细微的差别(在菜单式命令中每行的开头可以不必顶格)，下面这段代码使用«EOF会出错，必须使用«-<abbr title="End of file">EOF</abbr>
+</p>
+<pre class="code bash"><span class="kw2">ftp</span> <span class="re5">-n</span> <span class="sy0">&lt;&lt;</span>- EOF
+        open <span class="re1">$host</span> <span class="nu0">21</span>
+        user <span class="re1">$user</span> <span class="re1">$password</span>
+        <span class="kw3">cd</span> <span class="re1">$remote_dir</span>
+        lcd <span class="re1">$local_dir</span>
+        get <span class="re1">$file_name</span>
+        bye
+        EOF</pre>
+
+<p>
+EOF并不是唯一的，例如可以这样：
+</p>
+<pre class="code bash"><span class="kw2">ftp</span> <span class="re5">-n</span> <span class="sy0">&lt;&lt;</span>- <span class="sy0">!</span>
+        open <span class="re1">$host</span> <span class="nu0">21</span>
+        user <span class="re1">$user</span> <span class="re1">$password</span>
+        <span class="kw3">cd</span> <span class="re1">$remote_dir</span>
+        lcd <span class="re1">$local_dir</span>
+        get <span class="re1">$file_name</span>
+        bye
+        <span class="sy0">!</span></pre>
+
+</div>

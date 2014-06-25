@@ -1,0 +1,4 @@
+shell字符串处理
+  * cut
+  * [[built_in_command:grep | grep ]]
+  * [[string:string_operator|字符串处理]]

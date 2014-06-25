@@ -1,3 +1,0 @@
-文件字符处理
-  * cut
-  * [[built_in_command:grep | grep ]]

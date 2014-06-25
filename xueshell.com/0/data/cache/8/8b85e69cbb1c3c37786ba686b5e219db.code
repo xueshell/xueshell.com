@@ -1,0 +1,8 @@
+<span class="kw2">ftp</span> <span class="re5">-n</span> <span class="co2">&lt;&lt; EOF
+open $host 21
+user $user $password
+cd $remote_dir
+lcd $local_dir
+get $file_name
+bye
+EOF</span>

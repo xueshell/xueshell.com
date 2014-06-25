@@ -1,7 +1,7 @@
 
 ====  shell 语言 ====
 
-  * [[shell_concept:shell_concept|shell基础]]
+  * [[shell_concept:shell_concept|shell语言基础]]
   * [[shell_command:shell_command|shell 命令]]
   * [[built_in_command:built_in_command|内部命令集]]
 
@@ -25,7 +25,7 @@
 ==== 用shell解决问题 ====
  
   * [[built_in_commnad:built_in_command_example | shell ]]
-  * [[resolve_task:resolve_task| 解决问题]]
+  * [[resolve_task:resolve_task|解决问题]]
   * [[shell_example:shell_example|shell实例]]
 
 
