@@ -1,15 +1,3 @@
-1402630963	10.221.135.17	E	shell_command:shell_command	uahoo		
-1402630975	10.221.135.17	C	shell_command:str_in	uahoo	创建	
-1402631019	10.221.135.17	C	shell_concept:shell_concept	uahoo	创建	
-1402636438	10.221.135.17	E	shell_concept:shell_concept	uahoo		
-1402636449	10.221.135.17	C	shell_concept:shell_brief	uahoo	创建	
-1403161961	10.221.135.37	E	built_in_command:echo	uahoo		
-1403162013	10.221.135.37	E	built_in_command:echo	uahoo		
-1403162095	10.221.135.37	E	built_in_command:echo	uahoo		
-1403257339	10.221.135.45	C	wiki:variable	uahoo	创建	
-1403257374	10.221.135.45	E	built_in_command:built_in_command	uahoo		
-1403257469	10.221.135.45	E	wiki:variable	uahoo		
-1403257519	10.221.135.45	C	command:varibale	uahoo	创建	
 1403257563	10.221.135.45	E	command:varibale	uahoo		
 1403505866	10.221.135.53	E	built_in_command:read	uahoo		
 1403506070	10.221.135.53	E	built_in_command:read	uahoo		
