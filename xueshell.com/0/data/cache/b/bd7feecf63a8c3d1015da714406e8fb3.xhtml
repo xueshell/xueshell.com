@@ -1,0 +1,71 @@
+
+<p>
+ awk中使用shell变量
+</p>
+
+<p>
+其实在awk里，是不能直接使用shell变量的
+方法是：awk -v 选项让awk 里使用shell变量
+TIME=60
+awk -v time=“$TIME” &#039;BEGIN{FS=“|”} {if ($7&gt;time) print $2 }&#039;
+这样要注意：在awk里，time不能加$符号。
+</p>
+
+<p>
+网上说如下方法都可行：
+</p>
+
+<p>
+一:“&#039;$var&#039;”
+</p>
+
+<p>
+这种写法大家无需改变用&#039;括起awk程序的习惯,是老外常用的写法.如:
+</p>
+
+<p>
+var=“test”
+awk &#039;BEGIN{print “&#039;$var&#039;”}&#039;
+</p>
+
+<p>
+这种写法其实际是双括号变为单括号的常量,传递给了awk.
+</p>
+
+<p>
+如果var中含空格,为了shell不把空格作为分格符,便应该如下使用:
+</p>
+
+<p>
+var=“this is a test”
+awk &#039;BEGIN{print “&#039;“$var”&#039;”}&#039;
+二:&#039;“$var”&#039;
+</p>
+
+<p>
+这种写法与上一种类似.如果变量含空格,则变为&#039;““$var””&#039;较为可靠.
+三.把括起awk程序的<code>变为“”,使用“$var”
+
+如:
+$var=“this is a test”
+awk &#039;BEGIN{print “$var”}“
+这是因为在”“里$是特殊字符,而在</code>里$是普通字符.
+四:export 变量,使用ENVIRON[“var”]形式,
+</p>
+
+<p>
+如:
+$var=“this is a test”;export $var
+awk &#039;BEGIN{print ENVIRON[“var”]}&#039;
+五:当然也可以使用-v选项
+</p>
+
+<p>
+如:
+$var=“this is a test”
+awk -v nvar=“$var” &#039;{print nvar}&#039;
+</p>
+
+<p>
+这样便把系统变量定义成了awk变量. 
+</p>

@@ -1,0 +1,13 @@
+<span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="kw1">function</span> rand<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="re2">min</span>=<span class="re4">$1</span>
+    <span class="re2">max</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re4">$2</span>-<span class="re1">$min</span>+<span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="re2">num</span>=$<span class="br0">&#40;</span><span class="kw2">cat</span> <span class="sy0">/</span>proc<span class="sy0">/</span>sys<span class="sy0">/</span>kernel<span class="sy0">/</span>random<span class="sy0">/</span>uuid <span class="sy0">|</span> cksum <span class="sy0">|</span> <span class="kw2">awk</span> <span class="re5">-F</span> <span class="st_h">' '</span> <span class="st_h">'{print $1}'</span><span class="br0">&#41;</span>
+    <span class="kw3">echo</span> $<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$num</span><span class="sy0">%</span><span class="re1">$max</span>+<span class="re1">$min</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re2">rnd</span>=$<span class="br0">&#40;</span>rand <span class="nu0">100</span> <span class="nu0">500</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$rnd</span>
+&nbsp;
+<span class="kw3">exit</span> <span class="nu0">0</span>

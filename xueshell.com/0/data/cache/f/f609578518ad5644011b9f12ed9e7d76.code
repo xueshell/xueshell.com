@@ -1,0 +1,11 @@
+<span class="co0">#例如：如果UID＝0，打印admin；UID在1~499之间打印sys_users;UID在500以上打印users</span>
+&nbsp;
+<span class="kw2">awk</span> -F: <span class="st_h">'{
+if($3==0) {
+   print $1&quot;\tadmin&quot;;
+} else if($3&gt;=1&amp;&amp;$3&lt;500) {
+   print $1&quot;\tsys_users&quot;}
+else {
+   print $1&quot;\tusers&quot;;
+}
+}'</span> <span class="sy0">/</span>etc<span class="sy0">/</span><span class="kw2">passwd</span>

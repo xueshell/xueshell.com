@@ -1,0 +1,13 @@
+<span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="kw1">function</span> rand<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="re2">min</span>=<span class="re4">$1</span>
+    <span class="re2">max</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re4">$2</span>-<span class="re1">$min</span>+<span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="re2">num</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$RANDOM</span>+<span class="nu0">1000000000</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="co0">#添加一个10位的数再求余</span>
+    <span class="kw3">echo</span> $<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$num</span><span class="sy0">%</span><span class="re1">$max</span>+<span class="re1">$min</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re2">rnd</span>=$<span class="br0">&#40;</span>rand <span class="nu0">400000</span> <span class="nu0">500000</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$rnd</span>
+&nbsp;
+<span class="kw3">exit</span> <span class="nu0">0</span>

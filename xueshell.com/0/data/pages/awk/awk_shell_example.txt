@@ -1,0 +1,110 @@
+ awk 实例练习（一）
+
+前一篇学习了awk的基本知识，现在来做一些练习加深一下印象。
+
+假设我们有这样一个待处理的文件"grade.txt":
+<code>
+M.Tansley     05/99     48311     Green     8     40     44
+J.Lulu     06/99     48317     green     9     24     26
+P.Bunny     02/99     48     Yellow     12     35     28
+J.Troll     07/99     4842     Brown-3     12     26     26
+L.Tansley     05/99     4712     Brown-2     12     30     28
+ </code>
+
+#打印整个文件
+zhuyupeng@zhuyupeng-PC ~
+<code bash>
+$ awk '{print $0}' grade.txt
+M.Tansley       05/99   48311   Green   8       40      44
+J.Lulu          06/99   48317   green   9       24      26
+P.Bunny         02/99   48      Yellow  12      35      28
+J.Troll         07/99   4842    Brown-3 12      26      26
+L.Tansley       05/99   4712    Brown-2 12      30      28
+</code>
+<code bash>
+#打印第一和第四个域
+zhuyupeng@zhuyupeng-PC ~
+$ awk '{print $1,$4}' grade.txt
+M.Tansley Green
+J.Lulu green
+P.Bunny Yellow
+J.Troll Brown-3
+L.Tansley Brown-2
+</code>
+
+ <code bash>
+#打印表头
+zhuyupeng@zhuyupeng-PC ~
+$ awk 'BEGIN {print "Name            Belt\n---------------------------"}
+> {print $1"\t"$4}' grade.txt
+Name            Belt
+---------------------------
+M.Tansley       Green
+J.Lulu  green
+P.Bunny Yellow
+J.Troll Brown-3
+L.Tansley       Brown-2
+</code>
+
+正则表达式相关：
+ 
+为使一域号匹配正则表达式，使用符号‘～’后紧跟正则表达式，也可以用 i f语句。awk中if后面的条件用（）括起来。
+#下面代码打印$4 包含 Brown 的行
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$4~/Brown/ {print $0}' grade.txt
+J.Troll         07/99   4842    Brown-3 12      26      26
+L.Tansley       05/99   4712    Brown-2 12      30      28
+ 
+#非精确匹配
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$3 ~/48/ {print $0}' grade.txt
+M.Tansley       05/99   48311   Green   8       40      44
+J.Lulu          06/99   48317   green   9       24      26
+P.Bunny         02/99   48      Yellow  12      35      28
+J.Troll         07/99   4842    Brown-3 12      26      26
+ 
+#精确匹配
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$3=="48" {print $0}' grade.txt
+P.Bunny         02/99   48      Yellow  12      35      28
+ 
+ 
+ 
+#不匹配 使用 ‘!~’
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$0 !~ /Brown/' grade.txt
+M.Tansley       05/99   48311   Green   8       40      44
+J.Lulu          06/99   48317   green   9       24      26
+P.Bunny         02/99   48      Yellow  12      35      28
+ 
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$4 != "Brown-2" {print $0}' grade.txt
+M.Tansley       05/99   48311   Green   8       40      44
+J.Lulu          06/99   48317   green   9       24      26
+P.Bunny         02/99   48      Yellow  12      35      28
+J.Troll         07/99   4842    Brown-3 12      26      26
+ 
+#小于
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$6 < $7 {print $0 "$1 Try better at the next comp"}' grade.txt
+M.Tansley       05/99   48311   Green   8       40      44$1 Try better at the next comp
+J.Lulu          06/99   48317   green   9       24      26$1 Try better at the next comp
+ 
+#设置大小写
+zhuyupeng@zhuyupeng-PC ~
+$ awk '/[Gg]reen/' grade.txt
+M.Tansley       05/99   48311   Green   8       40      44
+J.Lulu          06/99   48317   green   9       24      26
+ 
+#匹配第一个域的第三个字符是‘a’
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$1 ~/^...a/' grade.txt
+M.Tansley       05/99   48311   Green   8       40      44
+L.Tansley       05/99   4712    Brown-2 12      30      28
+ 
+#'或'匹配，使用 ‘|’ ，需使用括号括起来
+zhuyupeng@zhuyupeng-PC ~
+$ awk '$0 ~/(Yellow|Brown)/' grade.txt
+P.Bunny         02/99   48      Yellow  12      35      28
+J.Troll         07/99   4842    Brown-3 12      26      26
+L.Tansley       05/99   4712    Brown-2 12      30      28

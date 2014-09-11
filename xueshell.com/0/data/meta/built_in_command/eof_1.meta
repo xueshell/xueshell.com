@@ -1,0 +1,9 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1404374978;s:8:"modified";i:1404375047;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1404375047;s:2:"ip";s:13:"10.221.135.94";s:4:"type";s:1:"E";s:2:"id";s:22:"built_in_command:eof_1";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}s:5:"title";s:9:"shell EOF";s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:268:"shell EOF
+
+Shell中通常将EOF与 << 结合使用，表示后续的输入作为子命令或子Shell的输入，直到遇到EOF为止，再返回到主调Shell。如下：
+
+
+export NLS_LANG='SIMPLIFIED CHINESE_CHINA.ZHS16GBK'
+sqlplus $USERID @$OUT_FILE << EOF
+exit
+EOF";}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1404374978;s:8:"modified";i:1404375047;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1404375047;s:2:"ip";s:13:"10.221.135.94";s:4:"type";s:1:"E";s:2:"id";s:22:"built_in_command:eof_1";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}}}

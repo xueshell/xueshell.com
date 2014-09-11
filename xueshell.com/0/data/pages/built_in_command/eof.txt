@@ -1,4 +1,7 @@
 ====<<EO和EOF====
+
+[[built_in_command:eof_1|EOF 例子]]
+
 << EOF 是执行一命令，命令从<<EOF行开始到EOF出现的地方结束。例如:
 <code bash>
 ftp -n << EOF

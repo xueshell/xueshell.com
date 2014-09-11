@@ -1,13 +1,7 @@
-a:2:{s:7:"current";a:7:{s:4:"date";a:2:{s:7:"created";i:1398765468;s:8:"modified";i:1398765468;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1398765468;s:2:"ip";s:13:"10.221.135.88";s:4:"type";s:1:"C";s:2:"id";s:9:"shell:awk";s:4:"user";s:5:"uahoo";s:3:"sum";s:6:"创建";s:5:"extra";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:349:"awk 用法：awk ' pattern {action} ' 
-
-变量名 含义
-ARGC 命令行变元个数
-ARGV 命令行变元数组
-FILENAME 当前输入文件名
-FNR 当前文件中的记录号
-FS 输入域分隔符，默认为一个空格
-RS 输入记录分隔符
-NF 当前记录里域个数
-NR 到目前为止记录数
-OFS 输出域分隔符
-ORS 输出记录分隔符";}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:4:{s:4:"date";a:1:{s:7:"created";i:1398765468;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1398765468;s:2:"ip";s:13:"10.221.135.88";s:4:"type";s:1:"C";s:2:"id";s:9:"shell:awk";s:4:"user";s:5:"uahoo";s:3:"sum";s:6:"创建";s:5:"extra";s:0:"";}}}
+a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1398765468;s:8:"modified";i:1406690834;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1406690834;s:2:"ip";s:14:"10.221.135.184";s:4:"type";s:1:"E";s:2:"id";s:9:"shell:awk";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}s:8:"relation";a:2:{s:10:"references";a:7:{s:13:"awk:awk_intro";b:1;s:11:"awk:awk_doc";b:1;s:15:"shell:awk_learn";b:1;s:15:"shell:awk_print";b:1;s:24:"awk:awk_use_shell_varble";b:1;s:21:"awk:awk_shell_example";b:1;s:25:"awk:awk_instruction_guide";b:0;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:133:"*   awk快速用法
+	*  awk的编程 
+	*   awk_learn
+	*  awl_print
+	*   awk用shell变量
+	*  awk的简单用法
+	*  awk 入门用法";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1398765468;s:8:"modified";i:1406690834;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1406690834;s:2:"ip";s:14:"10.221.135.184";s:4:"type";s:1:"E";s:2:"id";s:9:"shell:awk";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}}}

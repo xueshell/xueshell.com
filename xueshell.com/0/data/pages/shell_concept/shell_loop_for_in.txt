@@ -1,0 +1,130 @@
+
+==== for in 格式 ====
+<code>
+for 无$变量 in 字符串
+do
+  $变量
+done
+</code>
+
+一简单的字符串 枚举遍历法，利用for in格式对字符串按空格切份的功能
+
+SERVICES="80   22   25   110   8000   23   20   21   3306   "
+
+for   x   in   $SERVICES    
+  do     
+  iptables   -A   INPUT   -p   tcp   --dport  $x   -m   state   --state   NEW   -j   ACCEPT     
+  done 
+
+  
+    for variable in values   --------字符串数组依次赋值
+<code>
+#!/bin/sh
+for i in a b c  # 字符串列表A B C 字符串用空格分隔,没有括号,没有逗号, 然后循环将其依次赋给变量i变量没有$
+do
+echo "i is $i"
+done  
+[macg@machome ~]$ sh test.sh
+i is a
+i is b
+i is c
+
+</code>
+
+for in 里，变量和*不等价
+<code>
+
+#!/bin/bash
+
+for i in *.h ;
+do
+cat ${i}.h
+done 
+</code>
+ 
+[macg@vm test]$ ./tip.sh
+cat: *.h.h: No such file or directory 
+$i代表的是整个路径，而不是*.h里的.h前面的部分
+改正
+
+<code>
+
+#!/bin/bash
+
+for i in *.h
+do
+cat $i
+done  
+</code>
+
+[macg@vm test]$ echo hahaha >>1.h
+[macg@vm test]$ echo ha >>2.h
+
+[macg@vm test]$ ./tip.sh
+hahaha
+ha   
+ 
+例2：
+
+for i in /etc/profile.d/*.sh 
+ do
+  $i
+done  
+	 $i代表的是/etc/profile.d/color.sh,/etc/profile.d/alias.sh, /etc/profile.d/default.sh
+
+          
+    for in 对(命令行，函数)参数遍历
+test()
+{
+        local i
+
+        for i in $* ; do
+             echo "i is $i"
+        done
+}   
+$*是字符串：以"参数1 参数2 ... " 形式保存所有参数 
+$i是变量i的应用表示
+[macg@machome ~]$ sh test.sh p1 p2 p3 p4
+
+i is p1
+i is p2
+i is p3
+i is p4 
+
+
+    for in语句与通配符*合用,批量处理文件
+    批量改文件名
+[root@vm testtip]# ls
+aaa.txt  ccc.txt  eee.txt  ggg.txt  hhh.txt  jjj.txt  lll.txt  nnn.txt
+bbb.txt  ddd.txt  fff.txt  go.sh    iii.txt  kkk.txt  mmm.txt  ooo.txt
+[root@vm testtip]# cat go.sh
+for i in *.txt                 *.txt相当于一个字符串数组，依次循环赋值给i
+do
+mv "$i" "$i.bak"       
+done
+[root@vm testtip]# sh go.sh
+
+[root@vm testtip]# ls
+aaa.txt.bak  ccc.txt.bak  eee.txt.bak  ggg.txt.bak  hhh.txt.bak  jjj.txt.bak  lll.txt.bak  nnn.txt.bak bbb.txt.bak  ddd.txt.bak  fff.txt.bak  go.sh        iii.txt.bak  kkk.txt.bak  mmm.txt.bak  ooo.txt.bak
+
+    for in语句与` `和$( )合用，利用` `或$( )的将多行合为一行的缺陷，实际是合为一个字符串数组
+for i in $(ls *.txt)        
+do
+echo $i
+done
+[macg@machome ~]$ sh test
+111-tmp.txt
+111.txt
+22.txt
+33.txt
+或者说，利用for in克服` `和$( ) 的多行合为一行的缺陷
+
+
+   利用for in 自动对字符串按空格遍历的特性，对多个目录遍历
+LIST="rootfs usr data data2"
+   
+for d in $LIST; do         
+  mount /backup/$d
+  rsync -ax --exclude fstab --delete /$d/ /backup/$d/
+  umount /backup/$d
+done    

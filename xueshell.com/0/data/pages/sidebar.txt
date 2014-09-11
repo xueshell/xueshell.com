@@ -12,10 +12,8 @@
   * [[unxi_command:unix_command| 系统命令]]
   * [[unix_command:unxi_command_example| 例子 ]]
 
-==== 正则表达式====
-  * [[shell_reg_exp:shell_reg_exp|正则表达式]]
-  * [[shell_reg_exp:shell_reg_exp_example|例子]]
 
+  
 ==== sed和awk ====
 
   * [[shell:awk|AWK]]

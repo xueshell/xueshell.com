@@ -1,20 +1,24 @@
-1403257563	10.221.135.45	E	command:varibale	uahoo		
-1403505866	10.221.135.53	E	built_in_command:read	uahoo		
-1403506070	10.221.135.53	E	built_in_command:read	uahoo		
-1403506395	10.221.135.53	E	built_in_command:read	uahoo		
-1403506436	10.221.135.53	E	built_in_command:read	uahoo		
-1403506463	10.221.135.53	E	built_in_command:read	uahoo	[5、更改结束符] 	
-1403506489	10.221.135.53	E	built_in_command:read	uahoo	[6、数组输入] 	
-1403506513	10.221.135.53	E	built_in_command:read	uahoo	[6、数组输入] 	
-1403689404	10.221.135.53	E	wiki:sectionx	uahoo		
-1403689424	10.221.135.53	C	built_in_command:eof	uahoo	创建	
-1403689510	10.221.135.53	E	built_in_command:eof	uahoo		
-1403689908	10.221.135.53	D	wiki:sectiony	uahoo	移除	
-1403690055	10.221.135.53	E	built_in_command:built_in_command	uahoo	[Table] 	
-1403690076	10.221.135.53	C	shell_language:string	uahoo	创建	
-1403690161	10.221.135.53	E	shell_language:string	uahoo		
-1403690221	10.221.135.53	E	shell_language:string	uahoo		
-1403690249	10.221.135.53	C	string:string_operator	uahoo	创建	
-1403690383	10.221.135.53	E	string:string_operator	uahoo		
-1403690467	10.221.135.53	E	string:string_operator	uahoo		
-1403690524	10.221.135.53	E	string:string_operator	uahoo		
+1409036485	10.221.135.33	C	shell_concept:shell_speical_character	uahoo	创建	
+1409558575	10.221.135.52	E	shell_concept:shell_concept	uahoo		
+1409558685	10.221.135.52	C	shell_concept:shell_read_file	uahoo	创建	
+1410334306	10.221.135.72	E	shell_concept:shell_concept	uahoo		
+1410334318	10.221.135.72	E	shell_concept:shell_concept	uahoo		
+1410334670	10.221.135.72	C	resolve_task:netrc	uahoo	创建	
+1410334976	10.221.135.72	E	resolve_task:netrc	uahoo		
+1410335246	10.221.135.72	E	resolve_task:netrc	uahoo		
+1410335313	10.221.135.72	E	resolve_task:netrc	uahoo		
+1410335493	10.221.135.72	E	resolve_task:netrc	uahoo		
+1410335608	10.221.135.72	E	resolve_task:netrc	uahoo		
+1410339550	10.221.135.72	E	built_in_command:built_in_command	uahoo		
+1410339560	10.221.135.72	C	build_in_command:geopts	uahoo	创建	
+1410339956	10.221.135.72	E	build_in_command:geopts	uahoo		
+1410340430	10.221.135.72	E	build_in_command:geopts	uahoo		
+1410340592	10.221.135.72	E	build_in_command:geopts	uahoo		
+1410341040	10.221.135.72	C	shell_concept:shell_test	uahoo	创建	
+1410341080	10.221.135.72	E	shell_concept:shell_test	uahoo		
+1410343284	10.221.135.72	E	shell_concept:shell_concept	uahoo		
+1410343401	10.221.135.72	C	shell_concept:loop	uahoo	创建	
+1410422287	10.221.135.72	C	shell_concept:shell_loop_for_in	uahoo	创建	
+1410423126	10.221.135.72	E	shell_concept:shell_loop_for_in	uahoo		
+1410425761	10.221.135.72	E	shell_concept:shell_concept	uahoo		
+1410425770	10.221.135.72	C	shell_concept:shell_intractive_input	uahoo	创建	

@@ -3,3 +3,5 @@
 [[shell_command:echo | echo 输出]]
 
 [[shell_command:str_in | <<<符号]]  
+
+[[shell_command:process |  多任务 ]]

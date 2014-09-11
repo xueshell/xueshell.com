@@ -1,0 +1,234 @@
+<pre class="code bash"><span class="co0">#!/usr/bin/ksh</span>
+<span class="co0">#</span>
+<span class="co0"># SCRIPT: 12_ways_to_parse.ksh.ksh</span>
+<span class="co0">#</span>
+<span class="co0">#</span>
+<span class="co0"># REV: 1.2.A</span>
+<span class="co0">#</span>
+<span class="co0"># PURPOSE:  This script shows the different ways of reading</span>
+<span class="co0">#       a file line by line.  Again there is not just one way</span>
+<span class="co0">#       to read a file line by line and some are faster than</span>
+<span class="co0">#       others and some are more intuitive than others.</span>
+<span class="co0">#</span>
+<span class="co0"># REV LIST:</span>
+<span class="co0">#</span>
+<span class="co0">#       03/15/2002 - Randy Michael</span>
+<span class="co0">#       Set each of the while loops up as functions and the timing</span>
+<span class="co0">#       of each function to see which one is the fastest.</span>
+<span class="co0">#</span>
+<span class="co0">#######################################################################</span>
+<span class="co0">#</span>
+<span class="co0">#       NOTE: To output the timing to a file use the following syntax:</span>
+<span class="co0">#</span>
+<span class="co0">#          12_ways_to_parse.ksh file_to_process  &gt; output_file_name 2&gt;&amp;1</span>
+<span class="co0">#</span>
+<span class="co0">#       The actaul timing data is sent to standard error, file </span>
+<span class="co0">#       descriptor (2), and the function name header is sent</span>
+<span class="co0">#       to standard output, file descriptor (1).</span>
+<span class="co0">#</span>
+<span class="co0">#######################################################################</span>
+<span class="co0">#</span>
+<span class="co0"># set -n  # Uncomment to check command syntax without any execution</span>
+<span class="co0"># set -x  # Uncomment to debug this script</span>
+<span class="co0">#</span>
+&nbsp;
+<span class="re2">FILENAME</span>=<span class="st0">&quot;$1&quot;</span>
+<span class="re2">TIMEFILE</span>=<span class="st0">&quot;/tmp/loopfile.out&quot;</span>
+<span class="sy0">&gt;</span><span class="re1">$TIMEFILE</span>
+<span class="re2">THIS_SCRIPT</span>=$<span class="br0">&#40;</span><span class="kw2">basename</span> <span class="re4">$0</span><span class="br0">&#41;</span>
+&nbsp;
+<span class="co0">######################################</span>
+<span class="kw1">function</span> usage
+<span class="br0">&#123;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>USAGE: <span class="es2">$THIS_SCRIPT</span>  file_to_process<span class="es1">\n</span>&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;OR - To send the output to a file use: &quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span><span class="es2">$THIS_SCRIPT</span>  file_to_process  &gt; output_file_name 2&gt;&amp;1 <span class="es1">\n</span>&quot;</span>
+<span class="kw3">exit</span> <span class="nu0">1</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_read_LINE
+<span class="br0">&#123;</span>
+<span class="kw2">cat</span> <span class="re1">$FILENAME</span> <span class="sy0">|</span> <span class="kw1">while</span> <span class="kw2">read</span> LINE
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_read_LINE_bottom 
+<span class="br0">&#123;</span>
+<span class="kw1">while</span> <span class="kw2">read</span> LINE
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+&nbsp;
+<span class="kw1">done</span> <span class="sy0">&lt;</span> <span class="re1">$FILENAME</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_line_LINE_bottom
+<span class="br0">&#123;</span>
+<span class="kw1">while</span> line LINE
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="re1">$LINE</span>
+        :
+<span class="kw1">done</span> <span class="sy0">&lt;</span> <span class="re1">$FILENAME</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> cat_while_LINE_line  
+<span class="br0">&#123;</span>
+<span class="kw2">cat</span> <span class="re1">$FILENAME</span> <span class="sy0">|</span> <span class="kw1">while</span> <span class="re2">LINE</span>=<span class="sy0">`</span>line<span class="sy0">`</span>
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_line_LINE
+<span class="br0">&#123;</span>
+<span class="kw2">cat</span> <span class="re1">$FILENAME</span> <span class="sy0">|</span> <span class="kw1">while</span> line LINE
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_LINE_line_bottom 
+<span class="br0">&#123;</span>
+<span class="kw1">while</span> <span class="re2">LINE</span>=<span class="sy0">`</span>line<span class="sy0">`</span>
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+&nbsp;
+<span class="kw1">done</span> <span class="sy0">&lt;</span> <span class="re1">$FILENAME</span> 
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_LINE_line_cmdsub2 
+<span class="br0">&#123;</span>
+<span class="kw2">cat</span> <span class="re1">$FILENAME</span> <span class="sy0">|</span> <span class="kw1">while</span> <span class="re2">LINE</span>=$<span class="br0">&#40;</span>line<span class="br0">&#41;</span>
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_LINE_line_bottom_cmdsub2 
+<span class="br0">&#123;</span>
+<span class="kw1">while</span> <span class="re2">LINE</span>=$<span class="br0">&#40;</span>line<span class="br0">&#41;</span>
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+&nbsp;
+<span class="kw1">done</span> <span class="sy0">&lt;</span> <span class="re1">$FILENAME</span> 
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_read_LINE_FD 
+<span class="br0">&#123;</span>
+<span class="kw3">exec</span> <span class="nu0">3</span><span class="sy0">&lt;&amp;</span><span class="nu0">0</span>
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;</span> <span class="re1">$FILENAME</span>
+<span class="kw1">while</span> <span class="kw2">read</span> LINE
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;&amp;</span><span class="nu0">3</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_LINE_line_FD 
+<span class="br0">&#123;</span>
+<span class="kw3">exec</span> <span class="nu0">3</span><span class="sy0">&lt;&amp;</span><span class="nu0">0</span>
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;</span> <span class="re1">$FILENAME</span>
+<span class="kw1">while</span> <span class="re2">LINE</span>=<span class="sy0">`</span>line<span class="sy0">`</span>
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;&amp;</span><span class="nu0">3</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_LINE_line_cmdsub2_FD
+<span class="br0">&#123;</span>
+<span class="kw3">exec</span> <span class="nu0">3</span><span class="sy0">&lt;&amp;</span><span class="nu0">0</span>
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;</span> <span class="re1">$FILENAME</span>
+<span class="kw1">while</span> <span class="re2">LINE</span>=$<span class="br0">&#40;</span>line<span class="br0">&#41;</span>
+<span class="kw1">do</span>
+        print <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;&amp;</span><span class="nu0">3</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="kw1">function</span> while_line_LINE_FD 
+<span class="br0">&#123;</span>
+<span class="kw3">exec</span> <span class="nu0">3</span><span class="sy0">&lt;&amp;</span><span class="nu0">0</span>
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;</span> <span class="re1">$FILENAME</span>
+&nbsp;
+<span class="kw1">while</span> line LINE
+<span class="kw1">do</span>
+        <span class="kw3">echo</span> <span class="st0">&quot;<span class="es2">$LINE</span>&quot;</span>
+        :
+<span class="kw1">done</span>
+&nbsp;
+<span class="kw3">exec</span> <span class="nu0">0</span><span class="sy0">&lt;&amp;</span><span class="nu0">3</span>
+<span class="br0">&#125;</span>
+<span class="co0">######################################</span>
+<span class="co0">########### START OF MAIN ############</span>
+<span class="co0">######################################</span>
+&nbsp;
+<span class="co0"># Test the Input</span>
+&nbsp;
+<span class="co0"># Looking for exactly one parameter</span>
+<span class="br0">&#40;</span><span class="br0">&#40;</span> <span class="re4">$#</span> == <span class="nu0">1</span> <span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">||</span> usage
+&nbsp;
+<span class="co0"># Does the file exist as a regular file?</span>
+<span class="br0">&#91;</span><span class="br0">&#91;</span> <span class="re5">-f</span> <span class="re4">$1</span> <span class="br0">&#93;</span><span class="br0">&#93;</span> <span class="sy0">||</span> usage
+&nbsp;
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Starting File Processing of each Method<span class="es1">\n</span>&quot;</span>
+&nbsp;
+<span class="kw3">echo</span> <span class="st0">&quot;Method 1:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_read_LINE<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_read_LINE&quot;</span>
+<span class="kw1">time</span> while_read_LINE <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 2:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_read_LINE_bottom<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_read_LINE_bottom&quot;</span>
+<span class="kw1">time</span> while_read_LINE_bottom <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 3:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_line_LINE_bottom<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_line_LINE_bottom&quot;</span>
+<span class="kw1">time</span> while_line_LINE_bottom <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 4:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function cat_while_LINE_line<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function cat_while_LINE_line&quot;</span>
+<span class="kw1">time</span> cat_while_LINE_line <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 5:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_line_LINE<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_line_LINE&quot;</span>
+<span class="kw1">time</span> while_line_LINE <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 6:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_LINE_line_bottom<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_LINE_line_bottom&quot;</span>
+<span class="kw1">time</span> while_LINE_line_bottom <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 7:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_LINE_line_cmdsub2<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_LINE_line_cmdsub2&quot;</span>
+<span class="kw1">time</span> while_LINE_line_cmdsub2 <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 8:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_LINE_line_bottom_cmdsub2<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_LINE_line_bottom_cmdsub2&quot;</span>
+<span class="kw1">time</span> while_LINE_line_bottom_cmdsub2 <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 9:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_read_LINE_FD<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_read_LINE_FD&quot;</span>
+<span class="kw1">time</span> while_read_LINE_FD <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 10:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_LINE_line_FD<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_LINE_line_FD&quot;</span>
+<span class="kw1">time</span> while_LINE_line_FD <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 11:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_LINE_line_cmdsub2_FD<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_LINE_line_cmdsub2_FD&quot;</span>
+<span class="kw1">time</span> while_LINE_line_cmdsub2_FD <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>Method 12:&quot;</span>
+<span class="kw3">echo</span> <span class="st0">&quot;<span class="es1">\n</span>function while_line_LINE_FD<span class="es1">\n</span>&quot;</span> <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span>
+<span class="kw3">echo</span> <span class="st0">&quot;function while_line_LINE_FD&quot;</span>
+<span class="kw1">time</span> while_line_LINE_FD <span class="sy0">&gt;&gt;</span> <span class="re1">$TIMEFILE</span></pre>

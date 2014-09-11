@@ -1,0 +1,7 @@
+<span class="co0"># 如果是用脚本执行的话，需要在这里判断进程是否存在，等待命令执行完；或者sleep足够长的时间</span>
+<span class="br0">&#91;</span> <span class="re5">-f</span> <span class="re1">$errlog</span> <span class="br0">&#93;</span> <span class="sy0">&amp;&amp;</span> <span class="re2">size</span>=<span class="sy0">`</span><span class="kw2">wc</span> <span class="re5">-c</span> <span class="re1">$errlog</span> <span class="sy0">|</span> <span class="kw2">cut</span> <span class="re5">-d</span><span class="st_h">' '</span> -f1<span class="sy0">`</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re1">$size</span> <span class="re5">-gt</span> <span class="nu0">0</span> <span class="br0">&#93;</span>; <span class="kw1">then</span>
+    <span class="kw3">echo</span> <span class="st0">&quot;Failed&quot;</span>
+<span class="kw1">else</span>
+    <span class="kw3">echo</span> <span class="st0">&quot;Successful&quot;</span>
+<span class="kw1">fi</span>

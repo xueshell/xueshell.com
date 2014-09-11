@@ -1,1 +1,27 @@
-[[shell_concept:shell_brief| shell 语法<上>]]
+[[shell_concept:shell_brief| shell 语法<上>]]  \\
+[[shell_in_out:shell_2>&1|2>&1]]  \\
+[[shell_concept:invoke_function| shell调用函数]]\\
+[[resolve_task:mathmatic_operator|数学运算]]
+
+[[resolve_task:netrc|netrc 验证用户]]
+
+
+[[shell_concept:shell_speical_character | shell的特殊字符]]
+
+
+[[shell_concept:shell_variable_parameter | shell的变量和参数]]
+
+
+[[shell_concept:loop| shell 的循环]]
+
+[[shell_concept:shell_test|shell的判断]]
+
+
+[[shell_concept:shell_operator|shell的运算]]
+
+[[shell_concept:shell_read_file| 处理文件的12中方法]]
+
+[[shell_concept:shell_intractive_input |交互输入]]
+
+
+|{{page>wiki:sectionM&nofooter&noeditbutton}}|{{page>wiki:sectionN&nofooter&noeditbutton}}|{{page>wiki:sectionP&nofooter&noeditbutton}}  | 

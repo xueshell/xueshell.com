@@ -1,0 +1,7 @@
+   <span class="kw2">awk</span>  <span class="st_h">'BEGIN { FS=&quot;[: \t|]&quot; }
+   {print $1,$2,$3}'</span>       <span class="co0">#file 通过设置输入分隔符（FS=&quot;[: \t|]&quot;）修改输入分隔符。</span>
+&nbsp;
+   <span class="re2">Sep</span>=<span class="st0">&quot;|&quot;</span>
+   <span class="kw2">awk</span> <span class="re5">-F</span> <span class="re1">$Sep</span> <span class="st_h">'{print $1}'</span>  <span class="kw2">file</span> <span class="co0">#按照环境变量Sep的值做为分隔符。   </span>
+   <span class="kw2">awk</span> <span class="re5">-F</span> <span class="st_h">'[ :\t|]'</span> <span class="st_h">'{print $1}'</span> <span class="kw2">file</span> <span class="co0">#按照正则表达式的值做为分隔符，这里代表空格、:、TAB、|同时做为分隔符。</span>
+   <span class="kw2">awk</span> <span class="re5">-F</span> <span class="st_h">'[][]'</span>    <span class="st_h">'{print $1}'</span> <span class="kw2">file</span> <span class="co0">#按照正则表达式的值做为分隔符，这里代表[、]</span>

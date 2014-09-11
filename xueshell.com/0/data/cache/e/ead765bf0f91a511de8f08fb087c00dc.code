@@ -1,0 +1,18 @@
+<span class="kw2">awk</span> -F: <span class="st_h">'NR!=3 {print $1,$7}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'NR&lt;=3 {print $1,$7}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'$1~/ro/ {print $1,$7}'</span> pass       <span class="co0">#第一列匹配ro，被匹配的部分需要用&quot;&quot;或//，支持正则</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'$7~&quot;sh$&quot; {print $1,$7}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'$7!~&quot;sh$&quot; {print $1,$7}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'NR&gt;3&amp;&amp;NR&lt;6 {print $1,$7}'</span> pass <span class="co0">#3-6行</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'NR&lt;3 || NR&gt;6 {print $1,$7}'</span> pass
+&nbsp;
+算术运算符
+<span class="kw2">awk</span> -F: <span class="st_h">'$3=$3+1 {print $1,$3}'</span> pass      <span class="co0">#加一</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'$3++ {print $1,$3}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'$3+=1 {print $1,$3}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'$3%2==0 {print $1,$3}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'$3=$3**2 {print $1,$3}'</span> pass      <span class="co0">#$3的平方</span>
+&nbsp;
+转义字符
+<span class="kw2">awk</span> -F: <span class="st_h">'{print $1&quot;\t&quot;$3}'</span> pas
+<span class="kw2">awk</span> -F: <span class="st_h">'{print $1&quot;\b&quot;$3}'</span> pass

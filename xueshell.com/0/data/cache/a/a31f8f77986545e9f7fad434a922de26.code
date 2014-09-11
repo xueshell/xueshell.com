@@ -1,0 +1,8 @@
+<span class="co0">#!/bin/sh</span>
+mysql <span class="re5">-uroot</span> <span class="re5">-p123456</span> <span class="co2">&lt;&lt;EOF
+use test;
+select * from testaa while a=10000; ###1000 not usr single quote mark,because a is int
+                                                  # type,only char type need single quote mark.
+&nbsp;
+exit
+EOF</span>

@@ -1,0 +1,105 @@
+
+<p>
+在对rsync服务器配置结束以后，下一步就需要在客户端发出rsync命令来实现将服务器端的文件备份到客户端来。rsync是一个功能非常强大的工具，其命令也有很多功能特色选项，我们下面就对它的选项一一进行分析说明。
+Rsync的命令格式可以为以下六种：
+</p>
+<pre class="code bash">　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... SRC DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... SRC <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST:DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST:SRC DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST::SRC DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... SRC <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST::DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... rsync:<span class="sy0">//</span><span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST<span class="br0">&#91;</span>:PORT<span class="br0">&#93;</span><span class="sy0">/</span>SRC <span class="br0">&#91;</span>DEST<span class="br0">&#93;</span></pre>
+
+<p>
+对应于以上六种命令格式，rsync有六种不同的工作模式：
+</p>
+
+<p>
+　1)拷贝本地文件。当SRC和DES路径信息都不包含有单个冒号“:“分隔符时就启动这种工作模式。如：rsync -a /data /backup  
+</p>
+
+<p>
+　2)使用一个远程shell程序(如rsh、ssh)来实现将本地机器的内容拷贝到远程机器。当DST路径地址包含单个冒号”:“分隔符时启动该模式。如：rsync -avz *.c foo:src  
+</p>
+
+<p>
+　　3)使用一个远程shell程序(如rsh、ssh)来实现将远程机器的内容拷贝到本地机器。当SRC地址路径包含单个冒号”:“分隔符时启动该模式。如：rsync -avz foo:src/bar /data
+</p>
+
+<p>
+　　4)从远程rsync服务器中拷贝文件到本地机。当SRC路径信息包含”::“分隔符时启动该模式。如：rsync -av root@172.16.78.192::www /databack  
+</p>
+
+<p>
+　　5)从本地机器拷贝文件到远程rsync服务器中。当DST路径信息包含”::“分隔符时启动该模式。如：rsync -av /databack root@172.16.78.192::www  
+</p>
+
+<p>
+　　6)列远程机的文件列表。这类似于rsync传输，不过只要在命令中省略掉本地机信息即可。如：rsync -v rsync:<em>172.16.78.192/www
+rsync参数的具体解释如下： </em>
+</p>
+<pre class="code bash">-v, <span class="re5">--verbose</span> 详细模式输出
+-q, <span class="re5">--quiet</span> 精简输出模式
+-c, <span class="re5">--checksum</span> 打开校验开关，强制对文件传输进行校验
+-a, <span class="re5">--archive</span> 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD
+-r, <span class="re5">--recursive</span> 对子目录以递归模式处理
+-R, <span class="re5">--relative</span> 使用相对路径信息
+-b, <span class="re5">--backup</span> 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用--suffix选项来指定不同的备份文件前缀。
+<span class="re5">--backup-dir</span> 将备份文件<span class="br0">&#40;</span>如~filename<span class="br0">&#41;</span>存放在在目录下。
+<span class="re5">-suffix</span>=SUFFIX 定义备份文件前缀
+-u, <span class="re5">--update</span> 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。<span class="br0">&#40;</span>不覆盖更新的文件<span class="br0">&#41;</span>
+-l, <span class="re5">--links</span> 保留软链结
+-L, <span class="re5">--copy-links</span> 想对待常规文件一样处理软链结
+<span class="re5">--copy-unsafe-links</span> 仅仅拷贝指向SRC路径目录树以外的链结
+<span class="re5">--safe-links</span> 忽略指向SRC路径目录树以外的链结
+-H, <span class="re5">--hard-links</span> 保留硬链结
+-p, <span class="re5">--perms</span> 保持文件权限
+-o, <span class="re5">--owner</span> 保持文件属主信息
+-g, <span class="re5">--group</span> 保持文件属组信息
+-D, <span class="re5">--devices</span> 保持设备文件信息
+-t, <span class="re5">--times</span> 保持文件时间信息
+-S, <span class="re5">--sparse</span> 对稀疏文件进行特殊处理以节省DST的空间
+-n, --dry-run现实哪些文件将被传输
+-W, <span class="re5">--whole-file</span> 拷贝文件，不进行增量检测
+-x, <span class="re5">--one-file-system</span> 不要跨越文件系统边界
+-B, <span class="re5">--block-size</span>=SIZE 检验算法使用的块尺寸，默认是<span class="nu0">700</span>字节
+-e, <span class="re5">--rsh</span>=COMMAND 指定使用<span class="kw2">rsh</span>、<span class="kw2">ssh</span>方式进行数据同步
+<span class="re5">--rsync-path</span>=PATH 指定远程服务器上的rsync命令所在路径信息
+-C, <span class="re5">--cvs-exclude</span> 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件
+<span class="re5">--existing</span> 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件
+<span class="re5">--delete</span> 删除那些DST中SRC没有的文件
+<span class="re5">--delete-excluded</span> 同样删除接收端那些被该选项指定排除的文件
+<span class="re5">--delete-after</span> 传输结束以后再删除
+<span class="re5">--ignore-errors</span> 及时出现IO错误也进行删除
+<span class="re5">--max-delete</span>=NUM 最多删除NUM个文件
+<span class="re5">--partial</span> 保留那些因故没有完全传输的文件，以是加快随后的再次传输
+<span class="re5">--force</span> 强制删除目录，即使不为空
+<span class="re5">--numeric-ids</span> 不将数字的用户和组ID匹配为用户名和组名
+<span class="re5">--timeout</span>=TIME IP超时时间，单位为秒
+-I, <span class="re5">--ignore-times</span> 不跳过那些有同样的时间和长度的文件
+<span class="re5">--size-only</span> 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间
+<span class="re5">--modify-window</span>=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为<span class="nu0">0</span>
+<span class="re5">-T</span> <span class="re5">--temp-dir</span>=DIR 在DIR中创建临时文件
+<span class="re5">--compare-dest</span>=DIR 同样比较DIR中的文件来决定是否需要备份
+<span class="re5">-P</span> 等同于 <span class="re5">--partial</span>
+<span class="re5">--progress</span> 显示备份过程
+-z, <span class="re5">--compress</span> 对备份的文件在传输时进行压缩处理
+<span class="re5">--exclude</span>=PATTERN 指定排除不需要传输的文件模式
+<span class="re5">--include</span>=PATTERN 指定不排除而需要传输的文件模式
+<span class="re5">--exclude-from</span>=FILE 排除FILE中指定模式的文件
+<span class="re5">--include-from</span>=FILE 不排除FILE指定模式匹配的文件
+<span class="re5">--version</span> 打印版本信息
+<span class="re5">--address</span> 绑定到特定的地址
+<span class="re5">--config</span>=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件
+<span class="re5">--port</span>=PORT 指定其他的rsync服务端口
+<span class="re5">--blocking-io</span> 对远程shell使用阻塞IO
+<span class="re5">-stats</span> 给出某些文件的传输状态
+<span class="re5">--progress</span> 在传输时现实传输过程
+<span class="re5">--log-format</span>=formAT 指定日志文件格式
+<span class="re5">--password-file</span>=FILE 从FILE中得到密码
+<span class="re5">--bwlimit</span>=KBPS 限制I<span class="sy0">/</span>O带宽，KBytes per second
+-h, <span class="re5">--help</span> 显示帮助信息</pre>
+
+<p>
+一般都使用azv选项（如果windows与linux同步不建议使用这个参数）
+</p>

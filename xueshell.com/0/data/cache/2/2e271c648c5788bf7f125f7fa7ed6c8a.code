@@ -1,0 +1,4 @@
+<span class="co0">#!/bin/bash</span>
+<span class="re2">var</span>=root
+<span class="kw2">awk</span> -F: <span class="st_h">'$1~/'</span><span class="re1">$var</span><span class="st_h">'/ {print $0}'</span> <span class="sy0">/</span>etc<span class="sy0">/</span><span class="kw2">passwd</span>   <span class="co0">#此处awk引用了shell的var变量</span>
+<span class="co0">#awk 的引号''是为了屏蔽shell的解释，而要想让awk解释shell的变量，可以在awk中将变量用引号''引起来</span>

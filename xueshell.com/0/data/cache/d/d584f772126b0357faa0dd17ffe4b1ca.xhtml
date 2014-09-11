@@ -1,0 +1,142 @@
+
+<h3 class="sectionedit1" id="shell_生成指定范围随机数与随机字符串">shell 生成指定范围随机数与随机字符串</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="使用系统的_random_变量">1.使用系统的 $RANDOM 变量</h4>
+<div class="level4">
+
+<p>
+fdipzone@ubuntu:~$ echo $RANDOM
+17617
+</p>
+
+<p>
+$RANDOM 的范围是 [0, 32767]
+</p>
+
+<p>
+如须要生成超过32767的随机数，能够用下面方法实现。
+</p>
+
+<p>
+例：生成400000~500000的随机数
+</p>
+<pre class="code bash"><span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="kw1">function</span> rand<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="re2">min</span>=<span class="re4">$1</span>
+    <span class="re2">max</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re4">$2</span>-<span class="re1">$min</span>+<span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="re2">num</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$RANDOM</span>+<span class="nu0">1000000000</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="co0">#添加一个10位的数再求余</span>
+    <span class="kw3">echo</span> $<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$num</span><span class="sy0">%</span><span class="re1">$max</span>+<span class="re1">$min</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re2">rnd</span>=$<span class="br0">&#40;</span>rand <span class="nu0">400000</span> <span class="nu0">500000</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$rnd</span>
+&nbsp;
+<span class="kw3">exit</span> <span class="nu0">0</span></pre>
+
+</div>
+
+<h4 id="使用date_s_n">2.使用date +%s%N</h4>
+<div class="level4">
+
+<p>
+例：生成1~50的随机数
+</p>
+<pre class="code bash"><span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="kw1">function</span> rand<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="re2">min</span>=<span class="re4">$1</span>
+    <span class="re2">max</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re4">$2</span>-<span class="re1">$min</span>+<span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="re2">num</span>=$<span class="br0">&#40;</span><span class="kw2">date</span> +<span class="sy0">%</span>s<span class="sy0">%</span>N<span class="br0">&#41;</span>
+    <span class="kw3">echo</span> $<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$num</span><span class="sy0">%</span><span class="re1">$max</span>+<span class="re1">$min</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re2">rnd</span>=$<span class="br0">&#40;</span>rand <span class="nu0">1</span> <span class="nu0">50</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$rnd</span>
+&nbsp;
+<span class="kw3">exit</span> <span class="nu0">0</span></pre>
+
+</div>
+
+<h4 id="使用_dev_random_和_dev_urandom">3.使用/dev/random 和 /dev/urandom</h4>
+<div class="level4">
+
+<p>
+/dev/random 存储着系统当前执行环境的实时数据，是堵塞的随机数发生器，读取有时须要等待。
+</p>
+
+<p>
+/dev/urandom 非堵塞随机数发生器，读取操作不会产生堵塞。
+</p>
+
+<p>
+例：使用/dev/urandom生成100~500的随机数，使用urandom避免堵塞。
+</p>
+<pre class="code bash"><span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="kw1">function</span> rand<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="re2">min</span>=<span class="re4">$1</span>
+    <span class="re2">max</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re4">$2</span>-<span class="re1">$min</span>+<span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="re2">num</span>=$<span class="br0">&#40;</span><span class="kw2">cat</span> <span class="sy0">/</span>dev<span class="sy0">/</span>urandom <span class="sy0">|</span> <span class="kw2">head</span> <span class="re5">-n</span> <span class="nu0">10</span> <span class="sy0">|</span> cksum <span class="sy0">|</span> <span class="kw2">awk</span> <span class="re5">-F</span> <span class="st_h">' '</span> <span class="st_h">'{print $1}'</span><span class="br0">&#41;</span>
+    <span class="kw3">echo</span> $<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$num</span><span class="sy0">%</span><span class="re1">$max</span>+<span class="re1">$min</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re2">rnd</span>=$<span class="br0">&#40;</span>rand <span class="nu0">100</span> <span class="nu0">500</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$rnd</span>
+&nbsp;
+<span class="kw3">exit</span> <span class="nu0">0</span></pre>
+
+</div>
+
+<h4 id="使用linux_uuid">4.使用linux uuid</h4>
+<div class="level4">
+
+<p>
+uuid 全称是通用唯一识别码，格式包括32个16进制数字，以&#039;-&#039;连接号分为5段。形式为8-4-4-4-12 的32个字符。
+</p>
+
+<p>
+fdipzone@ubuntu:~/shell$ cat /proc/sys/kernel/random/uuid
+fd496199-372a-403e-8ec9-bf4c52cbd9cd
+</p>
+
+<p>
+例：使用linux uuid 生成100~500随机数
+</p>
+<pre class="code bash"><span class="co0">#!/bin/bash</span>
+&nbsp;
+<span class="kw1">function</span> rand<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="re2">min</span>=<span class="re4">$1</span>
+    <span class="re2">max</span>=$<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re4">$2</span>-<span class="re1">$min</span>+<span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="re2">num</span>=$<span class="br0">&#40;</span><span class="kw2">cat</span> <span class="sy0">/</span>proc<span class="sy0">/</span>sys<span class="sy0">/</span>kernel<span class="sy0">/</span>random<span class="sy0">/</span>uuid <span class="sy0">|</span> cksum <span class="sy0">|</span> <span class="kw2">awk</span> <span class="re5">-F</span> <span class="st_h">' '</span> <span class="st_h">'{print $1}'</span><span class="br0">&#41;</span>
+    <span class="kw3">echo</span> $<span class="br0">&#40;</span><span class="br0">&#40;</span><span class="re1">$num</span><span class="sy0">%</span><span class="re1">$max</span>+<span class="re1">$min</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re2">rnd</span>=$<span class="br0">&#40;</span>rand <span class="nu0">100</span> <span class="nu0">500</span><span class="br0">&#41;</span>
+<span class="kw3">echo</span> <span class="re1">$rnd</span>
+&nbsp;
+<span class="kw3">exit</span> <span class="nu0">0</span></pre>
+
+</div>
+
+<h4 id="生成随机字符串">5.生成随机字符串</h4>
+<div class="level4">
+
+<p>
+例：生成10位随机字符串
+</p>
+
+<p>
+#使用date 生成随机字符串
+date +%s%N | md5sum | head -c 10
+</p>
+
+<p>
+#使用 /dev/urandom 生成随机字符串
+cat /dev/urandom | head -n 10 | md5sum | head -c 10
+</p>
+
+</div>

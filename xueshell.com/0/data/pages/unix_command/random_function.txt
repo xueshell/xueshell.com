@@ -1,0 +1,104 @@
+====shell 生成指定范围随机数与随机字符串===
+
+
+===1.使用系统的 $RANDOM 变量===
+
+fdipzone@ubuntu:~$ echo $RANDOM
+17617
+
+$RANDOM 的范围是 [0, 32767]
+
+如须要生成超过32767的随机数，能够用下面方法实现。
+
+例：生成400000~500000的随机数
+<code bash >
+#!/bin/bash
+
+function rand(){
+    min=$1
+    max=$(($2-$min+1))
+    num=$(($RANDOM+1000000000)) #添加一个10位的数再求余
+    echo $(($num%$max+$min))
+}
+
+rnd=$(rand 400000 500000)
+echo $rnd
+
+exit 0
+</code>
+
+===2.使用date +%s%N===
+
+例：生成1~50的随机数
+<code bash>
+#!/bin/bash
+
+function rand(){
+    min=$1
+    max=$(($2-$min+1))
+    num=$(date +%s%N)
+    echo $(($num%$max+$min))
+}
+
+rnd=$(rand 1 50)
+echo $rnd
+
+exit 0
+</code>
+
+===3.使用/dev/random 和 /dev/urandom===
+
+/dev/random 存储着系统当前执行环境的实时数据，是堵塞的随机数发生器，读取有时须要等待。
+
+/dev/urandom 非堵塞随机数发生器，读取操作不会产生堵塞。
+
+例：使用/dev/urandom生成100~500的随机数，使用urandom避免堵塞。
+<code bash>
+#!/bin/bash
+
+function rand(){
+    min=$1
+    max=$(($2-$min+1))
+    num=$(cat /dev/urandom | head -n 10 | cksum | awk -F ' ' '{print $1}')
+    echo $(($num%$max+$min))
+}
+
+rnd=$(rand 100 500)
+echo $rnd
+
+exit 0
+</code>
+
+===4.使用linux uuid===
+
+uuid 全称是通用唯一识别码，格式包括32个16进制数字，以'-'连接号分为5段。形式为8-4-4-4-12 的32个字符。
+
+fdipzone@ubuntu:~/shell$ cat /proc/sys/kernel/random/uuid
+fd496199-372a-403e-8ec9-bf4c52cbd9cd
+
+例：使用linux uuid 生成100~500随机数
+<code bash>
+#!/bin/bash
+
+function rand(){
+    min=$1
+    max=$(($2-$min+1))
+    num=$(cat /proc/sys/kernel/random/uuid | cksum | awk -F ' ' '{print $1}')
+    echo $(($num%$max+$min))
+}
+
+rnd=$(rand 100 500)
+echo $rnd
+
+exit 0
+</code>
+
+===5.生成随机字符串===
+
+例：生成10位随机字符串
+
+#使用date 生成随机字符串
+date +%s%N | md5sum | head -c 10
+
+#使用 /dev/urandom 生成随机字符串
+cat /dev/urandom | head -n 10 | md5sum | head -c 10

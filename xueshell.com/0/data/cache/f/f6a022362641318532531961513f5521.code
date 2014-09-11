@@ -1,0 +1,19 @@
+<span class="kw1">function</span> sub_shell<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>  
+ <span class="re2">var</span>=<span class="sy0">`</span><span class="kw2">expr</span> <span class="re4">$1</span> \<span class="sy0">*</span> <span class="re1">$var</span><span class="sy0">`</span>  
+ <span class="kw3">echo</span> <span class="st0">&quot;in var = <span class="es2">$var</span>&quot;</span>  
+ <span class="kw3">return</span> <span class="re1">$var</span>  
+ <span class="br0">&#125;</span>  
+&nbsp;
+ <span class="re2">i</span>=<span class="nu0">0</span>  
+ <span class="re2">var</span>=<span class="nu0">10</span>  
+ <span class="kw1">for</span> i <span class="kw1">in</span> <span class="sy0">`</span><span class="kw2">seq</span> <span class="nu0">10</span><span class="sy0">`</span>; <span class="kw1">do</span>  
+ sub_shell <span class="re1">$i</span> <span class="sy0">&amp;</span>  
+ <span class="kw1">done</span>  
+&nbsp;
+ <span class="kw1">for</span> pid <span class="kw1">in</span> $<span class="br0">&#40;</span><span class="kw3">jobs</span> -p<span class="br0">&#41;</span>; <span class="kw1">do</span>  
+ <span class="kw3">wait</span> <span class="re1">$pid</span>  
+ <span class="kw3">echo</span> <span class="st0">&quot;return var = $?&quot;</span>  
+ <span class="kw1">done</span>  
+&nbsp;
+ <span class="kw3">echo</span> <span class="st0">&quot;all done&quot;</span>  

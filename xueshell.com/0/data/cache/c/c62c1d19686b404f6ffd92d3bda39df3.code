@@ -1,0 +1,4 @@
+<span class="kw3">export</span> <span class="re2">NLS_LANG</span>=<span class="st_h">'SIMPLIFIED CHINESE_CHINA.ZHS16GBK'</span>
+sqlplus <span class="re1">$USERID</span> <span class="sy0">@</span><span class="re1">$OUT_FILE</span> <span class="co2">&lt;&lt; EOF
+exit
+EOF</span>

@@ -1,0 +1,20 @@
+NR：<span class="kw2">awk</span>读入的所有文件的行号
+FNR：<span class="kw2">awk</span>当前读入的行在当前文件的行号（如果从多个文件读取时，该变量FNR和NR就不同了）
+FILENAME：文件名
+NF：字段个数
+FS：以变量方式指定分割符，-F是以参数方式指定分割符
+OFS:指定字段输出的分割符
+ORS:指定行输出的分割符
+&nbsp;
+<span class="kw2">awk</span> -F: <span class="st_h">'NR==3 {print $1,$7}'</span> pass      <span class="co0">#打印第3行</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'{print FILENAME,NR,FNR,$1,$7}'</span> pass pass2   <span class="co0">#NR是所有文件的行号，FNR是当前读入文件的行号，FILENAME文件名</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'{print NF,FILENAME,NR,$0}'</span> pass     <span class="co0">#打印字段数，与分割符选取有关</span>
+<span class="kw2">awk</span> -F<span class="br0">&#91;</span>:<span class="sy0">/</span><span class="br0">&#93;</span> <span class="st_h">'{print NF,FILENAME,NR,$0}'</span> pass    <span class="co0">#指定多种分割符</span>
+<span class="kw2">awk</span> -F<span class="br0">&#91;</span>^a-Z<span class="br0">&#93;</span> <span class="st_h">'{print NF,FILENAME,NR,$0}'</span> pass    <span class="co0">#非字母作分割符</span>
+<span class="kw2">awk</span> <span class="st_h">'FS=&quot;:&quot; {print $1,$7}'</span> pass       <span class="co0">#以变量方式指定分割符</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'OFS=&quot;----&quot; {print $1,$7}'</span> pass      <span class="co0">#将默认的空格分割符输出变成&quot;----&quot;</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'ORS=&quot;|||&quot; {print $1,$7}'</span> pass      <span class="co0">#将默认的回车换行符设置为|||</span>
+&nbsp;
+正则定址
+<span class="kw2">awk</span> -F: <span class="st_h">'/root/ {print $1,$7}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'/ro+/ {print $1,$7}'</span> pass <span class="co0">#awk默认支持拓展正则</span>

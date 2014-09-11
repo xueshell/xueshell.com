@@ -1,5 +1,2 @@
-  * 1
-  * 2
-  * 3
-  * 4
-  * 5
+变量  \\ 
+[[built_in_command:export| export变量输出 ]]

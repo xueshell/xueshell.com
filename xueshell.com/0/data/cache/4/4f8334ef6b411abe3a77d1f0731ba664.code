@@ -1,0 +1,13 @@
+$ <span class="kw1">time</span> <span class="kw2">bash</span> test.sh 
+<span class="kw1">done</span><span class="sy0">!</span>
+<span class="kw1">done</span><span class="sy0">!</span>
+<span class="kw1">done</span><span class="sy0">!</span>
+<span class="kw1">done</span><span class="sy0">!</span>
+<span class="kw1">done</span><span class="sy0">!</span>
+<span class="nu0">5</span>
+&nbsp;
+real    0m3.011s
+user    0m0.002s
+sys     0m0.004s
+&nbsp;
+&nbsp;

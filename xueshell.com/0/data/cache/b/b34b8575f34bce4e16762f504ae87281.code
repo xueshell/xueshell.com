@@ -1,0 +1,11 @@
+<span class="co0">#打印表头</span>
+zhuyupeng<span class="sy0">@</span>zhuyupeng-PC ~
+$ <span class="kw2">awk</span> <span class="st_h">'BEGIN {print &quot;Name            Belt\n---------------------------&quot;}
+&gt; {print $1&quot;\t&quot;$4}'</span> grade.txt
+Name            Belt
+<span class="re5">---------------------------</span>
+M.Tansley       Green
+J.Lulu  green
+P.Bunny Yellow
+J.Troll Brown-<span class="nu0">3</span>
+L.Tansley       Brown-<span class="nu0">2</span>

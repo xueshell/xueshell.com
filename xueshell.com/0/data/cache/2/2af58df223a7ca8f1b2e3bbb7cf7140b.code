@@ -1,0 +1,24 @@
+<span class="co0">#!/bin/bash</span>
+<span class="co0"># getopt1.sh</span>
+<span class="co0"># set the vars</span>
+<span class="re2">ALL</span>=<span class="kw2">false</span>
+<span class="re2">HELP</span>=<span class="kw2">false</span>
+<span class="re2">FILE</span>=<span class="kw2">false</span>
+<span class="re2">VERBOSE</span>=<span class="kw2">false</span>
+<span class="kw1">while</span> <span class="kw3">getopts</span> ahfgv OPTION
+<span class="kw1">do</span>
+        <span class="kw1">case</span> <span class="re1">$OPTION</span> <span class="kw1">in</span>
+                a<span class="br0">&#41;</span> <span class="re2">ALL</span>=<span class="kw2">true</span>
+                <span class="kw3">echo</span> <span class="st0">&quot;ALL is <span class="es2">$ALL</span>&quot;</span>
+                <span class="sy0">;;</span>
+                h<span class="br0">&#41;</span> <span class="re2">HELP</span>=<span class="kw2">true</span>
+                <span class="kw3">echo</span> <span class="st0">&quot;HELP is <span class="es2">$HELP</span>&quot;</span>
+                <span class="sy0">;;</span>
+                f<span class="br0">&#41;</span> <span class="re2">FILE</span>=<span class="kw2">true</span>
+                <span class="kw3">echo</span> <span class="st0">&quot;FILE is <span class="es2">$FILE</span>&quot;</span>
+                <span class="sy0">;;</span>
+                v<span class="br0">&#41;</span> <span class="re2">VERBOSE</span>=<span class="kw2">true</span>
+                <span class="kw3">echo</span> <span class="st0">&quot;VERBOSE is <span class="es2">$VERBOSE</span>&quot;</span>
+                <span class="sy0">;;</span>
+        <span class="kw1">esac</span>   
+<span class="kw1">done</span>  

@@ -1,0 +1,23 @@
+<span class="nu0">1</span> <span class="co0">#!/bin/bash</span>
+<span class="nu0">2</span> <span class="co0">#batch_connect.sh</span>
+<span class="nu0">3</span>
+<span class="nu0">4</span> <span class="co0">#cat /dev/null &gt; batch_file</span>
+<span class="nu0">5</span> <span class="kw3">echo</span> <span class="st0">&quot;use oss_platform;&quot;</span> <span class="sy0">&gt;</span> batch_file
+<span class="nu0">6</span>
+<span class="nu0">7</span> <span class="re2">URL_list</span>=<span class="sy0">`</span><span class="kw2">cat</span> url_for_db_final<span class="sy0">`</span>
+<span class="nu0">8</span> <span class="kw1">for</span> URL <span class="kw1">in</span> <span class="re1">$URL_list</span>
+<span class="nu0">9</span> <span class="kw1">do</span>
+<span class="nu0">10</span> <span class="kw3">echo</span> <span class="st0">&quot;update pornURL set count=count+1 where url=<span class="es1">\&quot;</span><span class="es2">$URL</span><span class="es1">\&quot;</span>;&quot;</span> <span class="sy0">&gt;&gt;</span> batch_file
+<span class="nu0">11</span> <span class="kw3">echo</span> <span class="st0">&quot;insert into pornURL (url,count) select <span class="es1">\&quot;</span><span class="es2">$URL</span><span class="es1">\&quot;</span>,1 from dual where not exists (select * from pornURL where
+url=<span class="es1">\&quot;</span><span class="es2">$URL</span><span class="es1">\&quot;</span>);&quot;</span> <span class="sy0">&gt;&gt;</span> batch_file
+<span class="nu0">12</span>
+<span class="nu0">13</span> <span class="kw1">done</span>
+<span class="nu0">14</span> <span class="kw3">echo</span> <span class="st0">&quot;exit&quot;</span> <span class="sy0">&gt;&gt;</span> batch_file
+<span class="nu0">15</span>
+<span class="nu0">16</span>
+<span class="nu0">17</span> <span class="kw2">cat</span> <span class="sy0">/</span>dev<span class="sy0">/</span>null <span class="sy0">&gt;</span> url_for_db_final
+&nbsp;
+<span class="nu0">18</span> mysql <span class="re5">-h</span> localhost <span class="re5">-u</span> <span class="sy0">*******</span> -p<span class="sy0">*************&lt;</span> batch_file <span class="sy0">|</span> <span class="kw2">more</span>
+<span class="nu0">19</span>
+<span class="nu0">20</span>
+<span class="nu0">21</span> <span class="kw2">cat</span> <span class="sy0">/</span>dev<span class="sy0">/</span>null <span class="sy0">&gt;</span> batch_file

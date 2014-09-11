@@ -1,0 +1,10 @@
+<span class="nu0">1</span> <span class="co0">#!/bin/awk -f</span>
+<span class="nu0">2</span> BEGIN<span class="br0">&#123;</span>
+<span class="nu0">3</span>         <span class="re2">FS</span>=<span class="st0">&quot;:&quot;</span>
+<span class="nu0">4</span> <span class="br0">&#125;</span>
+<span class="nu0">5</span>
+<span class="nu0">6</span> <span class="br0">&#123;</span>ary<span class="br0">&#91;</span><span class="re1">$NF</span><span class="br0">&#93;</span>++<span class="br0">&#125;</span>
+<span class="nu0">7</span> END<span class="br0">&#123;</span>
+<span class="nu0">8</span>         <span class="kw1">for</span><span class="br0">&#40;</span>i <span class="kw1">in</span> ary<span class="br0">&#41;</span>
+<span class="nu0">9</span>                 print ary<span class="br0">&#91;</span>i<span class="br0">&#93;</span>,i;
+<span class="nu0">10</span> <span class="br0">&#125;</span>

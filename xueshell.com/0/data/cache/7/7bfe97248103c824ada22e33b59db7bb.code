@@ -1,0 +1,6 @@
+<span class="kw2">awk</span> -F: <span class="st_h">'{if($3==10) print $0}'</span> pass
+<span class="kw2">awk</span> -F: <span class="st_h">'{if($3==10) {print $1;print $7}}'</span> pass <span class="co0">#嵌套,如果只有一个语句，{}可加可不加,&quot;{}&quot;后不可有&quot;;&quot;。</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'{if($3==10) {print $1;} else print $0}'</span> pass <span class="co0">#if-else</span>
+&nbsp;
+<span class="co0">#if-else if-else,注意：匹配字符串的时候要加引号&quot;root&quot;</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'{if($3==10) {print $1;} else if($1==&quot;root&quot;) print $0; else print $7;}'</span> pass

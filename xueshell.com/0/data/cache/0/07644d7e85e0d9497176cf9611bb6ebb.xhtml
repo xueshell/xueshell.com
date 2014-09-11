@@ -1,0 +1,165 @@
+
+<h2 class="sectionedit1" id="netrc">netrc</h2>
+<div class="level2">
+
+<p>
+在自己的home目录下建立一个权限600（权限必须是600，少了不行，多了也不行），名为.netrc的文件，内容是：
+</p>
+<pre class="code">machine 192.168.0.1 
+login ftpuser 
+password ftpuser_password </pre>
+
+<p>
+这样以后你每次ftp 192.168.0.1的时候，系统都会帮你以用户名ftpuser登录到该服务器。
+利用这个特征可以实现自动ftp。
+</p>
+
+<p>
+例如你想要每天5:00到192.168.0.1机器上面获得/test目录下的文件test.txt，可以这么做：
+建立一个文件ftp_cmd，内容为：
+</p>
+<pre class="code">
+cd test
+get test.txt
+bye
+</pre>
+
+<p>
+然后使用crontab -e设置定时任务：
+</p>
+
+<p>
+0 5 * * * ftp 192.168.0.1 &lt; ftp_cmd
+</p>
+
+<p>
+附：.netrc的用法
+</p>
+
+<p>
+ •netrc中应包含的基本命令 
+</p>
+
+<p>
+FTP中有几十个命令，在.netrc中应该设置的大致有如下几条：
+</p>
+
+<p>
+1.default login password 
+</p>
+
+<p>
+在Internet中,存在大量的匿名ftp帐户，用户在不同的主机间频繁登录anonymous帐户，输入自己的电子邮件地址作为口令，这种输入极其繁琐，完全有必要利用.netrc文件，在进入ftp时自动完成该过程。 
+</p>
+
+<p>
+2.binary 
+许多用户在下载大量文件之后才意识到下载的文件是二进制文件，而自己却是使用ascii方式传输，使下载文件无法使用，做了许多无用功。在.netrc文件中提前将传输方式设置为binary，完全可避免出现上述情况。 
+</p>
+
+<p>
+3.runique 
+使用Internet的用户都知道,在浩如烟海的文件中，有大量同名文件,如readme、index等，如果将同名文件下载到同一目录，则新传的文件会覆盖原同名文件。为了使具有潜在重要性的文件不至于被意外覆盖，也需要在.netrc文件中，设置runique参数防止上述错误。 
+</p>
+
+<p>
+4.prompt off 
+使用ftp时，经常会用到mget或其它需要确认的ftp命令，将此确认过程取消，可大大方便使用者。 
+</p>
+
+<p>
+5.hash on 
+ftp中的hash命令,使得在进行文件传输时,每传输1千字节，在屏幕上显示一个“#“号,用户通过观看屏幕上的”#“号，可以很直观地看到传输速度的快慢，以及文件的传输完成情况，以决定进一步的操作。 
+</p>
+
+<p>
+6.idle 7200 
+目前国内的Internet专线速率普遍偏低，用户数却在急剧膨胀，所以用ftp传输销大一些的文件时，经常会因为线路拥塞而断线，致使ftp进程中断，为了减少因断线而反复登录的次数，需将idle命令的参数设置为最大(一般为7200秒)。 
+</p>
+
+<p>
+7.macdef 
+macdef定义一个宏，macro_name为宏定义的名称。在macdef行下，可输入任何有效的ftp命令，并以空行结束宏定义，执行时只需在宏名前加”$”号即可。如果宏名定义为init，则该宏命令在启动ftp后自动加以执行，无需用户输入$ macro_name。
+</p>
+
+<p>
+•netrc的使用举例 
+</p>
+
+<p>
+1.用vi编辑器先编辑一个如下的文件: 
+</p>
+<pre class="code">    default login anonymous password user@my.site 
+    macdef init 
+    binary   . 
+    runique  . 
+    hash on  . 
+    prompt off 
+    idle 7200 
+    (空行)</pre>
+
+<p>
+第1行意为缺省情况下，进入anonymous帐户，并以自己的电子邮件地址为口令；
+第2行至第8行定义了宏init，该宏中的所有5条命令将在进入ftp环境后立刻执行，第8行(空行)不可省略，否则为无效宏定义。 
+</p>
+
+<p>
+2.利用.netrc可将用户所需操作大大简化，极大地提高工作效率。
+如利用archie命令查找到文件xplaygizmo-1.0.gz在匿名ftp主机上unsite.unc.e-du的/pub/packages/solaris/freeware目录下，
+用户欲将该文件用ftp下载,只需用vi编辑器将archie的查找结果插入到.netrc文件空行之上,即增加下列三行：
+</p>
+<pre class="code">    cd /pub/packages/solaris/freeware 
+    get xplaygizmo-1.0.gz 
+    bye 
+    (空行) </pre>
+
+<p>
+运行ftp sunsite.unc.edu，即自动完成上述.netrc 中的所有操作,无需任何人工干预。屏幕将显示类似于下面的结果： 
+</p>
+<pre class="code"> 
+    Connected to sunsite.unc.edu. 
+    220 calzone FTP server(Version wu-2.4(3Wed 
+0ct 2 09:30:40 EDT 1996)ready 
+    331 Guest login ok,send your complete e-mail 
+address as password. 
+    230............. 
+    230 Guest login ok,access resrictions apply. 
+    200 Type set to I. 
+    Receive unique on. 
+    Hash mark printing on (1024 bytes/hash mark). 
+    Interactive mode off. 
+    200 Maximum IDLE time set to 7200 seconds 
+    cd/pub/packages/solaris/freeware 
+    250 CWD command successful. 
+    get xplaygizmo-1.0.gz 
+    200 PORT command successful. 
+    150 Opening BINARY mode data connection for 
+xplaygizmo-1.0.gz(8753 bytes). 
+    ######## 
+    226 Transfer complete. 
+    8753 bytes received in 50.8 secs(0.17 
+Kbytes/sec) 
+    221 Goodbye. </pre>
+
+<p>
+缺省时，运行ftp命令将检测用户的HOME目录中的.netrc文件,并自动加以执行，如果不想使用.netrc，可在ftp命令行中使用-n参数加以取消。 
+</p>
+<hr />
+
+<p>
+#!/bin/ksh 
+nohup   ./shellName  &amp;     
+#运行shell时，会自动去第一行去找用ksh还是bash 去执行此shell。
+</p>
+
+<p>
+nohup    &amp;
+#在后台非挂起运行shell。
+</p>
+
+<p>
+.netrc  在一个人的工作目录下，系统会自动读取这个文件去登陆ftp。 这个文件权限设置为400即可。 
+子shell就是登录shell为了运行期望的程序而执行的全新的shell。
+</p>
+
+</div>

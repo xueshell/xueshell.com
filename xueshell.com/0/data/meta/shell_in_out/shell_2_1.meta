@@ -1,0 +1,15 @@
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1404886759;s:8:"modified";i:1404887493;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1404887493;s:2:"ip";s:14:"10.221.135.115";s:4:"type";s:1:"E";s:2:"id";s:22:"shell_in_out:shell_2_1";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}s:5:"title";s:10:"2>&1使用";s:11:"description";a:2:{s:15:"tableofcontents";a:1:{i:0;a:4:{s:3:"hid";s:6:"使用";s:5:"title";s:10:"2>&1使用";s:4:"type";s:2:"ul";s:5:"level";i:3;}}s:8:"abstract";s:675:"2>&1使用
+
+2>&1使用
+
+一 相关知识
+
+1）默认地，标准的输入为键盘，但是也可以来自文件或管道（pipe |）。 
+
+2）默认地，标准的输出为终端（terminal)，但是也可以重定向到文件，管道或后引号（backquotes `）。
+
+3) 默认地，标准的错误输出到终端，但是也可以重定向到文件。
+
+4）标准的输入，输出和错误输出分别表示为STDIN,STDOUT,STDERR，也可以用0，1，2来表示。
+
+5）其实除了以上常用的3中文件描述符，还有3~9也可以作为文件描述符。3~9你可以认为是执行某个地方的文件描述符，常被用来作为临时的中间描述符。…";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:8:"relation";a:1:{s:10:"firstimage";s:0:"";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1404886759;s:8:"modified";i:1404887493;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1404887493;s:2:"ip";s:14:"10.221.135.115";s:4:"type";s:1:"E";s:2:"id";s:22:"shell_in_out:shell_2_1";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}}}

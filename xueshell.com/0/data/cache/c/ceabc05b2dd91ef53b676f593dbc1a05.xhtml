@@ -1,0 +1,113 @@
+
+<h3 class="sectionedit1" id="shell如何获取后天运行的子进程的退出状态">shell如何获取后天运行的子进程的退出状态</h3>
+<div class="level3">
+
+<p>
+一个命令的执行成功与否（即退出值）可以通过echo $?来获得，然而把命令放到后台执行后，如何获取命令的退出值？
+</p>
+
+<p>
+for example：
+ls -l my &amp; #my不存在的
+</p>
+
+<p>
+正常的执行ls -l my后
+再echo $?得到2
+</p>
+
+<p>
+但ls -l my &amp;后echo $?得到0
+</p>
+
+<p>
+怎么去获得命令的真正的退出状态
+</p>
+
+<p>
+放到后台去执行，前台已经不管其执行情况了，返回的仅仅是放入后台这个操作成功与否而非命令本身，那肯定都是成功的。
+后台获取ls -l 命令的执行情况，可以考虑将错误输出流（2）导入标准输出（1）获取命令打印结果加以判断。如：
+</p>
+<pre class="code bash"><span class="re2">ret</span>=<span class="sy0">`</span><span class="kw2">ls</span> <span class="re5">-l</span> my <span class="nu0">2</span><span class="sy0">&gt;&amp;</span><span class="nu0">1</span> <span class="sy0">&amp;`</span>
+<span class="co0"># 如果是用脚本执行的话，需要在这里判断进程是否存在，等待命令执行完；或者sleep足够长的时间</span>
+<span class="kw3">echo</span> <span class="re1">$ret</span> <span class="sy0">|</span> <span class="kw2">grep</span> <span class="st0">&quot;No such file or directory&quot;</span> <span class="sy0">&gt;/</span>dev<span class="sy0">/</span>null <span class="nu0">2</span><span class="sy0">&gt;&amp;</span><span class="nu0">1</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re4">$?</span> <span class="re5">-eq</span> <span class="nu0">0</span> <span class="br0">&#93;</span>; <span class="kw1">then</span>
+    <span class="kw3">echo</span> <span class="st0">&quot;Failed&quot;</span>
+<span class="kw1">else</span>
+    <span class="kw3">echo</span> <span class="st0">&quot;Successful&quot;</span>
+<span class="kw1">fi</span></pre>
+
+<p>
+或者也可以考虑写文件的方式，若后台命令执行发生错误，写错误日志，判断存在错误日志且大小不为0，就能知道命令执行发生错误了。这样做的好处是，不涉及具体错误信息的判断。
+</p>
+<pre class="code">errlog=/tmp/err.log
+
+size=0
+
+ls -l my 2&gt;$errlog &amp;</pre>
+<pre class="code bash"><span class="co0"># 如果是用脚本执行的话，需要在这里判断进程是否存在，等待命令执行完；或者sleep足够长的时间</span>
+<span class="br0">&#91;</span> <span class="re5">-f</span> <span class="re1">$errlog</span> <span class="br0">&#93;</span> <span class="sy0">&amp;&amp;</span> <span class="re2">size</span>=<span class="sy0">`</span><span class="kw2">wc</span> <span class="re5">-c</span> <span class="re1">$errlog</span> <span class="sy0">|</span> <span class="kw2">cut</span> <span class="re5">-d</span><span class="st_h">' '</span> -f1<span class="sy0">`</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="re1">$size</span> <span class="re5">-gt</span> <span class="nu0">0</span> <span class="br0">&#93;</span>; <span class="kw1">then</span>
+    <span class="kw3">echo</span> <span class="st0">&quot;Failed&quot;</span>
+<span class="kw1">else</span>
+    <span class="kw3">echo</span> <span class="st0">&quot;Successful&quot;</span>
+<span class="kw1">fi</span></pre>
+
+<p>
+追问
+</p>
+
+<p>
+恩，这样是可以的，但我想知道后台进程的确切的exit code呢，如何捕获？比方说，ls -l my 用echo $?得到的值为2，但ls -l my &amp;后echo $?得到的值是0，但其实是2，我怎么才能获取真正的退出值2呢？
+</p>
+
+<p>
+回答
+</p>
+
+<p>
+一块儿放到后台去：
+ls -l my; echo $? &amp;
+</p>
+
+<p>
+追问
+</p>
+
+<p>
+那如果是远程执行命令呢？比方说 ssh host “ls -l my” &amp;,怎么获取远程执行的这条命令的退出状态值呢？
+</p>
+
+<p>
+回答
+</p>
+
+<p>
+后台执行命令，结果就在后台；远程执行命令，结果就在远程设备端。就看你怎样取到前台和本地来。
+自己想想喏~~
+我还是建议用我上面的存文件方法，便于分析失败原因，只有一个状态码往往是不够的。
+</p>
+
+<p>
+追问
+</p>
+
+<p>
+状态值是子进程返回给调用它的父进程的，远程执行，父进程在本地，子进程在远程设备上，那这个状态码应该会被ssh返回给本地的吧，那我们还是能够获取的呀。比方说，ssh localhost “ls -l my”后echo $?得到2，说明状态码返回过来了
+</p>
+
+<p>
+回答
+</p>
+
+<p>
+既然这样，那不还是一样的嘛。一块儿放到后台去：
+ssh host “ls -l my”; echo $? &amp;
+</p>
+
+<p>
+提问者评价
+</p>
+<pre class="code">  谢谢你的耐心解答，好详细呀</pre>
+
+</div>

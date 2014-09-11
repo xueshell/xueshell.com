@@ -214,3 +214,34 @@ ${varname:-word}
 <<EO和EOF
 
 
+
+
+
+
+== shell 里 awk print 的用法 ==
+shell EOF
+
+awk的快速用法
+linux shell 实现多线程
+shell编程之awk
+shell seq详解
+linux 产生随机数的方法
+shell 生成指定范围随机数与随机字符串
+
+2>&1使用
+shell不同文件函数调用
+
+
+
+
+
+shell获得子后台进程返回值的方法
+shell如何获取后天运行的子进程的退出状态
+
+
+netrc
+shell 传递参数 getopts
+
+
+for in 格式
+

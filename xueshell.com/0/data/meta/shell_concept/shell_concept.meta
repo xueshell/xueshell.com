@@ -1,1 +1,34 @@
-a:2:{s:7:"current";a:8:{s:4:"date";a:2:{s:7:"created";i:1402631019;s:8:"modified";i:1402636438;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1402636438;s:2:"ip";s:13:"10.221.135.17";s:4:"type";s:1:"E";s:2:"id";s:27:"shell_concept:shell_concept";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}s:8:"relation";a:2:{s:10:"references";a:1:{s:25:"shell_concept:shell_brief";b:1;}s:10:"firstimage";s:0:"";}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:17:"shell 语法<上>";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1402631019;s:8:"modified";i:1402636438;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1402636438;s:2:"ip";s:13:"10.221.135.17";s:4:"type";s:1:"E";s:2:"id";s:27:"shell_concept:shell_concept";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}}}
+a:2:{s:7:"current";a:9:{s:4:"date";a:2:{s:7:"created";i:1402631019;s:8:"modified";i:1410425761;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1410425761;s:2:"ip";s:13:"10.221.135.72";s:4:"type";s:1:"E";s:2:"id";s:27:"shell_concept:shell_concept";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}s:8:"relation";a:3:{s:10:"references";a:23:{s:25:"shell_concept:shell_brief";b:1;s:22:"shell_in_out:shell_2_1";b:1;s:29:"shell_concept:invoke_function";b:1;s:31:"resolve_task:mathmatic_operator";b:1;s:18:"resolve_task:netrc";b:1;s:37:"shell_concept:shell_speical_character";b:1;s:38:"shell_concept:shell_variable_parameter";b:0;s:18:"shell_concept:loop";b:1;s:24:"shell_concept:shell_test";b:1;s:28:"shell_concept:shell_operator";b:0;s:29:"shell_concept:shell_read_file";b:1;s:36:"shell_concept:shell_intractive_input";b:0;s:13:"wiki:sectionm";b:1;s:26:"built_in_command:shell_ifs";b:1;s:30:"built_in_command:returen_value";b:1;s:21:"built_in_command:exec";b:1;s:20:"built_in_command:ps1";b:1;s:13:"wiki:sectionn";b:1;s:23:"built_in_command:export";b:1;s:13:"wiki:sectionp";b:1;s:21:"built_in_command:mail";b:1;s:22:"built_in_commnad:shift";b:1;s:31:"built_in_command:break_continue";b:1;}s:7:"haspart";a:3:{s:13:"wiki:sectionm";b:1;s:13:"wiki:sectionn";b:1;s:13:"wiki:sectionp";b:1;}s:10:"firstimage";s:0:"";}s:14:"plugin_include";a:4:{s:12:"instructions";a:3:{i:0;a:4:{s:4:"mode";s:4:"page";s:4:"page";s:13:"wiki:sectionM";s:4:"sect";N;s:9:"parent_id";s:27:"shell_concept:shell_concept";}i:1;a:4:{s:4:"mode";s:4:"page";s:4:"page";s:13:"wiki:sectionN";s:4:"sect";N;s:9:"parent_id";s:27:"shell_concept:shell_concept";}i:2;a:4:{s:4:"mode";s:4:"page";s:4:"page";s:13:"wiki:sectionP";s:4:"sect";N;s:9:"parent_id";s:27:"shell_concept:shell_concept";}}s:5:"pages";a:3:{i:0;a:3:{s:2:"id";s:13:"wiki:sectionm";s:6:"exists";b:1;s:9:"parent_id";s:27:"shell_concept:shell_concept";}i:1;a:3:{s:2:"id";s:13:"wiki:sectionn";s:6:"exists";b:1;s:9:"parent_id";s:27:"shell_concept:shell_concept";}i:2;a:3:{s:2:"id";s:13:"wiki:sectionp";s:6:"exists";b:1;s:9:"parent_id";s:27:"shell_concept:shell_concept";}}s:15:"include_content";b:0;s:6:"secids";a:3:{s:13:"wiki:sectionm";a:2:{s:3:"hid";s:30:"plugin_include__wiki__sectionm";s:3:"pos";i:635;}s:13:"wiki:sectionn";a:2:{s:3:"hid";s:30:"plugin_include__wiki__sectionn";s:3:"pos";i:680;}s:13:"wiki:sectionp";a:2:{s:3:"hid";s:30:"plugin_include__wiki__sectionp";s:3:"pos";i:725;}}}s:8:"internal";a:2:{s:5:"cache";b:1;s:3:"toc";b:1;}s:11:"description";a:1:{s:8:"abstract";s:292:"shell 语法<上>  
+
+2>&1  
+
+ shell调用函数
+
+数学运算
+
+netrc 验证用户
+
+ shell的特殊字符
+
+ shell的变量和参数
+
+ shell 的循环
+
+shell的判断
+
+shell的运算
+
+ 处理文件的12中方法
+
+交互输入
+
+	*   
+	*   IFS
+	*  
+
+	*  
+	*   $? $# 
+	*  
+	*   exec 
+	*  
+	*   PS1";}}s:10:"persistent";a:5:{s:4:"date";a:2:{s:7:"created";i:1402631019;s:8:"modified";i:1410425761;}s:7:"creator";s:5:"lixin";s:4:"user";s:5:"uahoo";s:11:"last_change";a:7:{s:4:"date";i:1410425761;s:2:"ip";s:13:"10.221.135.72";s:4:"type";s:1:"E";s:2:"id";s:27:"shell_concept:shell_concept";s:4:"user";s:5:"uahoo";s:3:"sum";s:0:"";s:5:"extra";s:0:"";}s:11:"contributor";a:1:{s:5:"uahoo";s:5:"lixin";}}}

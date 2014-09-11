@@ -1,0 +1,6 @@
+$ <span class="kw2">awk</span> <span class="st_h">'{print $0}'</span> grade.txt
+M.Tansley       05<span class="sy0">/</span><span class="nu0">99</span>   <span class="nu0">48311</span>   Green   <span class="nu0">8</span>       <span class="nu0">40</span>      <span class="nu0">44</span>
+J.Lulu          06<span class="sy0">/</span><span class="nu0">99</span>   <span class="nu0">48317</span>   green   <span class="nu0">9</span>       <span class="nu0">24</span>      <span class="nu0">26</span>
+P.Bunny         02<span class="sy0">/</span><span class="nu0">99</span>   <span class="nu0">48</span>      Yellow  <span class="nu0">12</span>      <span class="nu0">35</span>      <span class="nu0">28</span>
+J.Troll         07<span class="sy0">/</span><span class="nu0">99</span>   <span class="nu0">4842</span>    Brown-<span class="nu0">3</span> <span class="nu0">12</span>      <span class="nu0">26</span>      <span class="nu0">26</span>
+L.Tansley       05<span class="sy0">/</span><span class="nu0">99</span>   <span class="nu0">4712</span>    Brown-<span class="nu0">2</span> <span class="nu0">12</span>      <span class="nu0">30</span>      <span class="nu0">28</span>

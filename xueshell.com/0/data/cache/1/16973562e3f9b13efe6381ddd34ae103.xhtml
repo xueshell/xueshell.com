@@ -1,0 +1,70 @@
+
+<h4 id="shell_eof">shell EOF</h4>
+<div class="level4">
+
+<p>
+Shell中通常将EOF与 « 结合使用，表示后续的输入作为子命令或子Shell的输入，直到遇到EOF为止，再返回到主调Shell。如下：
+</p>
+<pre class="code bash"><span class="kw3">export</span> <span class="re2">NLS_LANG</span>=<span class="st_h">'SIMPLIFIED CHINESE_CHINA.ZHS16GBK'</span>
+sqlplus <span class="re1">$USERID</span> <span class="sy0">@</span><span class="re1">$OUT_FILE</span> <span class="co2">&lt;&lt; EOF
+exit
+EOF</span></pre>
+
+<p>
+当把这段代码放在Shell中时，会在Shell脚本执行完毕后自动退出SQLPLUS的命令提示符状态。
+«<abbr title="End of file">EOF</abbr>
+（内容）
+<abbr title="End of file">EOF</abbr>
+</p>
+
+<p>
+可以把EOF替换成其他东西
+意思是把内容当作标准输入传给程序这里再简要回顾一下&lt; &lt;的用法。当s h e l l看到&lt; &lt;的时候，它就会知道下一个词是一个分界
+符。在该分界符以后的内容都被当作输入，直到s h e l l又看到该分界符(位于单独的一行)。这个
+分界符可以是你所定义的任何字符串。
+</p>
+
+<p>
+方法1.需要，自动登录mysql（root:root,passwd:123456),查询test库，test1表里的user=aa的记录.
+</p>
+<pre class="code bash"><span class="co0">#!/bin/sh</span>
+mysql <span class="re5">-uroot</span> <span class="re5">-p123456</span> <span class="co2">&lt;&lt;EOF
+use test;
+select * from testaa while a=10000; ###1000 not usr single quote mark,because a is int
+                                                  # type,only char type need single quote mark.
+&nbsp;
+exit
+EOF</span></pre>
+
+<p>
+方法2：用expect脚本
+</p>
+
+<p>
+3
+</p>
+<pre class="code bash"><span class="nu0">1</span> <span class="co0">#!/bin/bash</span>
+<span class="nu0">2</span> <span class="co0">#batch_connect.sh</span>
+<span class="nu0">3</span>
+<span class="nu0">4</span> <span class="co0">#cat /dev/null &gt; batch_file</span>
+<span class="nu0">5</span> <span class="kw3">echo</span> <span class="st0">&quot;use oss_platform;&quot;</span> <span class="sy0">&gt;</span> batch_file
+<span class="nu0">6</span>
+<span class="nu0">7</span> <span class="re2">URL_list</span>=<span class="sy0">`</span><span class="kw2">cat</span> url_for_db_final<span class="sy0">`</span>
+<span class="nu0">8</span> <span class="kw1">for</span> URL <span class="kw1">in</span> <span class="re1">$URL_list</span>
+<span class="nu0">9</span> <span class="kw1">do</span>
+<span class="nu0">10</span> <span class="kw3">echo</span> <span class="st0">&quot;update pornURL set count=count+1 where url=<span class="es1">\&quot;</span><span class="es2">$URL</span><span class="es1">\&quot;</span>;&quot;</span> <span class="sy0">&gt;&gt;</span> batch_file
+<span class="nu0">11</span> <span class="kw3">echo</span> <span class="st0">&quot;insert into pornURL (url,count) select <span class="es1">\&quot;</span><span class="es2">$URL</span><span class="es1">\&quot;</span>,1 from dual where not exists (select * from pornURL where
+url=<span class="es1">\&quot;</span><span class="es2">$URL</span><span class="es1">\&quot;</span>);&quot;</span> <span class="sy0">&gt;&gt;</span> batch_file
+<span class="nu0">12</span>
+<span class="nu0">13</span> <span class="kw1">done</span>
+<span class="nu0">14</span> <span class="kw3">echo</span> <span class="st0">&quot;exit&quot;</span> <span class="sy0">&gt;&gt;</span> batch_file
+<span class="nu0">15</span>
+<span class="nu0">16</span>
+<span class="nu0">17</span> <span class="kw2">cat</span> <span class="sy0">/</span>dev<span class="sy0">/</span>null <span class="sy0">&gt;</span> url_for_db_final
+&nbsp;
+<span class="nu0">18</span> mysql <span class="re5">-h</span> localhost <span class="re5">-u</span> <span class="sy0">*******</span> -p<span class="sy0">*************&lt;</span> batch_file <span class="sy0">|</span> <span class="kw2">more</span>
+<span class="nu0">19</span>
+<span class="nu0">20</span>
+<span class="nu0">21</span> <span class="kw2">cat</span> <span class="sy0">/</span>dev<span class="sy0">/</span>null <span class="sy0">&gt;</span> batch_file</pre>
+
+</div>

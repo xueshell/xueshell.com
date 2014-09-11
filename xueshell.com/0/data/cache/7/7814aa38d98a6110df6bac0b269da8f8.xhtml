@@ -1,0 +1,79 @@
+
+<h3 class="sectionedit1" id="使用">2&gt;&amp;1使用</h3>
+<div class="level3">
+
+<p>
+2&gt;&amp;1使用
+</p>
+
+<p>
+一 相关知识
+</p>
+
+<p>
+1）默认地，标准的输入为键盘，但是也可以来自文件或管道（pipe |）。 <br/>
+
+2）默认地，标准的输出为终端（terminal)，但是也可以重定向到文件，管道或后引号（backquotes `）。<br/>
+
+3) 默认地，标准的错误输出到终端，但是也可以重定向到文件。<br/>
+
+4）标准的输入，输出和错误输出分别表示为STDIN,STDOUT,STDERR，也可以用0，1，2来表示。<br/>
+
+5）其实除了以上常用的3中文件描述符，还有3~9也可以作为文件描述符。3~9你可以认为是执行某个地方的文件描述符，常被用来作为临时的中间描述符。<br/>
+
+</p>
+
+<p>
+二 实例
+</p>
+
+<p>
+1）command 2&gt;errfile : command的错误重定向到文件errfile。<br/>
+
+2）command 2&gt;&amp;1 | …: command的错误重定向到标准输出，错误和标准输出都通过管道传给下个命令。<br/>
+
+3）var=`command 2&gt;&amp;1`: command的错误重定向到标准输出，错误和标准输出都赋值给var。<br/>
+
+4）command 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3 | …:实现标准输出和错误输出的交换。<br/>
+
+5）var=`command 3&gt;&amp;2 2&gt;&amp;1 1&gt;&amp;3`:实现标准输出和错误输出的交换。<br/>
+
+6）command 2&gt;&amp;1 1&gt;&amp;2 | …     (wrong…) :这个不能实现标准输出和错误输出的交换。因为shell从左到右执行命令，当执行完2&gt;&amp;1后，错误输出已经和标准输出一样的，再执行1&gt;&amp;2也没有意义。<br/>
+
+</p>
+
+<p>
+三 “2&gt;&amp;1 file”和 “&gt; file 2&gt;&amp;1”区别
+</p>
+
+<p>
+1）cat food 2&gt;&amp;1 &gt;file ：错误输出到终端，标准输出被重定向到文件file。<br/>
+
+2）cat food &gt;file 2&gt;&amp;1 ：标准输出被重定向到文件file，然后错误输出也重定向到和标准输出一样，所以也错误输出到文件file。<br/>
+
+</p>
+
+<p>
+四 注意<br/>
+
+通常打开的文件在进程推出的时候自动的关闭，但是更好的办法是当你使用完以后立即关闭。用m&lt;&amp;-来关闭输入文件描述符m，用m&gt;&amp;-来关闭输出文件描述符m。如果你需要关闭标准输入用&lt;&amp;-; &gt;&amp;- 被用来关闭标准输出。<br/>
+
+</p>
+
+<p>
+五 同时输出到终端和文件 copy source dest | tee.exe copyerror.txt<br/>
+
+</p>
+
+<p>
+六 参考<br/>
+
+</p>
+
+<p>
+1）<a href="http://docstore.mik.ua/orelly/unix/upt/ch45_21.htm" class="urlextern" title="http://docstore.mik.ua/orelly/unix/upt/ch45_21.htm"  rel="nofollow">http://docstore.mik.ua/orelly/unix/upt/ch45_21.htm</a>
+2）<a href="http://www.unix.com/shell-programming-scripting/34011-meaning-dev-null-2-1-a.html" class="urlextern" title="http://www.unix.com/shell-programming-scripting/34011-meaning-dev-null-2-1-a.html"  rel="nofollow">http://www.unix.com/shell-programming-scripting/34011-meaning-dev-null-2-1-a.html</a>
+3）<a href="http://docstore.mik.ua/orelly/unix/upt/ch08_13.htm" class="urlextern" title="http://docstore.mik.ua/orelly/unix/upt/ch08_13.htm"  rel="nofollow">http://docstore.mik.ua/orelly/unix/upt/ch08_13.htm</a>
+</p>
+
+</div>

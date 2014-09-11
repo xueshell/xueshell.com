@@ -1,0 +1,293 @@
+=====shell 传递参数 getopts====
+
+getopts可以编写脚本，使控制多个命令行参数更加容易。getopts用于形成命令行处理标
+准形式。原则上讲，脚本应具有确认带有多个选项的命令文件标准格式的能力。
+
+==== getopts脚本实例====
+通过例子可以更好地理解getopts。以下getopts脚本接受下列选项或参数。
+
+• a 设置变量ALL为true。  \\
+• h 设置变量HELP为true。  \\
+• f 设置变量FILE为true。  \\
+• v 设置变量VERBOSE为true。  \\
+
+对于所有变量设置，一般总假定其初始状态为false：
+<code bash>
+#!/bin/bash
+# getopt1.sh
+# set the vars
+ALL=false
+HELP=false
+FILE=false
+VERBOSE=false
+while getopts ahfgv OPTION
+do
+        case $OPTION in
+                a) ALL=true
+                echo "ALL is $ALL"
+                ;;
+                h) HELP=true
+                echo "HELP is $HELP"
+                ;;
+                f) FILE=true
+                echo "FILE is $FILE"
+                ;;
+                v) VERBOSE=true
+                echo "VERBOSE is $VERBOSE"
+                ;;
+        esac   
+done  
+</code>
+
+getopts一般格式为：
+
+  getopts option_string variable
+
+在上述例子中使用脚本：
+while getopts ahfgv OPTION
+可以看出while循环用于读取命令行，option_string为指定的5个选项（- a，- h，- f，- g，- v），
+
+脚本中variable为OPTION。注意这里并没有用连字符指定每一单个选项。
+
+运行上述脚本，给出几个有效和无效的选项，结果为：
+
+[root@localhost ~]# sh getopt1.sh -a -h
+ALL is true
+HELP is true
+[root@localhost ~]# sh getopt1.sh -a -h -p
+ALL is true
+HELP is true
+getopt1.sh: illegal option -- p
+
+可以看出不同选项的结合方式。
+
+-----------
+====getopts使用方式====
+
+getopts读取option_string，获知脚本中使用了有效选项。
+g e t o p t s查看所有以连字符开头的参数，将其视为选项，如果输入选项，将把这与
+o p t i o n s t r i n g对比，如果匹配发现，变量设置为O P T I O N，如果未发现匹配字符，变量能够设
+置为？。重复此处理过程直到选项输入完毕。
+g e t o p t s接收完所有参数后，返回非零状态，意即参数传递成功，变量O P T I O N保存最后处
+理参数，一会儿就可以看出处理过程中这样做的好处。
+
+
+====使用getopts指定变量取值====
+
+有时有必要在脚本中指定命令行选项取值。g e t o p t s 为此提供了一种方式，即在
+o p t i o n s t r i n g中将一个冒号放在选项后。例如：
+getopts ahfvc: OPTION
+
+上面一行脚本指出，选项a、h、f、v可以不加实际值进行传递，而选项c必须取值。使用
+选项取值时，必须使用变量O P TA R G保存该值。如果试图不取值传递此选项，会返回一个错
+误信息。错误信息提示并不明确，因此可以用自己的反馈信息屏蔽它，方法如下：
+将冒号放在o p t i o n s t r i n g开始部分。
+while getopts :ahfgvc: OPTION
+在c a s e语句里使用？创建一可用语句捕获错误。
+
+#!/bin/bash
+# getopt2.sh
+# set the vars
+ALL=false
+HELP=false
+FILE=false
+VERBOSE=false
+COPIES=0
+# the value for the -c option is set to zero
+while getopts ahfgvc: OPTION
+do
+        case $OPTION in
+                a) ALL=true
+                echo "ALL is $ALL"
+                ;;
+                h) HELP=true
+                echo "HELP is $HELP"
+                ;;
+                f) FILE=true
+                echo "FILE is $FILE"
+                ;;
+                v) VERBOSE=true
+                echo "VERBOSE is $VERBOSE"
+                ;;
+                c) COPIES=$OPTARG
+                echo "COPIES is $COPIES"
+                \?) # usage statement
+                echo "`basename $0` -[a h f v] -[c value] file" >&2
+                ;;
+        esac   
+done
+
+运行上述脚本，选项- c不赋值，将返回错误，但显示的是脚本语句中的反馈信息：
+
+[root@localhost ~]# sh getopt2.sh -ah -c
+ALL is true
+HELP is true
+getopt2.sh: option requires an argument -- c
+getopt2.sh -[a h f v] -[c value] file
+
+现在输入所有的合法选项：
+[root@localhost ~]# sh getopt2.sh -ah -c 3
+ALL is true
+HELP is true
+COPIES is 3
+
+
+====访问取值方式====
+
+g e t o p t s的一种功能是运行后台脚本。这样可以使用户加入选项，指定不同的磁带设备以
+备份数据。使用g e t o p t s实现此任务的基本框架如下：
+
+#!/bin/bash
+# backups.sh
+QUITE=n
+DEVICE=awa
+LOGFILE=/tmp/logbackup
+usage()
+{
+        echo "Usage: `basename $0` -d [device] -l [logfile] -q"
+        exit 1
+}
+if [ $# == 0 ]; then
+        usage
+fi
+while getopts :qd:l: OPTION
+do
+        case $OPTION in
+                q) QUITE=y
+                LOGFILE="/tmp/backup.log"
+                ;;
+                d) DEVICE=$OPTARG
+                ;;
+                l) LOGFILE=$OPTARG
+                ;;
+                \?) usage
+                ;;
+        esac
+done
+echo "you chose the following options .. I can process these"
+echo "Quite= $QUITE $DEVICE $LOGFILE"
+
+上述脚本中如果指定选项d，则需为其赋值。该值为磁带设备路径。用户也可以指定是否
+备份输出到登录文件中的内容。运行上述脚本，指定下列输入：
+
+[root@localhost ~]# sh backups.sh -d/dev/rmt0 -q
+you chose the following options .. I can process these
+Quite= y /dev/rmt0 /tmp/backup.log
+
+g e t o p t s检查完之后，变量O P TA R G取值可用来进行任何正常的处理过程。当然，如果输
+入选项，怎样进行进一步处理及使该选项有有效值，完全取决于用户。
+以上是使用g e t o p t s对命令行参数处理的基本框架。
+实际处理文件时，使用f o r循环，就像在t r- c a s e脚本中使用s h i f t命令过滤所有选项一样。
+使用g e t o p t s与使用s h i f t方法比较起来，会减少大量的编程工作。
+
+====使用getopts处理文件转换====
+
+现在用所学知识将t r- c a s e脚本转换为g e t o p t s版本。命令行选项g e t o p t s方法与s h i f t方法的唯
+一区别是一个V E R B O S E选项。
+变量V E R B O S E缺省取值为n o，但选择了命令行选项后， c a s e语句将捕获它，并将其设为
+y e s，反馈的命令是一个简单的i f语句。
+
+if [ "$VERBOSE" == "on" ]; then
+                        echo "doing..lower on $LOOP .. newfile called $LOOP$EXT"
+                fi  
+
+====使用getopts处理文件转换====
+
+现在用所学知识将t r- c a s e脚本转换为g e t o p t s版本。命令行选项g e t o p t s方法与s h i f t方法的唯
+一区别是一个V E R B O S E选项。
+变量V E R B O S E缺省取值为n o，但选择了命令行选项后， c a s e语句将捕获它，并将其设为
+y e s，反馈的命令是一个简单的i f语句。
+if [ "$VERBOSE" == "on" ]; then
+                        echo "doing..lower on $LOOP .. newfile called $LOOP$EXT"
+                fi  
+复制代码
+如果正在使用其他系统命令包，它总是反馈用户动作，只需简单地将包含错误的输出重
+定向到/ d e v / n u l l中即可。如：
+命令>/dev/null 2 >&1
+缺省时V E R B O S E关闭（即不显示），使用- v选项可将其打开。例如要用V E R B O S E将
+m y f i l e文件系列转换为小写，方法如下：
+tr-case -l -v myfile1 myfile2 ...
+或者
+tr-case -v -l myfile1 myfile2 ...
+可能首先注意的是使用g e t o p t s后脚本的缩减效果。这里用于文件处理的脚本与s h i f t版本
+相同。
+脚本如下：
+
+#!/bin/bash
+# tr_case2.sh
+# convert case, using getopts
+EXT=""
+TRCASE=""
+FLAG=""
+OPT="no"
+VERBOSE="off"
+while getopts :luv OPTION
+do
+        case $OPTION in
+                l) TRCASE="lower"
+                EXT=".LC"
+                OPT=yes
+                ;;
+                u) TRCASE="upper"
+                EXT=".UC"
+                OPT=yes
+                ;;
+                v) VERBOSE=on
+                ;;
+                \?) echo "usage: `basename $0`: -[l|u] --v file[s]"
+                        echo "doing.. lower on $LOOP .. newfile called $LOOP$EXT
+                exit 1
+                ;;
+        esac   
+done   
+# next argument down only please
+shift `expr $OPTION - 1`
+# are there any argument passed ??
+if [ "$#" == "0" ] || [ "$OPT" == "no" ]; then
+        echo "usage: `basename $0` : -[l|u] -v file[s]" >&2
+        exit 1
+fi     
+for LOOP in "$@"
+do     
+        if [ ! -f $LOOP ]; then
+                echo "`basename $0` : Error cannot find file $LOOP" >&2
+                exit 1
+        fi     
+        echo $TRCASE $LOOP
+        case $TRCSSE in
+                lower)
+                if [ "$VERBOSE" == "on" ]; then
+                        echo "doing..lower on $LOOP .. newfile called $LOOP$EXT"
+                fi     
+                cat $LOOP | tr "[a-z]" "[A-Z]" > $LOOP$EXT
+                ;;
+                upper)
+                if [ "$VERBOSE" == "on" ]; then
+                        echo "doing..lower on $LOOP ..newfile called $LOOP$EXT"
+                fi     
+                cat $LOOP | tr "[A-Z]" "[a-z]" >$LOOP$EXT
+                ;;
+        esac   
+done  
+
+在脚本中指定命令行选项时，最好使其命名规则与U N I X或L I N U X一致。下面是一些选项
+及其含义的列表。
+选项含义
+- a 扩展
+- c 计数、拷贝
+- d 目录、设备
+- e 执行
+- f 文件名、强制
+- h 帮助
+- i 忽略状态
+- l 注册文件
+- o 完整输出
+- q 退出
+- p 路径
+-v 显示方式或版本
+
+正确控制命令行选项会使脚本更加专业化，对于用户来说会使之看起来像一个系统命令。
+本章讲到了控制命令行选项的两种方法， s h i f t和g e t o p t s。使用g e t o p t s检测脚本的数量远远小
+于使用s h i f t方法检测脚本的数量。
+s h i f t也克服了脚本参数$ 1 . . $ 9的限制。使用s h i f t命令，脚本可以很容易偏移至所有调用参
+数，因此脚本可以做进一步处理。 

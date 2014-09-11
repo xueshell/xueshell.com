@@ -1,0 +1,4 @@
+<span class="kw2">expr</span>?act1:act2
+<span class="kw2">awk</span> -F: <span class="st_h">'var=($3==0)?&quot;admin&quot;:&quot;users&quot; {print $1,var}'</span> <span class="sy0">/</span>etc<span class="sy0">/</span><span class="kw2">passwd</span>   <span class="co0">#如果UID=0则打印出admin，否则打印user，下同</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'($3==0)?var=&quot;admin&quot;:var=&quot;users&quot; {print $1,var}'</span> <span class="sy0">/</span>etc<span class="sy0">/</span><span class="kw2">passwd</span> <span class="co0">#结果同上</span>
+<span class="kw2">awk</span> -F: <span class="st_h">'{print ($3&gt;500)?:$1:$6}'</span> <span class="sy0">/</span>etc<span class="sy0">/</span><span class="kw2">passwd</span>

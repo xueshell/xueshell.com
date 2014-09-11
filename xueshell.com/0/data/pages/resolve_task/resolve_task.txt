@@ -1,1 +1,0 @@
-[[resolve_task:mathmatic_operator|数学运算]]

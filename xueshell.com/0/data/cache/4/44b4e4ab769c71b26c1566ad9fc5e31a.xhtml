@@ -1,0 +1,223 @@
+
+<h3 class="sectionedit1" id="awk的快速用法">awk的快速用法</h3>
+<div class="level3">
+
+<p>
+<span style="color: #008000">awk 用法：awk &#039; pattern {action} &#039;</span>
+</p>
+
+<p>
+变量名 含义 <br/>
+
+ARGC 命令行变元个数<br/>
+
+ARGV 命令行变元数组<br/>
+
+FILENAME 当前输入文件名<br/>
+
+FNR 当前文件中的记录号<br/>
+
+FS 输入域分隔符，默认为一个空格<br/>
+
+RS 输入记录分隔符<br/>
+
+NF 当前记录里域个数<br/>
+
+NR 到目前为止记录数<br/>
+
+OFS 输出域分隔符<br/>
+
+ORS 输出记录分隔符<br/>
+
+</p>
+
+<p>
+<span style="color: #800000">1、awk &#039;/101/&#039;               file 显示文件file中包含101的匹配行。</span>
+</p>
+<pre class="code"> awk &#039;/101/,/105/&#039;         file
+ awk &#039;$1 == 5&#039;             file
+ awk &#039;$1 == &quot;CT&quot;&#039;          file 注意必须带双引号
+ awk &#039;$1 * $2 &gt;100 &#039;       file 
+ awk &#039;$2 &gt;5 &amp;&amp; $2&lt;=15&#039;     file</pre>
+
+<p>
+<span style="color: #008000">2、awk &#039;{print NR,NF,$1,$NF,}&#039; file 显示文件file的当前记录号、域数和每一行的第一个和最后一个域。</span>
+</p>
+<pre class="code"> awk &#039;/101/ {print $1,$2 + 10}&#039; file 显示文件file的匹配行的第一、二个域加10。
+ awk &#039;/101/ {print $1$2}&#039;  file
+ awk &#039;/101/ {print $1 $2}&#039; file 显示文件file的匹配行的第一、二个域，但显示时域中间没有分隔符。</pre>
+
+<p>
+<span style="color: #808000">3、df | awk &#039;$4&gt;1000000 &#039;         通过管道符获得输入，如：显示第4个域满足条件的行。</span>
+</p>
+
+<p>
+<span style="color: #000080">4、awk -F “|” &#039;{print $1}&#039;   file 按照新的分隔符“|”进行操作。</span>
+</p>
+<pre class="code bash">   <span class="kw2">awk</span>  <span class="st_h">'BEGIN { FS=&quot;[: \t|]&quot; }
+   {print $1,$2,$3}'</span>       <span class="co0">#file 通过设置输入分隔符（FS=&quot;[: \t|]&quot;）修改输入分隔符。</span>
+&nbsp;
+   <span class="re2">Sep</span>=<span class="st0">&quot;|&quot;</span>
+   <span class="kw2">awk</span> <span class="re5">-F</span> <span class="re1">$Sep</span> <span class="st_h">'{print $1}'</span>  <span class="kw2">file</span> <span class="co0">#按照环境变量Sep的值做为分隔符。   </span>
+   <span class="kw2">awk</span> <span class="re5">-F</span> <span class="st_h">'[ :\t|]'</span> <span class="st_h">'{print $1}'</span> <span class="kw2">file</span> <span class="co0">#按照正则表达式的值做为分隔符，这里代表空格、:、TAB、|同时做为分隔符。</span>
+   <span class="kw2">awk</span> <span class="re5">-F</span> <span class="st_h">'[][]'</span>    <span class="st_h">'{print $1}'</span> <span class="kw2">file</span> <span class="co0">#按照正则表达式的值做为分隔符，这里代表[、]</span></pre>
+
+<p>
+<span style="color: #800000">5、awk -f awkfile       file 通过文件awkfile的内容依次进行控制。</span>
+</p>
+<pre class="code">cat awkfile</pre>
+
+<p>
+/101/{print “\047 Hello! \047”} –遇到匹配行以后打印 &#039; Hello! &#039;.\047代表单引号。
+{print $1,$2}                   –因为没有模式控制，打印每一行的前两个域。
+</p>
+
+<p>
+ <span style="color: #800000">6、awk &#039;$1 ~ /101/ {print $1}&#039; file 显示文件中第一个域匹配101的行（记录）。
+</span>
+</p>
+
+<p>
+<span style="color: #008000">7、awk   &#039;BEGIN { OFS=“%”}
+   {print $1,$2}&#039;           file 通过设置输出分隔符（OFS=“%“）修改输出格式。</span>
+</p>
+
+<p>
+<span style="color: #800000">
+8、awk  &#039;BEGIN { max=100 ;print “max=” max}                 #   BEGIN 表示在处理任意行之前进行的操作。  <br/>
+
+   {max=($1 &gt;max ?$1:max); print $1,”Now max is “max}&#039;  file # 取得文件第一个域的最大值。  <br/>
+
+  
+（表达式1?表达式2:表达式3 相当于：  <br/>
+
+   if (表达式1)  <br/>
+
+       表达式2   <br/>
+
+   else   <br/>
+
+       表达式3   <br/>
+
+   awk &#039;{print ($1&gt;4 ? “high “$1: “low “$1)}&#039; file   <br/>
+
+   </span>
+</p>
+
+<p>
+<span style="color: #008000">9、awk &#039;$1 * $2 &gt;100 {print $1}&#039; file 显示文件中第一个域匹配101的行（记录）。</span>
+</p>
+
+<p>
+10、awk &#039;{$1 == &#039;Chi&#039; {$3 = &#039;China&#039;; print}&#039; file 找到匹配行后先将第3个域替换后再显示该行（记录）。
+</p>
+<pre class="code">  awk &#039;{$7 %= 3; print $7}&#039;  file 将第7域被3除，并将余数赋给第7域再打印。</pre>
+
+<p>
+<span style="color: #800000">11、awk &#039;/tom/ {wage=$2+$3; printf wage}&#039; file 找到匹配行后为变量wage赋值并打印该变量。</span>
+</p>
+
+<p>
+12、awk &#039;/tom/ {count++;} 
+</p>
+<pre class="code">       END {print &quot;tom was found &quot;count&quot; times&quot;}&#039; file END表示在所有输入行处理完后进行处理。</pre>
+
+<p>
+13、awk &#039;gsub(/\$/,””);gsub(/,/,””); cost+=$4;
+</p>
+<pre class="code">       END {print &quot;The total is $&quot; cost&gt;&quot;filename&quot;}&#039;    file gsub函数用空串替换$和,再将结果输出到filename中。
+  1 2 3 $1,200.00
+  1 2 3 $2,300.00
+  1 2 3 $4,000.00</pre>
+<pre class="code">  awk &#039;{gsub(/\$/,&quot;&quot;);gsub(/,/,&quot;&quot;);
+  if ($4&gt;1000&amp;&amp;$4&lt;2000) c1+=$4;
+  else if ($4&gt;2000&amp;&amp;$4&lt;3000) c2+=$4;
+  else if ($4&gt;3000&amp;&amp;$4&lt;4000) c3+=$4;
+  else c4+=$4; }
+  END {printf  &quot;c1=[%d];c2=[%d];c3=[%d];c4=[%d]\n&quot;,c1,c2,c3,c4}&quot;&#039; file
+  通过if和else if完成条件语句</pre>
+<pre class="code">  awk &#039;{gsub(/\$/,&quot;&quot;);gsub(/,/,&quot;&quot;);
+  if ($4&gt;3000&amp;&amp;$4&lt;4000) exit;
+  else c4+=$4; }
+  END {printf  &quot;c1=[%d];c2=[%d];c3=[%d];c4=[%d]\n&quot;,c1,c2,c3,c4}&quot;&#039; file
+  通过exit在某条件时退出，但是仍执行END操作。
+  awk &#039;{gsub(/\$/,&quot;&quot;);gsub(/,/,&quot;&quot;);
+  if ($4&gt;3000) next;
+  else c4+=$4; }
+  END {printf  &quot;c4=[%d]\n&quot;,c4}&quot;&#039; file
+  通过next在某条件时跳过该行，对下一行执行操作。</pre>
+
+<p>
+14、awk &#039;{ print FILENAME,$0 }&#039; file1 file2 file3&gt;fileall 把file1、file2、file3的文件内容全部写到fileall中，格式为
+</p>
+<pre class="code">  打印文件并前置文件名。</pre>
+
+<p>
+15、awk &#039; $1!=previous { close(previous); previous=$1 }   
+</p>
+<pre class="code">  {print substr($0,index($0,&quot; &quot;) +1)&gt;$1}&#039; fileall 把合并后的文件重新分拆为3个文件。并与原文件一致。</pre>
+
+<p>
+16、awk &#039;BEGIN {“date”|getline d; print d}&#039;         通过管道把date的执行结果送给getline，并赋给变量d，然后打印。 
+</p>
+
+<p>
+17、awk &#039;BEGIN {system(“echo \”Input your name:\\c\””); getline d;print “\nYour name is”,d,“\b!\n”}&#039;
+</p>
+<pre class="code">  通过getline命令交互输入name，并显示出来。
+  awk &#039;BEGIN {FS=&quot;:&quot;; while(getline&lt; &quot;/etc/passwd&quot; &gt;0) { if($1~&quot;050[0-9]_&quot;) print $1}}&#039;
+  打印/etc/passwd文件中用户名包含050x_的用户名。</pre>
+
+<p>
+18、awk &#039;{ i=1;while(i&lt;NF) {print NF,$i;i++}}&#039; file 通过while语句实现循环。
+</p>
+<pre class="code">  awk &#039;{ for(i=1;i&lt;NF;i++) {print NF,$i}}&#039;   file 通过for语句实现循环。    
+  type file|awk -F &quot;/&quot; &#039;
+  { for(i=1;i&lt;NF;i++)
+  { if(i==NF-1) { printf &quot;%s&quot;,$i }
+  else { printf &quot;%s/&quot;,$i } }}&#039;               显示一个文件的全路径。
+  用for和if显示日期
+  awk  &#039;BEGIN {</pre>
+
+<p>
+for(j=1;j⇐12;j++)
+{ flag=0;
+</p>
+<pre class="code">printf &quot;\n%d月份\n&quot;,j;
+      for(i=1;i&lt;=31;i++)
+      {
+      if (j==2&amp;&amp;i&gt;28) flag=1;
+      if ((j==4||j==6||j==9||j==11)&amp;&amp;i&gt;30) flag=1;
+      if (flag==0) {printf &quot;%02d%02d &quot;,j,i}
+      }</pre>
+
+<p>
+}
+}&#039;
+</p>
+
+<p>
+19、在awk中调用系统变量必须用单引号，如果是双引号，则表示字符串
+Flag=abcd
+awk &#039;{print &#039;$Flag&#039;}&#039;   结果为abcd
+awk &#039;{print  “$Flag”}&#039;   结果为$Flag
+</p>
+
+<p>
+以上转自chinaunix，以下是自己的总结：
+</p>
+
+<p>
+求和：
+</p>
+<pre class="code">  $awk &#039;BEGIN{total=0}{total+=$4}END{print total}&#039; a.txt   -----对a.txt文件的第四个域进行求和！</pre>
+<pre class="code">  $ awk &#039;/^(no|so)/&#039; test-----打印所有以模式no或so开头的行。</pre>
+<pre class="code">  $ awk &#039;/^[ns]/{print $1}&#039; test-----如果记录以n或s开头，就打印这个记录。</pre>
+<pre class="code">  $ awk &#039;$1 ~/[0-9][0-9]$/(print $1}&#039; test-----如果第一个域以两个数字结束就打印这个记录。</pre>
+<pre class="code">  $ awk &#039;$1 == 100 || $2 &lt; 50&#039; test-----如果第一个或等于100或者第二个域小于50，则打印该行。</pre>
+<pre class="code">  $ awk &#039;$1 != 10&#039; test-----如果第一个域不等于10就打印该行。</pre>
+<pre class="code">  $ awk &#039;/test/{print $1 + 10}&#039; test-----如果记录包含正则表达式test，则第一个域加10并打印出来。</pre>
+<pre class="code">  $ awk &#039;{print ($1 &gt; 5 ? &quot;ok &quot;$1: &quot;error&quot;$1)}&#039; test-----如果第一个域大于5则打印问号后面的表达式值，否则打印冒号后面的表达式值。</pre>
+<pre class="code">  $ awk &#039;/^root/,/^mysql/&#039; test----打印以正则表达式root开头的记录到以正则表达式mysql开头的记录范围内的所有记录。如果找到一个新的正则表达式root开头的记 录，则继续打印直到下一个以正则表达式mysql开头的记录为止，或到文件末尾。</pre>
+
+</div>

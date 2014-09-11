@@ -1,0 +1,6 @@
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... SRC DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... SRC <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST:DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST:SRC DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST::SRC DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... SRC <span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST::DEST
+　　rsync <span class="br0">&#91;</span>OPTION<span class="br0">&#93;</span>... rsync:<span class="sy0">//</span><span class="br0">&#91;</span>USER<span class="sy0">@</span><span class="br0">&#93;</span>HOST<span class="br0">&#91;</span>:PORT<span class="br0">&#93;</span><span class="sy0">/</span>SRC <span class="br0">&#91;</span>DEST<span class="br0">&#93;</span>

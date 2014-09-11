@@ -1,0 +1,3 @@
+[[shell_command:returen_backend_status| 返回后台任务的状态]]
+
+[[shell_command:returen_backend_command_status| 返回后台执行命令的返回值]]
